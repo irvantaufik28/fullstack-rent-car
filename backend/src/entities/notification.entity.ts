@@ -13,4 +13,10 @@ export class NotificationsEntity extends BaseEntity {
 
   @Column()
   content: string;
+
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  created_at: Date;
+
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  update_at: Date;
 }
