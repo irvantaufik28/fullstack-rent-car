@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Navbar, Nav } from "react-bootstrap";
 import logo from '../../assets/icon/logo.png'
 
+
 export default function NavbarTop() {
+  const [colorChange, setColorchange] = useState(false);
+  const changeNavbarColor = () =>{
+     if(window.scrollY >= 200){
+       setColorchange(true);
+     }
+     else{
+       setColorchange(false);
+     }
+  };
+  window.addEventListener('scroll', changeNavbarColor);
   return (
     <>
-    <Navbar bg="tranparent" fixed="top"  >
+    <Navbar bg="tranparent" fixed="top" className={colorChange ? 'bg-light' : 'bg-transparent'} >
         <Container>
           <Navbar.Brand href="#home">
             <img src={logo} alt="logo"/>

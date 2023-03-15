@@ -4,8 +4,8 @@ export default function carDetail(props) {
   return (
     <div className="container">
       <div className="row row-car-detail">
-        <div className="col-md-6 d-flex mt-5 col-detail">
-          <div className="car-description">
+        <div className="col d-flex mt-5 col-detail car-description">
+          <div className="w-100">
             <h5>Tentang Paket</h5>
             <h6>Inculde</h6>
             <ul>
@@ -48,7 +48,7 @@ export default function carDetail(props) {
             </ul>
           </div>
         </div>
-        <div className="col-md-6 d-flex mt-5 detail-car-card">
+        <div className="col-md-5 d-flex mt-5 detail-car-card">
           <div className="card-car">
             <div className="image-car-detail">
               <img
