@@ -1,7 +1,7 @@
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateNotificationDto } from '../dto/create-notification.dto';
-import { NotificationsEntity } from '../entity/notification.entity';
+import { NotificationsEntity } from '../../../entities/notification.entity';
 
 export class NotificationRepository extends Repository<NotificationsEntity> {
   constructor(

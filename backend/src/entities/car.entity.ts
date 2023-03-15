@@ -1,4 +1,4 @@
-import { OrderEntity } from 'src/api/order/entity/order.entity';
+import { OrderEntity } from './order.entity'
 import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn, Timestamp } from 'typeorm';
 
 @Entity('car')

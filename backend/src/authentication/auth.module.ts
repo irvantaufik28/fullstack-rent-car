@@ -5,7 +5,7 @@ import { UserRepository } from '../api/user/repository/user.repository';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { JwtStrategy } from 'src/common/helper/jwt/jwt.strategy';
-import { UserEntity } from '../api/user/entity/user.entity';
+import { UserEntity } from '../entities/user.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({

@@ -8,7 +8,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { UserDetailEntity } from './user-detail.entity';
-import { OrderEntity } from 'src/api/order/entity/order.entity';
+import { OrderEntity } from "src/entities/order.entity"; 
 
 @Entity('user')
 export class UserEntity {

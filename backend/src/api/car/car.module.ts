@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { CarService } from './car.service';
 import { CarController } from './car.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CarEntity } from './entity/car.entity';
+import { CarEntity } from '../../entities/car.entity';
 import { CarRepository } from './repository/car.repository';
 import { CarProducerService } from 'src/jobs/queue/producer/car.produce.service';
 import { BullModule } from '@nestjs/bull';

@@ -1,7 +1,7 @@
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from '../dto/create-user.dto';
-import { UserDetailEntity } from '../entity/user-detail.entity';
+import { UserDetailEntity } from '../../../entities/user-detail.entity';
 import { DataSource } from 'typeorm';
 
 export class UserDetailRepository extends Repository<UserDetailEntity> {

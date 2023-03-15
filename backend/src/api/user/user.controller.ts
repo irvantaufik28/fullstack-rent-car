@@ -5,7 +5,7 @@ import { SecurityType } from 'src/common/enum/enum';
 import { RolesGuard } from 'src/common/guard/jwt-role.guard';
 import { JwGuard } from 'src/common/guard/jwt.guard';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UserEntity } from './entity/user.entity';
+import { UserEntity } from '../../entities/user.entity';
 import { UserService } from './user.service';
 
 @Controller('user')

@@ -6,7 +6,7 @@ import { PageOrderDto } from 'src/common/pageDTO/page-order.dto ';
 import { PageDto } from 'src/common/pageDTO/page.dto';
 import { Raw, Repository } from 'typeorm';
 import { CreateOrderDto } from '../dto/create-order.dto';
-import { OrderEntity } from '../entity/order.entity';
+import { OrderEntity } from '../../../entities/order.entity';
 
 export class OrderRepository extends Repository<OrderEntity> {
   constructor(

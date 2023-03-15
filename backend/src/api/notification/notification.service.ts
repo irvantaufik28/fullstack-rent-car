@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { EventsGateway } from 'src/common/events/events.gateway';
 import { CreateNotificationDto } from './dto/create-notification.dto';
-import { NotificationsEntity } from './entity/notification.entity';
+import { NotificationsEntity } from '../../entities/notification.entity';
 import { NotificationRepository } from './repository/notification.repository';
 
 @Injectable()

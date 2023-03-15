@@ -1,5 +1,5 @@
-import { CarEntity } from 'src/api/car/entity/car.entity';
-import { UserEntity } from 'src/api/user/entity/user.entity';
+import { CarEntity } from './car.entity'; 
+import { UserEntity } from './user.entity'; 
 import {
   BaseEntity,
   Column,

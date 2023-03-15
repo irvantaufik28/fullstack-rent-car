@@ -5,7 +5,7 @@ import {
 } from '@nestjs/websockets';
 
 import { Server } from 'socket.io';
-import { NotificationsEntity } from 'src/api/notification/entity/notification.entity';
+import { NotificationsEntity } from 'src/entities/notification.entity'; 
 import { ServerToClientEvents } from './types/event';
 
 @WebSocketGateway({ namespace: 'events' })

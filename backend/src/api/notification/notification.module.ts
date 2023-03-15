@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { EventsGateway } from 'src/common/events/events.gateway'; 
-import { NotificationsEntity } from './entity/notification.entity';
+import { NotificationsEntity } from '../../entities/notification.entity';
 import { NotificationService } from './notification.service';
 import { NotificationRepository } from './repository/notification.repository';
 import { NotificationController } from './notification.controller';

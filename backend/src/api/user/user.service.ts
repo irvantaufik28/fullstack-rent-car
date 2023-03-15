@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UserEntity } from './entity/user.entity';
+import { UserEntity } from '../../entities/user.entity';
 import { UserDetailRepository } from './repository/user-detail.repository';
 import { UserRepository } from './repository/user.repository';
 

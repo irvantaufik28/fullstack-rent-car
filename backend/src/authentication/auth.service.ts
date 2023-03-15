@@ -4,7 +4,7 @@ import { UserRepository } from '../api/user/repository/user.repository';
 import { LoginDto } from './dto/login.dto';
 import { loginResponse } from './interface/login.interface';
 import * as bcrypt from 'bcrypt';
-import { UserEntity } from '../api/user/entity/user.entity';
+import { UserEntity } from '../entities/user.entity';
 
 @Injectable()
 export class AuthService {

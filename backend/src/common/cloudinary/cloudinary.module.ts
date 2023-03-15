@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CarEntity } from 'src/api/car/entity/car.entity'; 
+import { CarEntity } from 'src/entities/car.entity'; 
 import { CloudinaryService } from './cloudinary.service';
 import { CloudinaryProvider } from './cloudinary.provider';
 @Module({
