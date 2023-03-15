@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Container, Navbar, Nav } from "react-bootstrap";
 import logo from '../../assets/icon/logo.png'
+import '../styles/navbar.css'
 
 
 export default function NavbarTop() {
@@ -16,7 +17,7 @@ export default function NavbarTop() {
   window.addEventListener('scroll', changeNavbarColor);
   return (
     <>
-    <Navbar bg="tranparent" fixed="top" className={colorChange ? 'bg-light' : 'bg-transparent'} >
+    <Navbar bg="tranparent" fixed="top" className={colorChange ? 'bg-light pt-4 pb-4 trans-02' : 'bg-transparent trans-02'} >
         <Container>
           <Navbar.Brand href="#home">
             <img src={logo} alt="logo"/>
