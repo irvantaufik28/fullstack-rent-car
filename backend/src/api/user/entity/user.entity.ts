@@ -1,4 +1,4 @@
-import { SecurityType } from 'src/common/enum/enum';
+import { SecurityType } from "src/common/enum/enum"; 
 import { Exclude } from "class-transformer";
 import {
   Column,

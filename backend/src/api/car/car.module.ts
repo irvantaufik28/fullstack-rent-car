@@ -4,10 +4,10 @@ import { CarController } from './car.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CarEntity } from './entity/car.entity';
 import { CarRepository } from './repository/car.repository';
-import { CarProducerService } from '../queue/producer/car.produce.service';
+import { CarProducerService } from 'src/jobs/queue/producer/car.produce.service';
 import { BullModule } from '@nestjs/bull';
-import { CloudinaryService } from '../cloudinary/cloudinary.service';
-import { CloudinaryProvider } from '../cloudinary/cloudinary.provider';
+import { CloudinaryService } from 'src/common/cloudinary/cloudinary.service';
+import { CloudinaryProvider } from 'src/common/cloudinary/cloudinary.provider';
 
 @Module({
   imports: [TypeOrmModule.forFeature([CarEntity]),

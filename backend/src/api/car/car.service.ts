@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { PageCarOptionsDto } from 'src/common/pageDTO/page-car-options.dto';
 import { PageDto } from 'src/common/pageDTO/page.dto';
-import { CloudinaryService } from '../cloudinary/cloudinary.service';
+import { CloudinaryService } from 'src/common/cloudinary/cloudinary.service';
 import { CreateCarDto } from './dto/car-create.dto';
 import { CarEntity } from './entity/car.entity';
 import { CarRepository } from './repository/car.repository';

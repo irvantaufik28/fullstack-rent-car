@@ -22,7 +22,7 @@ import { JwGuard } from 'src/common/guard/jwt.guard';
 import { CarResponseInterceptor } from 'src/common/interceptorts/transform/car-response.interceptors';
 import { PageCarOptionsDto } from 'src/common/pageDTO/page-car-options.dto';
 import { PageDto } from 'src/common/pageDTO/page.dto';
-import { CarProducerService } from '../queue/producer/car.produce.service';
+import { CarProducerService } from 'src/jobs/queue/producer/car.produce.service';  
 import { CarService } from './car.service';
 import { CreateCarDto } from './dto/car-create.dto';
 

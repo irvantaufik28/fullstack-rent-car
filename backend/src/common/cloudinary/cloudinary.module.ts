@@ -1,9 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CarEntity } from '../car/entity/car.entity';
-import { CloudinaryProvider } from './cloudinary.provider';
+import { CarEntity } from 'src/api/car/entity/car.entity'; 
 import { CloudinaryService } from './cloudinary.service';
-
+import { CloudinaryProvider } from './cloudinary.provider';
 @Module({
   imports: [TypeOrmModule.forFeature([ CarEntity])],
   providers: [CloudinaryProvider, CloudinaryService],

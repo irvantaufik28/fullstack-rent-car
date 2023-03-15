@@ -2,21 +2,21 @@ import { Module } from '@nestjs/common';
 import { BullModule } from '@nestjs/bull';
 import { CarCounsumer } from './consumer/car.consumer';
 import { CarProducerService } from './producer/car.produce.service';
-import { CarRepository } from '../car/repository/car.repository';
+import { CarRepository } from 'src/api/car/repository/car.repository'; 
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CarEntity } from '../car/entity/car.entity';
-import { CarService } from '../car/car.service';
-import { OrderService } from '../order/order.service';
-import { OrderRepository } from '../order/repository/order.repository';
-import { OrderEntity } from '../order/entity/order.entity';
-import { NotificationService } from '../notification/notification.service';
-import { NotificationsEntity } from '../notification/entity/notification.entity';
-import { NotificationRepository } from '../notification/repository/notification.repository';
-import { EventsGateway } from '../events/events.gateway';
+import { CarEntity } from 'src/api/car/entity/car.entity'; 
+import { CarService } from 'src/api/car/car.service'; 
+import { OrderService } from 'src/api/order/order.service'; 
+import { OrderRepository } from 'src/api/order/repository/order.repository'; 
+import { OrderEntity } from 'src/api/order/entity/order.entity'; 
+import { NotificationService } from 'src/api/notification/notification.service'; 
+import { NotificationsEntity } from 'src/api/notification/entity/notification.entity'; 
+import { NotificationRepository } from 'src/api/notification/repository/notification.repository'; 
+import { EventsGateway } from 'src/common/events/events.gateway';
 import { OrderCounsumer } from './consumer/order.consumer';
 import { OrderProducerService } from './producer/order.produce.service';
-import { CloudinaryProvider } from '../cloudinary/cloudinary.provider';
-import { CloudinaryService } from '../cloudinary/cloudinary.service';
+import { CloudinaryProvider } from 'src/common/cloudinary/cloudinary.provider'; 
+import { CloudinaryService } from 'src/common/cloudinary/cloudinary.service'; 
 
 @Module({
   imports: [
