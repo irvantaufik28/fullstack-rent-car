@@ -3,6 +3,8 @@ import icon2 from "../../../assets/icon/icon2.svg";
 import icon3 from "../../../assets/icon/icon3.svg";
 import icon4 from "../../../assets/icon/icon4.svg";
 import icon_check from "../../../assets/icon/icon_check.svg";
+import pesron1 from "../../../assets/person/person1.png";
+import pesron2 from "../../../assets/person/person2.png";
 
 const whyUsStatic = [
   {
@@ -97,4 +99,68 @@ const bestCarStatic = [
   },
 ];
 
-export { whyUsStatic, faqStatic, bestCarStatic };
+const testimonialStatic = [
+ 
+  {
+    id: 2,
+    name: "Cindy Star",
+    age: 25,
+    city: "Jakarta",
+    testimonial:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic distinctio ratione cumque placeat, mollitia culpa? Corporis repellendus saepe ipsam maiores odit inventore quo deleniti amet!",
+    image: pesron2,
+    star: 1,
+  },
+  {
+    id: 2,
+    name: "Cindy Star",
+    age: 25,
+    city: "Jakarta",
+    testimonial:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic distinctio ratione cumque placeat, mollitia culpa? Corporis repellendus saepe ipsam maiores odit inventore quo deleniti amet!",
+    image: pesron1,
+    star: 2,
+  },
+  {
+    id: 2,
+    name: "Cindy Star",
+    age: 25,
+    city: "Jakarta",
+    testimonial:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic distinctio ratione cumque placeat, mollitia culpa? Corporis repellendus saepe ipsam maiores odit inventore quo deleniti amet!",
+    image: pesron1,
+    star: 3,
+  },
+  {
+    id: 2,
+    name: "Cindy Star",
+    age: 25,
+    city: "Jakarta",
+    testimonial:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic distinctio ratione cumque placeat, mollitia culpa? Corporis repellendus saepe ipsam maiores odit inventore quo deleniti amet!",
+    image: pesron1,
+    star: 4,
+  },
+  {
+    id: 2,
+    name: "Cindy Star",
+    age: 25,
+    city: "Jakarta",
+    testimonial:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic distinctio ratione cumque placeat, mollitia culpa? Corporis repellendus saepe ipsam maiores odit inventore quo deleniti amet!",
+    image: pesron1,
+    star: 5,
+  },
+  {
+    id: 2,
+    name: "Cindy Star",
+    age: 25,
+    city: "Jakarta",
+    testimonial:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic distinctio ratione cumque placeat, mollitia culpa? Corporis repellendus saepe ipsam maiores odit inventore quo deleniti amet!",
+    image: pesron1,
+    star: 6,
+  },
+];
+
+export { whyUsStatic, faqStatic, bestCarStatic, testimonialStatic };

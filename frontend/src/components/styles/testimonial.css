@@ -1,0 +1,16 @@
+.swiper-slide {
+  background: #f1f3ff;
+  border-radius: 10px;
+  padding: 28px;
+  width: 45% !important;
+}
+
+.main-content {
+  height: 250px;
+  display: flex;
+  align-items: center;
+}
+
+.title-slide {
+  text-align: center;
+}

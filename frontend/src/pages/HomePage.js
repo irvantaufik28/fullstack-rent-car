@@ -7,11 +7,12 @@ import CtaBanner from '../components/homepage/CtaBanner'
 import Faq from '../components/homepage/Faq'
 import Navbar from "../components/layouts/Navbar";
 import Footer from "../components/layouts/Footer";
-import { whyUsStatic, faqStatic, bestCarStatic } from '../components/internal/constanta/static'
+import { whyUsStatic, faqStatic, bestCarStatic, testimonialStatic } from '../components/internal/constanta/static'
 const props = {
   whyUsStatic,
   faqStatic,
-  bestCarStatic
+  bestCarStatic,
+  testimonialStatic
 }
 
 
@@ -24,7 +25,7 @@ export default function HomePage() {
       <Banner />
       <BestCar {...props}/>
       <WhyUs {...props}/>
-      <Testimonial />
+      <Testimonial {...props} />
       <CtaBanner />
       <Faq {...props}/>
     </div>

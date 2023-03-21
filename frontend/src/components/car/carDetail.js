@@ -64,9 +64,9 @@ export default function carDetail(props) {
                       props.data.category
               }</p>
 
-              <div class="row align-items-start">
-                <div class="col">Total</div>
-                <div class="col">{props.data.price}</div>
+              <div className="row align-items-start">
+                <div className="col">Total</div>
+                <div className="col">{props.data.price}</div>
               </div>
 
             </div>
