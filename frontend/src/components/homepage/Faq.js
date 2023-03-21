@@ -1,7 +1,8 @@
 import React from "react";
+import Accordion from 'react-bootstrap/Accordion';
 import "../styles/homepage.css";
 
-function Faq() {
+function Faq({ faqStatic }) {
   return (
     <div className="main position-relative">
       <div className="container">
@@ -13,46 +14,22 @@ function Faq() {
             </div>
           </div>
           <div className="col-md-6">
-            <div className="question">
-              <select className="form-select content-option" aria-label="Default select example">
-                <option defaultValue>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
-            </div>
-            <div className="question">
-              <select className="form-select" aria-label="Default select example">
-                <option defaultValue>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
-            </div>
-            <div className="question">
-              <select className="form-select" aria-label="Default select example">
-                <option defaultValue>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
-            </div>
-            <div className="question">
-              <select className="form-select" aria-label="Default select example">
-                <option defaultValue>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
-            </div>
-            <div className="question">
-              <select className="form-select" aria-label="Default select example">
-                <option defaultValue>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
-            </div>
+
+            <Accordion defaultActiveKey='1'>
+              {faqStatic.map((item) => {
+                return (
+                  <div key={item.id}>
+
+                  <Accordion.Item eventKey={item.id} >
+                    <Accordion.Header>{item.question}</Accordion.Header>
+                    <Accordion.Body>
+                      {item.answer}
+                    </Accordion.Body>
+                  </Accordion.Item>
+                  </div>
+                )
+              })}
+            </Accordion>
           </div>
         </div>
       </div>

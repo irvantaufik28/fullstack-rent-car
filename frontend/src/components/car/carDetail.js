@@ -55,25 +55,25 @@ export default function carDetail(props) {
                 src={props.data.image}
                 alt={props.data.name}
               />
-           
+
               <p className="card-title">{props.data.name}</p>
               <p className="card-title"> {
-              props.data.category === 'small' ? '2-4 orang':
-              props.data.category === 'medium' ? '4-6 orang':
-              props.data.category === 'large' ? '6-8 orang':
-              props.data.category 
+                props.data.category === 'small' ? '2-4 orang' :
+                  props.data.category === 'medium' ? '4-6 orang' :
+                    props.data.category === 'large' ? '6-8 orang' :
+                      props.data.category
               }</p>
-             
-                <div class="row align-items-start">
-                  <div class="col">Total</div>
-                  <div class="col">{props.data.price}</div>
-                </div>
-              
-            </div>
+
+              <div class="row align-items-start">
+                <div class="col">Total</div>
+                <div class="col">{props.data.price}</div>
+              </div>
+
             </div>
           </div>
         </div>
       </div>
-  
+    </div>
+
   );
 }

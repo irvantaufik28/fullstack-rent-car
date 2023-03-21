@@ -1,9 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import CarList from '../components/car/carList'
+import config from "../config/index"
 import FromFillter from '../components/car/fromFillter'
 import Banner from '../components/homepage/Banner'
-
+import Navbar from "../components/layouts/Navbar";
+import Footer from "../components/layouts/Footer";
 export default function FindCar() {
 
   const [dataCar, setDataCar] = useState({
@@ -15,26 +17,28 @@ export default function FindCar() {
     getCars();
   }, []);
 
+  const apiUrl = config.apiBaseUrl
   const getCars = async (params = {}) => {
     const response = await axios.get(
-      `https://bootcamp-rent-cars.herokuapp.com/customer/v2/car`, {
+      apiUrl + "/customer/v2/car", {
       params
     }
     );
-    console.log(params)
 
     setDataCar(response.data);
   };
 
   const onFilter = (payload) => {
-      getCars(payload)
+    getCars(payload)
   }
 
   return (
     <>
+      <Navbar />
       <Banner />
       <FromFillter onSubmit={onFilter} />
       <CarList data={dataCar} />
+      <Footer />
     </>
   )
 }

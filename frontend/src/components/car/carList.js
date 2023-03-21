@@ -10,7 +10,7 @@ export default function CarList(props) {
       <div className="container">
         <div className="row">
           {props.data.cars.map((car) => (
-            <div className="col-md-4">
+            <div className="col-md-4" key={car.id}>
               <div className="card-car">
                 <div className="image-car">
                   <img

@@ -1,10 +1,10 @@
 import React from 'react';
 import img_service from '../../assets/img/img_service.png'
 import "../styles/homepage.css";
-import icon_check from '../../assets/icon/icon_check.svg'
 
 
-export default function BestCar() {
+
+export default function BestCar({ bestCarStatic }) {
   return (
     <>
       <div className='main position-relative'>
@@ -19,12 +19,14 @@ export default function BestCar() {
               <div className="service-description">
                 <h1>Best Car Rental for any kind of trip in (Lokasimu)!</h1>
                 <p>Sewa mobil di (Lokasimu) bersama Binar Car Rental jaminan harga lebih murah dibandingkan yang lain, kondisi mobil baru, serta kualitas pelayanan terbaik untuk perjalanan wisata, bisnis, wedding, meeting, dll.</p>
+
                 <ul>
-                  <li><img src={icon_check} alt="icon_check" />Sewa Mobil Dengan Supir di Bali 12 Jam</li>
-                  <li><img src={icon_check} alt="icon_check" />Sewa Mobil Lepas Kunci di Bali 24 Jam</li>
-                  <li><img src={icon_check} alt="icon_check" />Sewa Mobil Jangka Panjang Bulanan</li>
-                  <li><img src={icon_check} alt="icon_check" />Gratis Antar - Jemput Mobil di Bandara</li>
-                  <li><img src={icon_check} alt="icon_check" />Layanan Airport Transfer / Drop In Out</li>
+                  {bestCarStatic.map((item) => {
+                    return (
+
+                      <li key={item.id}><img src={item.image} alt={item.alt} />{item.content}</li>
+                    )
+                  })}
                 </ul>
               </div>
             </div>
