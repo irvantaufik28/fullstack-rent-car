@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import CarList from '../components/car/carList'
+import CarList from '../components/carlist/carList'
 import config from "../config/index"
 import FromFillter from '../components/car/fromFillter'
 import Banner from '../components/homepage/Banner'
@@ -24,7 +24,6 @@ export default function FindCar() {
       params
     }
     );
-
     setDataCar(response.data);
   };
 
