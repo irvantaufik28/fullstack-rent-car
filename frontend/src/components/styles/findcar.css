@@ -7,12 +7,17 @@
     border-radius: 10px;
     margin-bottom: 50px;
 }
+
+.card-car {
+    margin-bottom: 23px;
+}
   
 
 .card-car img {
     width: 80%;
     object-fit: contain;
     height: 17vh;
+
 }
 
 .col-md-4 .card-car {

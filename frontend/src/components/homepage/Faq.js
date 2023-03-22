@@ -20,12 +20,12 @@ function Faq({ faqStatic }) {
                 return (
                   <div key={item.id}>
 
-                  <Accordion.Item eventKey={item.id} >
-                    <Accordion.Header>{item.question}</Accordion.Header>
-                    <Accordion.Body>
-                      {item.answer}
-                    </Accordion.Body>
-                  </Accordion.Item>
+                    <Accordion.Item eventKey={item.id} >
+                      <Accordion.Header>{item.question}</Accordion.Header>
+                      <Accordion.Body>
+                        {item.answer}
+                      </Accordion.Body>
+                    </Accordion.Item>
                   </div>
                 )
               })}

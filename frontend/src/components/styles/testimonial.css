@@ -14,3 +14,12 @@
 .title-slide {
   text-align: center;
 }
+
+.desc {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.fullname {
+  font-size: 15px
+}
