@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./ctabanner.css";
 
 export default function CtaBanner() {
@@ -17,7 +18,7 @@ export default function CtaBanner() {
                       elit. Assumenda, quas. Eaque esse consequuntur voluptatum
                       ab doloremque molestiae ad saepe quidem.
                     </p>
-                    <button className="button_banner">Mulai Sewa Mobil</button>
+                    <Link to="/car">   <button className="button_banner">Mulai Sewa Mobil</button></Link>
                   </div>
                 </div>
               </div>

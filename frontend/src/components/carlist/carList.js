@@ -4,6 +4,19 @@ import Styles from "../carlist/carlist.css";
 import { Link } from "react-router-dom";
 
 export default function CarList(props) {
+
+
+  if (!props.data.cars.length) {
+    return (
+      <>
+        <Container className="container-car">
+            <div className="carnotfound">
+              <h1>car not found!!!</h1>
+            </div>
+        </Container>
+      </>
+    )
+  }
   return (
     <>
       <Container className="container-car">
@@ -21,11 +34,11 @@ export default function CarList(props) {
                   <p>{o.name}</p>
                   <h6>Rp {o.price} / hari</h6>
                   <Card.Text>
-                   Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est natus repellendus inventore, similique necessitatibus cumque architecto a nesciunt vitae! Minus.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est natus repellendus inventore, similique necessitatibus cumque architecto a nesciunt vitae! Minus.
                   </Card.Text>
                   <Link to={`${o.id}`}>
                     <div className="d-grid gap-2">
-                    <Button variant="flat">
+                      <Button variant="flat">
                         Pilih Mobil
                       </Button>
                     </div>

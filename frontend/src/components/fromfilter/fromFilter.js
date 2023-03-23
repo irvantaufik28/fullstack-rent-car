@@ -15,6 +15,9 @@ export default function FromOption(props) {
     <>
 
       <div className="container seacrh-car">
+      <div className="title-search">
+          <h5>Pencarianmu</h5>
+        </div>
         <form className="table-option" onSubmit={(e) => {
           e.preventDefault()
           props.onSubmit(form)

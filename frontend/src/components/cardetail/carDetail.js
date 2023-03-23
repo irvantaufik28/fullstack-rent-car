@@ -1,5 +1,6 @@
 import React from "react";
 import "./detailcar.css";
+
 export default function carDetail(props) {
   return (
     <div className="container detailcar">
@@ -52,6 +53,7 @@ export default function carDetail(props) {
           <div className="card-car">
             <div className="image-car-detail">
               <img
+              
                 src={props.data.image}
                 alt={props.data.name}
               />
