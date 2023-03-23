@@ -1,5 +1,4 @@
-import "../styles/homepage.css";
-import "../styles/findcar.css";
+import "./fromfilter.css"
 import { useState } from "react";
 
 export default function FromOption(props) {

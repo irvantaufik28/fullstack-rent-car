@@ -1,8 +1,8 @@
 import React from "react";
-import "../styles/detailcar.css";
+import "./detailcar.css";
 export default function carDetail(props) {
   return (
-    <div className="container">
+    <div className="container detailcar">
       <div className="row row-car-detail">
         <div className="col d-flex mt-5 col-detail car-description">
           <div className="w-100">
@@ -56,8 +56,8 @@ export default function carDetail(props) {
                 alt={props.data.name}
               />
 
-              <p className="card-title">{props.data.name}</p>
-              <p className="card-title"> {
+              <p className="card-title-detail">{props.data.name}</p>
+              <p className="card-title-detail"> {
                 props.data.category === 'small' ? '2-4 orang' :
                   props.data.category === 'medium' ? '4-6 orang' :
                     props.data.category === 'large' ? '6-8 orang' :
@@ -68,8 +68,8 @@ export default function carDetail(props) {
                 <div className="col">Total</div>
                 <div className="col">{props.data.price}</div>
               </div>
-
             </div>
+
           </div>
         </div>
       </div>

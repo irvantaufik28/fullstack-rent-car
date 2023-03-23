@@ -2,8 +2,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import CarList from '../components/carlist/carList'
 import config from "../config/index"
-import FromFillter from '../components/car/fromFillter'
-import Banner from '../components/homepage/Banner'
+import FromFillter from '../components/fromfilter/fromFilter'
+import Banner from '../components/homepage/banner/Banner'
 import Navbar from "../components/layouts/Navbar";
 import Footer from "../components/layouts/Footer";
 export default function FindCar() {

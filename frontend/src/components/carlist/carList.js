@@ -1,7 +1,6 @@
 import React from "react";
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import Styles from "../carlist/carlist.css";
-import '../carlist/carlist.css'
 import { Link } from "react-router-dom";
 
 export default function CarList(props) {
@@ -22,12 +21,11 @@ export default function CarList(props) {
                   <p>{o.name}</p>
                   <h6>Rp {o.price} / hari</h6>
                   <Card.Text>
-                    Some quick example text to build on the card title and make up the
-                    bulk of the card's content.
+                   Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est natus repellendus inventore, similique necessitatibus cumque architecto a nesciunt vitae! Minus.
                   </Card.Text>
-                  <Link to="/car">
+                  <Link to={`${o.id}`}>
                     <div className="d-grid gap-2">
-                    <Button variant="flat" className="btn-flat btn-lg">
+                    <Button variant="flat">
                         Pilih Mobil
                       </Button>
                     </div>

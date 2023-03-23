@@ -19,10 +19,10 @@ export default function NavbarTop() {
     <>
     <Navbar bg="tranparent" fixed="top" className={colorChange ? 'bg-light pt-4 pb-4 trans-02' : 'bg-transparent trans-02'} >
         <Container>
-          <Navbar.Brand href="#home">
+          <Navbar.Brand href="/">
             <img src={logo} alt="logo"/>
           </Navbar.Brand>
-          <Nav className="ml-auto">
+          <Nav className="ml-auto navlist">
             <Nav.Link href="#home">Out Service</Nav.Link>
             <Nav.Link href="#features">Why Us</Nav.Link>
             <Nav.Link href="#pricing">Testimonial</Nav.Link>

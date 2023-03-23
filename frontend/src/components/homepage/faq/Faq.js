@@ -1,10 +1,10 @@
 import React from "react";
 import Accordion from 'react-bootstrap/Accordion';
-import "../styles/homepage.css";
+import './faq.css'
 
 function Faq({ faqStatic }) {
   return (
-    <div className="main position-relative">
+  
       <div className="container">
         <div className="row">
           <div className="col-md-6">
@@ -15,7 +15,7 @@ function Faq({ faqStatic }) {
           </div>
           <div className="col-md-6">
 
-            <Accordion defaultActiveKey='1'>
+            <Accordion className="accordion" defaultActiveKey='1'>
               {faqStatic.map((item) => {
                 return (
                   <div key={item.id}>
@@ -30,7 +30,7 @@ function Faq({ faqStatic }) {
                 )
               })}
             </Accordion>
-          </div>
+       
         </div>
       </div>
     </div>

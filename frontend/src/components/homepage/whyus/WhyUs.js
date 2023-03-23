@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './whyus.css'
 export default function WhyUs({ whyUsStatic }) {
   return (
     <>
@@ -12,11 +12,11 @@ export default function WhyUs({ whyUsStatic }) {
           {whyUsStatic.map((item) => {
             return (
               <div className="col-md-3" key={item.id}>
-                <div className="card">
+                <div className="card-whyus">
                   <img src={item.icon} alt="icon_complete" />
                   <div className="card-body">
-                    <h5 className="card-title">{item.title}</h5>
-                    <p className="card-text">{item.desc}</p>
+                    <h5 className="title-whyus">{item.title}</h5>
+                    <p className="text-whyus">{item.desc}</p>
                   </div>
                 </div>
               </div>

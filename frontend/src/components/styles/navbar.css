@@ -48,3 +48,6 @@
     cursor: pointer;
   }
 
+  .navlist a {
+    color: black;
+  }

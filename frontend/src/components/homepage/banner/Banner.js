@@ -1,8 +1,7 @@
 import React from "react";
-import hero from "../../assets/img/hero.png";
-import "../styles/homepage.css";
+import hero from "../../../assets/img/hero.png";
+import "./banner.css";
 import { Link } from "react-router-dom";
-
 export default function Banner() {
   return (
     <>
