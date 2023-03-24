@@ -29,3 +29,26 @@
     column-gap: 40px;
 }
 
+
+.accordion-detail .accordion-header {
+    border: none !important;
+}
+.accordion-detail .accordion-header button {
+    font-weight:500;
+    padding: 0px;
+}
+
+.accordion-detail .accordion-item {
+    border: none !important;
+}
+
+.accordion-detail .accordion-header button:not(.collapsed) {
+    color: inherit;
+    background-color: inherit;
+    box-shadow: none;
+}
+
+.accordion-detail .accordion-body {
+    padding: 0px;
+    margin-top: 15px;
+}
