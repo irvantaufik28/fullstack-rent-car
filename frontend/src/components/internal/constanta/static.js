@@ -104,7 +104,7 @@ const bestCarStatic = [
 ];
 
 const testimonialStatic = [
- 
+
   {
     id: 1,
     name: "Cindy Star",
@@ -167,4 +167,14 @@ const testimonialStatic = [
   },
 ];
 
-export { whyUsStatic, faqStatic, bestCarStatic, testimonialStatic };
+const refundInfo = ["Tidak termasuk biaya makan sopir Rp 75.000/hari",
+  "Jika overtime lebih dari 12 jam akan ada tambahan biaya Rp 20.000/jam",
+  "Tidak termasuk akomodasi penginapan",
+  "Tidak termasuk biaya makan sopir Rp 75.000/hari",
+  "Jika overtime lebih dari 12 jam akan ada tambahan biaya Rp 20.000/jam",
+  "Tidak termasuk akomodasi penginapan",
+  "Tidak termasuk biaya makan sopir Rp 75.000/hari",
+  "Jika overtime lebih dari 12 jam akan ada tambahan biaya Rp 20.000/jam",
+  "Tidak termasuk akomodasi penginapan"]
+
+export { whyUsStatic, faqStatic, bestCarStatic, testimonialStatic, refundInfo };

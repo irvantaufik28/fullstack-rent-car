@@ -3,6 +3,7 @@ import React from "react";
 import Accordion from "react-bootstrap/Accordion";
 import "./detailcar.css";
 
+
 export default function carDetail(props) {
   return (
     <div className="container detailcar">
