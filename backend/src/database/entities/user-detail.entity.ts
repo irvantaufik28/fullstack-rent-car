@@ -3,9 +3,11 @@ import {
   Column,
   Entity,
   JoinColumn,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { CustomerAddressEntity } from './customer-address.entity';
 import { UserEntity } from './user.entity';
 
 @Entity('user_detail')
@@ -28,7 +30,16 @@ export class UserDetailEntity extends BaseEntity {
   @Column({ nullable: false })
   address: string;
 
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  created_at: Date;
+
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  update_at: Date;
+
   @OneToOne(()=> UserEntity, (user)=> user.user_detail)
   @JoinColumn({ name: 'user_id' })
   user_detail: UserDetailEntity
+
+  @OneToMany(() => CustomerAddressEntity, (o) => o.user_detail) 
+  customer_address: CustomerAddressEntity[];
 }

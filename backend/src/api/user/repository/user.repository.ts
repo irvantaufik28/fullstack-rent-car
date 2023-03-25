@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from '../dto/create-user.dto';
-import { UserEntity } from '../../../entities/user.entity';
+import { UserEntity } from 'src/database/entities/user.entity'; 
 import * as bcrypt from 'bcrypt';
 import { InjectRepository } from '@nestjs/typeorm';
 
@@ -37,16 +37,24 @@ export class UserRepository extends Repository<UserEntity> {
     return savedUser;
   }
 
-  async findById(id: number, option: object = {}): Promise<UserEntity> {
-    const user = await this.userRepository.findOne({
-      where: {
-        id,
+  async findById(id: number): Promise<UserEntity> {
+
+    const user = this.userRepository.findOne({
+      where : {
+        id
       },
-      select: ['id', 'email', 'role_name'],
-      relations: option,
-    });
-    return user;
+      
+      relations: [
+        'user_detail',
+        'user_detail.customer_address',
+        'user_detail.customer_address.address_type',
+        'user_detail.customer_address.cities',
+      ],
+      
+    })
+    return await user;
   }
+  
 
   async findByEmail(email: string): Promise<UserEntity> {
     const user = await this.userRepository.findOne({

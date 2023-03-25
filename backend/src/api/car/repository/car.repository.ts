@@ -4,7 +4,7 @@ import { PageMetaDto } from 'src/common/pageDTO/page-meta.dto';
 import { PageDto } from 'src/common/pageDTO/page.dto';
 import { Repository } from 'typeorm';
 import { CreateCarDto } from '../dto/car-create.dto';
-import { CarEntity } from '../../../entities/car.entity';
+import { CarEntity } from 'src/database/entities/car.entity';
 
 export class CarRepository extends Repository<CarEntity> {
   constructor(

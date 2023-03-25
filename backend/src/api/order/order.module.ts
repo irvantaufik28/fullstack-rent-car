@@ -1,14 +1,14 @@
 import { BullModule } from '@nestjs/bull';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CarEntity } from '../../entities/car.entity';
+import { CarEntity } from 'src/database/entities/car.entity';
 import { CarRepository } from '../car/repository/car.repository';
 import { EventsGateway } from 'src/common/events/events.gateway'; 
-import { NotificationsEntity } from '../../entities/notification.entity';
+import { NotificationsEntity } from 'src/database/entities/notification.entity'; 
 import { NotificationService } from '../notification/notification.service';
 import { NotificationRepository } from '../notification/repository/notification.repository';
 import { OrderProducerService } from 'src/jobs/queue/producer/order.produce.service'; 
-import { OrderEntity } from '../../entities/order.entity';
+import { OrderEntity } from 'src/database/entities/order.entity'; 
 import { OrderController } from './order.controller';
 import { OrderService } from './order.service';
 import { OrderRepository } from './repository/order.repository';

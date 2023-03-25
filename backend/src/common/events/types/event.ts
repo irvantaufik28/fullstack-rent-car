@@ -1,4 +1,4 @@
-import { NotificationsEntity } from "src/entities/notification.entity" 
+import { NotificationsEntity } from "src/database/entities/notification.entity"  
 
 export interface ServerToClientEvents {
     newMessage: (payload: NotificationsEntity) => void
