@@ -1,12 +1,10 @@
 import { InjectRepository } from '@nestjs/typeorm';
 import { PageMetaDto } from 'src/common/pageDTO/page-meta.dto';
-import { PageOptionsDto } from 'src/common/pageDTO/page-options.dto';
 import { PageOrderOptionsDto } from 'src/common/pageDTO/page-order-options.dto';
 import { PageOrderDto } from 'src/common/pageDTO/page-order.dto ';
-import { PageDto } from 'src/common/pageDTO/page.dto';
 import { Raw, Repository } from 'typeorm';
 import { CreateOrderDto } from '../dto/create-order.dto';
-import { OrderEntity } from '../../../entities/order.entity';
+import { OrderEntity } from 'src/database/entities/order.entity';
 
 export class OrderRepository extends Repository<OrderEntity> {
   constructor(

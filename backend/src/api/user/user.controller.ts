@@ -1,11 +1,11 @@
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
 import { GetUser } from 'src/common/decorator/get-user.decorator';
 import { Roles } from 'src/common/decorator/roles.decorator';
 import { SecurityType } from 'src/common/enum/enum'; 
 import { RolesGuard } from 'src/common/guard/jwt-role.guard';
 import { JwGuard } from 'src/common/guard/jwt.guard';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UserEntity } from '../../entities/user.entity';
+import { UserEntity } from 'src/database/entities/user.entity'; 
 import { UserService } from './user.service';
 
 @Controller('user')

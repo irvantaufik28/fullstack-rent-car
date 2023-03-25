@@ -40,6 +40,6 @@ export class UserDetailEntity extends BaseEntity {
   @JoinColumn({ name: 'user_id' })
   user_detail: UserDetailEntity
 
-  @OneToMany(() => CustomerAddressEntity, (o) => o.id) 
+  @OneToMany(() => CustomerAddressEntity, (o) => o.user_detail) 
   customer_address: CustomerAddressEntity[];
 }

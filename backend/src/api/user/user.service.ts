@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UserEntity } from '../../entities/user.entity';
+import { UserEntity } from 'src/database/entities/user.entity';
 import { UserDetailRepository } from './repository/user-detail.repository';
 import { UserRepository } from './repository/user.repository';
 
@@ -26,7 +26,7 @@ export class UserService {
       user_detail: true,
     };
 
-    const user = await this.userRepository.findById(id, inculde);
+    const user = await this.userRepository.findById(id);
     if (!user) {
       throw new HttpException('user not found', HttpStatus.NOT_FOUND);
     }

@@ -19,12 +19,6 @@ export class CarEntity extends BaseEntity {
   status: boolean;
 
   @Column({nullable: true})
-  start_rent_at: Date;
-
-  @Column({nullable: true})
-  finish_rent_at: Date;
-
-  @Column({nullable: true})
   image: string;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })

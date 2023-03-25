@@ -8,8 +8,8 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { UserDetailEntity } from './user-detail.entity';
-import { OrderEntity } from "src/entities/order.entity"; 
-import { CustomerAddressEntity } from "./customer-address.entity";
+import { OrderEntity } from "./order.entity"; 
+import { RefreshTokenEntity } from "./refresh-token.entity";
 
 @Entity('user')
 export class UserEntity {
@@ -31,19 +31,12 @@ export class UserEntity {
   })
   role_name: SecurityType.CUSTOMER;
 
-
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  created_at: Date;
-
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  update_at: Date;
-
   @OneToOne(() => UserDetailEntity, (userDetail) => userDetail.user_detail)
   user_detail: UserDetailEntity;
 
   @OneToMany(()=> OrderEntity, (o) => o.id)
   order: OrderEntity[]
 
-  @OneToMany(() => CustomerAddressEntity, (o) => o.id) 
-  customer_address: CustomerAddressEntity[];
+  @OneToMany(() => RefreshTokenEntity, (o) => o.id)
+  refreshTokens: RefreshTokenEntity[] 
 }

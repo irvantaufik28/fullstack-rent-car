@@ -20,7 +20,7 @@ import { JwGuard } from 'src/common/guard/jwt.guard';
 import { PageOptionsDto } from 'src/common/pageDTO/page-options.dto';
 import { PageDto } from 'src/common/pageDTO/page.dto';
 import { OrderProducerService } from 'src/jobs/queue/producer/order.produce.service'; 
-import { UserEntity } from '../../entities/user.entity';
+import { UserEntity } from 'src/database/entities/user.entity';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { OrderService } from './order.service';
 
