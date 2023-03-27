@@ -108,5 +108,5 @@ export default function FromOption(props) {
 }
 
 FromOption.defaultProps = {
-  onSubmit: () => { }
+  onSubmit: () => {}
 }

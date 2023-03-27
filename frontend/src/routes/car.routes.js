@@ -6,6 +6,7 @@ import CarDetailPage from '../pages/CarDetailPage'
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import Dashboard from "../components/dashboard/Dashboard";
+import '../components/styles/mobile.css'
 
 function CarRoutes() {
   return (
