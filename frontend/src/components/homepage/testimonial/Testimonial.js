@@ -6,11 +6,11 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper";
 import star_icon from '../../../assets/icon/star.svg'
 
-export default function Testimonial({ testimonialStatic }) {
+export default function Testimonial({ testimonialStatic, linkTestimonial }) {
   return (
     <>
-      <div className="mb-5 title-slide">
-        <h3 className="mb-3">Testimonial</h3>
+      <div className="mb-5 title-slide" >
+        <h3 className="mb-3" ref={linkTestimonial}>Testimonial</h3>
         <p>Berbagai review positif dari para pelanggan kami</p>
       </div>
       <Swiper
@@ -35,7 +35,7 @@ export default function Testimonial({ testimonialStatic }) {
             );
           }
           return (
-            <SwiperSlide className="swiper-slide">
+            <SwiperSlide className="swiper-slide" >
               <div className="main-content" key={item.id}>
                 <div className="row">
                   <div className="align-items-center col-md-3 d-flex justify-content-center">

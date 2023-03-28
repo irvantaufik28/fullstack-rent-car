@@ -2,10 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./ctabanner.css";
 
-export default function CtaBanner() {
+export default function CtaBanner(props) {
   return (
     <>
-      <div className="main">
+      <div className="main" ref={props.linkRef}>
         <div className="container">
           <div className="kotak">
             <div className="cta-banner">

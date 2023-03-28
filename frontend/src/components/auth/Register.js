@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom'
 
 export default function Register() {
@@ -14,6 +14,9 @@ export default function Register() {
     address: '',
   });
 
+  const [message, setMessage] = useState('')
+  const [show, setShow] = useState(false);
+
   const navigate = useNavigate()
 
   const { email, password, confirm_password, first_name, last_name, phone_number, address } = formData;
@@ -26,17 +29,29 @@ export default function Register() {
     e.preventDefault();
 
     try {
-      await axios.post('http://localhost:4001/user/register', formData);
-      console.log('berhasil login');
+     await axios.post('http://localhost:4001/user/register', formData);
       navigate('/login')
+    
     } catch (err) {
-      console.log(err);
+      if(err.response) {
+        console.log(err.response.data)
+        setMessage(err.response.data.message)
+        setShow(true)
+      }
     }
   };
 
   return (
-    <div className='formRegister'>
-      <Form onSubmit={handleSubmit}>
+    <>
+    <Form onSubmit={handleSubmit}>
+      
+
+        {/* <Alert variant="danger" onClose={() => setShow(false)} dismissible>
+        {message.map(msg => 
+          <p>{msg}</p>
+          )}
+      </Alert> */}
+
         <Form.Group className='mb-3' controlId='email'>
           <Form.Label>Email address</Form.Label>
           <Form.Control type='email' placeholder='Enter email' name='email' value={email} onChange={handleChange} />
@@ -81,6 +96,7 @@ export default function Register() {
           Submit
         </Button>
       </Form>
-    </div>
+  
+    </>
   );
 }

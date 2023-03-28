@@ -2,14 +2,14 @@ import React from "react";
 import Accordion from 'react-bootstrap/Accordion';
 import './faq.css'
 
-function Faq({ faqStatic }) {
+function Faq({ faqStatic, linkFaq }) {
   return (
   
       <div className="container">
         <div className="row">
           <div className="col-md-6">
             <div className="left-content">
-              <h1>Frequently Asked Question</h1>
+              <h1 ref={linkFaq}>Frequently Asked Question</h1>
               <h5>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iusto, tempore.</h5>
             </div>
           </div>
