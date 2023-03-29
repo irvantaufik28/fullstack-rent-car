@@ -7,9 +7,16 @@ export default function FromOption(props) {
     name: '',
     category: '',
     isRented: '',
-    maxPrice:''
+    maxPrice:'',
 
   })
+
+  const [buttonText, setButtonText] = useState('Pilih Mobil')
+
+  const handleClick = () => {
+    setButtonText('edit')
+  }
+
 
   return (
     <>
@@ -96,10 +103,12 @@ export default function FromOption(props) {
             </select>
           </div>
 
-          <div className="grid-input">
-            <button type="submit" className="btn btn-primary">
-              cari mobil
-            </button>
+          <div className="grid-input-button">
+            <button 
+            type="submit" 
+            className="button_banner"
+            onClick={handleClick}
+             > {buttonText}</button>
           </div>
         </form>
       </div>
@@ -108,5 +117,5 @@ export default function FromOption(props) {
 }
 
 FromOption.defaultProps = {
-  onSubmit: () => {}
+  onSubmit: () => {},
 }

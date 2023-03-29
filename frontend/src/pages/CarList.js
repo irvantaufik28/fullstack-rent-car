@@ -29,8 +29,8 @@ export default function FindCar() {
 
   const onFilter = (payload) => {
     getCars(payload)
-    
   }
+
 
   return (
     <>

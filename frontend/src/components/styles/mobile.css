@@ -91,4 +91,23 @@
   padding-left: 0;
 }
 
+.table-option {
+
+  grid-template-columns: 100%;
+
+}
+.table-option-detailcar {
+
+  grid-template-columns: 100%;
+
+}
+
+.card{
+
+  height: auto !important;
+ 
+}
+
+
+
 }
