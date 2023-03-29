@@ -1,4 +1,4 @@
-import React, {useRef} from 'react'
+import React, { useRef } from 'react'
 import Banner from '../components/homepage/banner/Banner'
 import BestCar from '../components/homepage/bestcar/BestCar'
 import WhyUs from '../components/homepage/whyus/WhyUs'
@@ -17,7 +17,7 @@ export default function HomePage() {
   const linkWhyUs = useRef(null);
   const linkTestimonial = useRef(null);
   const linkFaq = useRef(null);
-  
+
   const props = {
     whyUsStatic,
     faqStatic,
@@ -30,17 +30,16 @@ export default function HomePage() {
   }
   return (
     <>
-    <Navbar {...props}/>
-    <div>
-
-      <Banner />
-      <BestCar {...props}/>
-      <WhyUs {...props}/>
-      <Testimonial {...props} />
-      <CtaBanner {...props} />
-      <Faq {...props}/>
-    </div>
-    <Footer />
+      <Navbar {...props} />
+      <div>
+        <Banner />
+        <BestCar {...props} />
+        <WhyUs {...props} />
+        <Testimonial {...props} />
+        <CtaBanner {...props} />
+        <Faq {...props} />
+      </div>
+      <Footer />
     </>
   )
 }
