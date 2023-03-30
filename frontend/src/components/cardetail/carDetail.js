@@ -1,10 +1,36 @@
-import React from "react";
-// import { LazyLoadImage } from 'react-lazy-load-image-component';
+import React, { useEffect, useState } from "react";
+import ImageWithLoading from "../helper/ImageWithLoading";
+import {BsFillPeopleFill} from 'react-icons/bs'
 import Accordion from "react-bootstrap/Accordion";
 import "./detailcar.css";
+import LoadingSpiner from "../helper/LoadingSpiner";
 
 
-export default function carDetail(props) {
+export default function CarDetail(props) {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return (
+      <LoadingSpiner />
+    );
+  }
+
+  
+  const formatter = new Intl.NumberFormat("id-ID", {
+    style: 'currency',
+    currency: 'IDR',
+    minimumFractionDigits: 0
+  });
+  
+
   return (
     <div className="container detailcar">
       <div className="row row-car-detail">
@@ -66,10 +92,11 @@ export default function carDetail(props) {
         <div className="col-md-5 d-flex mt-5 detail-car-card">
           <div className="card-car">
             <div className="image-car-detail">
-              <img src={props.data.image} alt={props.data.name} />
+              <ImageWithLoading src={props.data.image} alt={props.data.name} />
 
-              <p className="card-title-detail">{props.data.name}</p>
-              <p className="card-title-detail">
+              <p className="card-title-detail-name"> {props.data.name}</p>
+              <p className="card-title-detail"> 
+             <BsFillPeopleFill/>
                 {" "}
                 {props.data.category === "small"
                   ? "2-4 orang"
@@ -81,8 +108,10 @@ export default function carDetail(props) {
               </p>
 
               <div className="row align-items-start">
-                <div className="col">Total</div>
-                <div className="col">{props.data.price}</div>
+                <div className="col totaldetail">Total</div>
+                <div className="col pricedetail">
+                {formatter.format(props.data.price)}
+                </div>
               </div>
             </div>
           </div>

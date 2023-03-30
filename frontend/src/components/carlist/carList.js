@@ -1,22 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import Styles from "../carlist/carlist.css";
 import { Link } from "react-router-dom";
+import ImageWithLoading from "../helper/ImageWithLoading";
+import LoadingSpiner from "../helper/LoadingSpiner";
 
 export default function CarList(props) {
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return (
+      <LoadingSpiner />
+    );
+  }
 
   if (!props.data.cars.length) {
     return (
       <>
         <Container className="container-car">
-            <div className="carnotfound">
-              <h1>car not found!!!</h1>
-            </div>
+          <div className="carnotfound">
+            <h1>car not found!!!</h1>
+          </div>
         </Container>
       </>
-    )
+    );
   }
+
   return (
     <>
       <Container className="container-car">
@@ -25,7 +42,7 @@ export default function CarList(props) {
             <Col md='4' key={o.id}>
               <Card className={Styles.card} >
                 <div>
-                  <img
+                  <ImageWithLoading
                     src={o.image}
                     alt={o.name}
                   />

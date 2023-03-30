@@ -23,3 +23,9 @@
 .fullname {
   font-size: 15px
 }
+
+@media screen and (max-width: 660px) {
+  .swiper-slide{
+    width: 100% !important;
+  }
+}

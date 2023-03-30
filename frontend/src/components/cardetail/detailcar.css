@@ -13,9 +13,24 @@
     margin: 0 0 0 auto;
 }
 
+.card-title-detail-name {
+    margin-bottom: 0;
+    padding-top: 50px;
+    font-weight: 500;
+}
 .w-100{
     width: 100%;
 }
+
+.totaldetail {
+    font-weight: 500;
+}
+
+.pricedetail {
+    font-weight: 500;
+    text-align: end;
+}
+
 
 
 .image-car-detail img{

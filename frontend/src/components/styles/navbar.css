@@ -51,3 +51,12 @@
   .navlist a {
     color: black;
   }
+
+  .ml-auto{
+    margin: 0 0 0 auto;
+    padding-right: 20%;
+  }
+
+  .logobrand {
+    padding-left: 16%;
+  }

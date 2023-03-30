@@ -12,6 +12,8 @@
   grid-template-columns: 20% 20% 20% 20% 20%;
   grid-gap: 20px;
 }
+
+
 .table-option-detailcar {
   display: grid;
   grid-template-columns: 23% 23% 23% 23%;
@@ -41,4 +43,9 @@
 .content-option {
   font-size: 20px;
   font-weight: 600;
+}
+
+
+.grid-input-button {
+  margin-top: 31px;
 }

@@ -4,7 +4,7 @@ import "./bestcar.css";
 
 
 
-export default function BestCar({ bestCarStatic }) {
+export default function BestCar({ bestCarStatic , linkOurService}) {
   return (
     <>
       <div className='main position-relative'>
@@ -16,7 +16,7 @@ export default function BestCar({ bestCarStatic }) {
               </div>
             </div>
             <div className="col-md-6 d-flex align-items-center ml-5">
-              <div className="service-description">
+              <div className="service-description" ref={linkOurService}>
                 <h1>Best Car Rental for any kind of trip in (Lokasimu)!</h1>
                 <p>Sewa mobil di (Lokasimu) bersama Binar Car Rental jaminan harga lebih murah dibandingkan yang lain, kondisi mobil baru, serta kualitas pelayanan terbaik untuk perjalanan wisata, bisnis, wedding, meeting, dll.</p>
 

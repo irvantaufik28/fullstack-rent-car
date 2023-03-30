@@ -156,7 +156,7 @@ const testimonialStatic = [
     star: 5,
   },
   {
-    id: 2,
+    id: 11,
     name: "Lia kuy",
     age: 19,
     city: "Malang",

@@ -1,11 +1,11 @@
 import React from 'react';
 import './whyus.css'
-export default function WhyUs({ whyUsStatic }) {
+export default function WhyUs({ whyUsStatic, linkWhyUs }) {
   return (
     <>
-      <div className="container">
-        <div className='title-why-us'>
-          <h1>Why Us?</h1>
+      <div className="container" >
+        <div className='title-why-us' >
+          <h1 ref={linkWhyUs}>Why Us? </h1>
           <p>Mengapa harus pilih Binar Car Rental?</p>
         </div>
         <div className="row why-us">
