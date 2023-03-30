@@ -1,22 +1,51 @@
-import React from "react";
+import React, { useEffect, useState, CSSProperties } from "react";
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import Styles from "../carlist/carlist.css";
 import { Link } from "react-router-dom";
+import ImageWithLoading from "../helper/ImageWithLoading";
+import ClipLoader from "react-spinners/ClipLoader";
+
+const override = {
+  display: "block",
+  margin: "0 auto",
+  borderColor: "red",
+};
 
 export default function CarList(props) {
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return (
+      <>
+       
+        <div className="loader-container">
+      	  <div className="spinner"></div>
+        </div>
+       
+      </>
+    );
+  }
 
   if (!props.data.cars.length) {
     return (
       <>
         <Container className="container-car">
-            <div className="carnotfound">
-              <h1>car not found!!!</h1>
-            </div>
+          <div className="carnotfound">
+            <h1>car not found!!!</h1>
+          </div>
         </Container>
       </>
-    )
+    );
   }
+
   return (
     <>
       <Container className="container-car">
@@ -25,7 +54,7 @@ export default function CarList(props) {
             <Col md='4' key={o.id}>
               <Card className={Styles.card} >
                 <div>
-                  <img
+                  <ImageWithLoading
                     src={o.image}
                     alt={o.name}
                   />

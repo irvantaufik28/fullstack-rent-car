@@ -1,5 +1,5 @@
 import React from "react";
-
+import ImageWithLoading from "../helper/ImageWithLoading";
 import {BsFillPeopleFill} from 'react-icons/bs'
 import Accordion from "react-bootstrap/Accordion";
 import "./detailcar.css";
@@ -76,7 +76,7 @@ export default function carDetail(props) {
         <div className="col-md-5 d-flex mt-5 detail-car-card">
           <div className="card-car">
             <div className="image-car-detail">
-              <img src={props.data.image} alt={props.data.name} />
+              <ImageWithLoading src={props.data.image} alt={props.data.name} />
 
               <p className="card-title-detail-name"> {props.data.name}</p>
               <p className="card-title-detail"> 
