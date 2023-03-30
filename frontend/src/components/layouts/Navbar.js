@@ -34,7 +34,7 @@ export default function NavbarTop({linkWhyUs, linkTestimonial, linkOurService, l
 {['lg'].map((expand) => (
         <Navbar key={expand}  bg="transparent" fixed="top" expand={expand} className={colorChange ? 'bg-light pt-4 pb-4 trans-02' : 'bg-transparent trans-02'}>
           <Container fluid>
-          <Navbar.Brand href="#" className="logobrand">
+          <Navbar.Brand href="/" className="logobrand">
               <img src={logo} alt="logo" />
               </Navbar.Brand>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
@@ -52,19 +52,19 @@ export default function NavbarTop({linkWhyUs, linkTestimonial, linkOurService, l
               <Offcanvas.Body>
               <Nav className="ml-auto navlist">
                   <Nav.Link
-                   href="#home"
+                   href="#"
                   onClick={() => handleClick(linkOurService)}
                    >Out Service</Nav.Link>
                   <Nav.Link
-                   href="#features"
+                   href="#"
                    onClick={() => handleClick(linkWhyUs)}
                    >Why Us</Nav.Link>
                   <Nav.Link 
-                  href="#pricing"
+                  href="#"
                   onClick={() => handleClick(linkTestimonial)}
                   >Testimonial</Nav.Link>
                   <Nav.Link 
-                  href="#pricing"
+                  href="#"
                   onClick={() => handleClick(linkFaq)}
                   >FAQ</Nav.Link>
                 </Nav>

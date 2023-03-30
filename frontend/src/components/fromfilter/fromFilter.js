@@ -7,7 +7,7 @@ export default function FromOption(props) {
     name: '',
     category: '',
     isRented: '',
-    maxPrice:'',
+    maxPrice: '',
 
   })
 

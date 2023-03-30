@@ -54,7 +54,7 @@ export default function Testimonial({ testimonialStatic, linkTestimonial }) {
 
 
           return (
-            <SwiperSlide className="swiper-slide" >
+            <SwiperSlide className="swiper-slide" key={item.id} >
               <div className="main-content" >
                 <div className="row">
                   <div className="align-items-center col-md-3 d-flex justify-content-center">
@@ -69,7 +69,7 @@ export default function Testimonial({ testimonialStatic, linkTestimonial }) {
                     <div className="start">
                       <h4>{stars}</h4>
                     </div>
-                    <div className="desc" key={item.id}>
+                    <div className="desc" >
                       <p>"{item.testimonial}"</p>
                     </div>
                     <div className="fullname">

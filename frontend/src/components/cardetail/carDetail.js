@@ -1,10 +1,20 @@
 import React from "react";
-// import { LazyLoadImage } from 'react-lazy-load-image-component';
+
+import {BsFillPeopleFill} from 'react-icons/bs'
 import Accordion from "react-bootstrap/Accordion";
 import "./detailcar.css";
 
 
 export default function carDetail(props) {
+  
+  
+  const formatter = new Intl.NumberFormat("id-ID", {
+    style: 'currency',
+    currency: 'IDR',
+    minimumFractionDigits: 0
+  });
+  
+
   return (
     <div className="container detailcar">
       <div className="row row-car-detail">
@@ -68,8 +78,9 @@ export default function carDetail(props) {
             <div className="image-car-detail">
               <img src={props.data.image} alt={props.data.name} />
 
-              <p className="card-title-detail">{props.data.name}</p>
-              <p className="card-title-detail">
+              <p className="card-title-detail-name"> {props.data.name}</p>
+              <p className="card-title-detail"> 
+             <BsFillPeopleFill/>
                 {" "}
                 {props.data.category === "small"
                   ? "2-4 orang"
@@ -81,8 +92,10 @@ export default function carDetail(props) {
               </p>
 
               <div className="row align-items-start">
-                <div className="col">Total</div>
-                <div className="col">{props.data.price}</div>
+                <div className="col totaldetail">Total</div>
+                <div className="col pricedetail">
+                {formatter.format(props.data.price)}
+                </div>
               </div>
             </div>
           </div>
