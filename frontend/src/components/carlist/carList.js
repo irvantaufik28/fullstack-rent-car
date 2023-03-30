@@ -1,15 +1,9 @@
-import React, { useEffect, useState, CSSProperties } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import Styles from "../carlist/carlist.css";
 import { Link } from "react-router-dom";
 import ImageWithLoading from "../helper/ImageWithLoading";
-import ClipLoader from "react-spinners/ClipLoader";
-
-const override = {
-  display: "block",
-  margin: "0 auto",
-  borderColor: "red",
-};
+import LoadingSpiner from "../helper/LoadingSpiner";
 
 export default function CarList(props) {
   const [loading, setLoading] = useState(true);
@@ -24,13 +18,7 @@ export default function CarList(props) {
 
   if (loading) {
     return (
-      <>
-       
-        <div className="loader-container">
-      	  <div className="spinner"></div>
-        </div>
-       
-      </>
+      <LoadingSpiner />
     );
   }
 
