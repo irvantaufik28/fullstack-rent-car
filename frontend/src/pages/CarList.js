@@ -29,7 +29,6 @@ export default function FindCar() {
 
   const onFilter = (payload) => {
     getCars(payload)
-    console.log(typeof payload.maxPrice)
   }
 
 

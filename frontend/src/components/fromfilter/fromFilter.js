@@ -8,8 +8,38 @@ export default function FromOption(props) {
     category: '',
     isRented: '',
     maxPrice: '',
+    minPrice: '',
 
   })
+
+  const handlePriceChange = (e) => {
+    const { value } = e.target;
+    let minPrice, maxPrice;
+  
+    switch (value) {
+      case 'lessThan400K':
+        minPrice = '';
+        maxPrice = 400000;
+        break;
+      case 'between400Kand600K':
+        minPrice = 400000;
+        maxPrice = 600000;
+        break;
+      case 'moreThan600K':
+        minPrice = 600000;
+        maxPrice = '';
+        break;
+      default:
+        minPrice = '';
+        maxPrice = '';
+        break;
+    }
+    setForm({
+      ...form,
+      minPrice,
+      maxPrice
+    });
+  }
 
   const [buttonText, setButtonText] = useState('Pilih Mobil')
 
@@ -71,17 +101,12 @@ export default function FromOption(props) {
             </label>
             <select id="inputState" 
             className="form-select"
-            onChange={e => setForm({
-              ...form,
-              ...{
-                maxPrice: e.target.value
-              }
-            })}
+            onChange= {handlePriceChange}
             >
               <option value="">Masukan Harga Per Hari</option>
-              <option value="400000">&lt; Rp.400000</option>
-              <option value="500000">Rp.400000 - Rp.600000</option>
-              <option value="600000">&gt; Rp.600000</option>
+              <option value="lessThan400K" >&lt; Rp.400000</option>
+              <option value="between400Kand600K">Rp.400000 - Rp.600000</option>
+              <option value="moreThan600K">&gt; Rp.600000</option>
             </select>
           </div>
           <div className="grid-input">
