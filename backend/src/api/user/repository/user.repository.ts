@@ -49,6 +49,8 @@ export class UserRepository extends Repository<UserEntity> {
         'user_detail.customer_address',
         'user_detail.customer_address.address_type',
         'user_detail.customer_address.cities',
+        'user_detail.customer_address.cities.provinces',
+        'user_detail.customer_address.cities.districts',
       ],
       
     })

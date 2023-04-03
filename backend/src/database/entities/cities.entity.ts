@@ -27,7 +27,7 @@ export class CitiesEntity extends BaseEntity {
     @JoinColumn({name : 'province_id'})
     provinces : ProvincesEntity;
 
-    @OneToMany(() => DistrictsEntity, (o) => o.id)
+    @OneToMany(() => DistrictsEntity, (o) => o.cities)
     districts : DistrictsEntity[];
 
     @OneToMany(() => CustomerAddressEntity, (o) => o.id)
