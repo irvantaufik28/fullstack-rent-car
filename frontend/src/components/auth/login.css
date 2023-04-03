@@ -1,0 +1,21 @@
+.form-login {
+  margin-top: 50%;
+  padding-right: 40px;
+  padding-left: 20px;
+}
+
+.form-login h5 {
+  margin-bottom: 30px;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.sign-button {
+  padding-top: 25px;
+}
+
+.btn-custome {
+  background-color: #0d28a6 !important;
+  border-radius: 1px !important;
+  color: white !important;
+}
