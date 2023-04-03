@@ -32,7 +32,7 @@ export default function NavbarTop({linkWhyUs, linkTestimonial, linkOurService, l
     <>
 
 {['lg'].map((expand) => (
-        <Navbar key={expand}  bg="transparent" fixed="top" expand={expand} className={colorChange ? 'bg-light pt-4 pb-4 trans-02' : 'bg-transparent trans-02'}>
+        <Navbar key={expand} fixed="top" expand={expand} className={colorChange ? 'bg-light pt-4 pb-4 trans-02' : 'bg-transparent trans-02'}>
           <Container fluid>
           <Navbar.Brand href="/" className="logobrand">
               <img src={logo} alt="logo" />

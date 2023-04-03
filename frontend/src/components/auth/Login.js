@@ -2,6 +2,9 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import { Button, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import ImageWithLoading from '../helper/ImageWithLoading';
+import hero from '../../assets/img/hero.png'
+
 const Login = () => {
 
     const [formData, setFormData] = useState({
@@ -32,6 +35,11 @@ const Login = () => {
 
     return (
       <>
+      <div className="container fluid">
+      <div className="row">
+
+          <div className="col-md-3">
+
         <div className='formLogin'>
       <Form onSubmit={handleSubmit}>
         <Form.Group className='mb-3' controlId='email'>
@@ -49,7 +57,13 @@ const Login = () => {
           Submit
         </Button>
       </Form>
+          </div>
     </div>
+    <div className="col-md-9">
+      <ImageWithLoading src={hero} alt={'hero'} />
+    </div>
+      </div>
+      </div>
     </>
     )
 }
