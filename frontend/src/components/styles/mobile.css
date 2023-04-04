@@ -108,10 +108,17 @@
  
 }
 
+.swiper-button-prev {
+  
+  transform: translateX(-33px);
+}
+
+.swiper-button-next {
+  transform: translateX(40px);
 
 
 }
-
+}
 @media screen and (max-width: 375px){
   .main-banner{
     padding-top: 4rem;
