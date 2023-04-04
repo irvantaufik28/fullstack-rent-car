@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import CarList from '../components/carlist/carList'
+import CarList from '../components/car/carlist/carList'
 import config from "../config/index"
 import FromFillter from '../components/fromfilter/fromFilter'
 import Banner from '../components/homepage/banner/Banner'

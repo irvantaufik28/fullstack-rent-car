@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Banner from '../components/homepage/banner/Banner'
-import CarDetail from '../components/cardetail/carDetail'
+import CarDetail from '../components/car/cardetail/carDetail'
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from "../components/layouts/Navbar";

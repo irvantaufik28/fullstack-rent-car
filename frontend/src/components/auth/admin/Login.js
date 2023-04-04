@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import authimage from "../../assets/img/auth.png";
+import authimage from "../../../assets/img/auth.png";
 import "./login.css";
 
 export default function Login  (props) {

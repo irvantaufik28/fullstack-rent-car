@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Login from '../components/auth/Login'
+import Login from '../components/auth/admin/Login'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import jwtDecode from "jwt-decode";

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
-import Styles from "../carlist/carlist.css";
+import Styles from "./carlist.css";
 import { Link } from "react-router-dom";
-import ImageWithLoading from "../helper/ImageWithLoading";
-import LoadingSpiner from "../helper/LoadingSpiner";
-import nullImage from '../../assets/img/imagenotfound.jpeg'
+import ImageWithLoading from "../../helper/ImageWithLoading";
+import LoadingSpiner from "../../helper/LoadingSpiner";
+import nullImage from '../../../assets/img/imagenotfound.jpeg'
 
 export default function CarList(props) {
   const [loading, setLoading] = useState(true);
