@@ -34,6 +34,13 @@ export default function CarList(props) {
     );
   }
 
+  const formatter = new Intl.NumberFormat("id-ID", {
+    style: 'currency',
+    currency: 'IDR',
+    minimumFractionDigits: 0
+  });
+  
+
   return (
     <>
       <Container className="container-car">
@@ -49,7 +56,7 @@ export default function CarList(props) {
                 </div>
                 <Card.Body>
                   <p>{o.name}</p>
-                  <h6>Rp {o.price} / hari</h6>
+                  <h6>{formatter.format(o.price)} / hari</h6>
                   <Card.Text>
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est natus repellendus inventore, similique necessitatibus cumque architecto a nesciunt vitae! Minus.
                   </Card.Text>
