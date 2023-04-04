@@ -1,48 +1,48 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import jwtDecode from 'jwt-decode';
-
 import { useSelector } from 'react-redux';
 
 const Dashboard = () => {
   const refreshToken = useSelector((state) => state.refreshToken);
   const [token, setToken] = useState('');
   const [user, setUser] = useState({});
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    refreshTokenFunc();
-  }, []);
+    const fetchData = async () => {
+      try {
+        const response = await axios.post('http://localhost:4001/auth/refresh-token', {
+          refresh_token: refreshToken,
+        });
+        setToken(response.data.access_token);
+      } catch (error) {
+        setError(error);
+      }
+    };
+    fetchData();
+  }, [refreshToken]);
 
   useEffect(() => {
-    getUser();
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:4001/user/profile', {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setUser(response.data);
+      } catch (error) {
+        setError(error);
+      }
+    };
+    if (token) {
+      fetchData();
+    }
   }, [token]);
 
-  const refreshTokenFunc = async () => {
-    try {
-      const response = await axios.post('http://localhost:4001/auth/refresh-token', {
-        refresh_token: refreshToken,
-      });
-      setToken(response.data.access_token);
-      const decodedToken = jwtDecode(response.data.access_token);
-      setUser(decodedToken);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  if (error) {
+    return <div className="dashboard-admin">Error: {error.message}</div>;
+  }
 
-  const getUser = async () => {
-    try {
-      
-      const response = await axios.get('http://localhost:4001/user/profile', {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      console.log(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  return <div className="dashboard-admin">Welcome back: </div>;
+  return <div className="dashboard-admin">Welcome back: {user.email}</div>;
 };
 
 export default Dashboard;
