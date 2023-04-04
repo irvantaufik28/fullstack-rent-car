@@ -4,9 +4,11 @@ import Styles from "../carlist/carlist.css";
 import { Link } from "react-router-dom";
 import ImageWithLoading from "../helper/ImageWithLoading";
 import LoadingSpiner from "../helper/LoadingSpiner";
+import nullImage from '../../assets/img/imagenotfound.jpeg'
 
 export default function CarList(props) {
   const [loading, setLoading] = useState(true);
+
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -39,21 +41,34 @@ export default function CarList(props) {
     currency: 'IDR',
     minimumFractionDigits: 0
   });
-  
+
 
   return (
     <>
       <Container className="container-car">
         <Row>
           {props.data.cars.map(o =>
+
             <Col md='4' key={o.id}>
               <Card className={Styles.card} >
-                <div>
-                  <ImageWithLoading
-                    src={o.image}
-                    alt={o.name}
-                  />
-                </div>
+                {o.image === null ?
+                  (
+                    <div>
+                      <ImageWithLoading
+                        src={nullImage}
+                        alt={'nll'}
+                      />
+                    </div>
+                  ) :
+                  (
+                    <div>
+                      <ImageWithLoading
+                        src={o.image}
+                        alt={o.name}
+                      />
+                    </div>
+                  )
+                }
                 <Card.Body>
                   <p>{o.name}</p>
                   <h6>{formatter.format(o.price)} / hari</h6>
