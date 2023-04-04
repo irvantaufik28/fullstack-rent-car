@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Login from '../components/auth/admin/Login'
+import Login from '../../components/auth/admin/Login'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import jwtDecode from "jwt-decode";
@@ -24,8 +24,9 @@ const LoginPage = () => {
       const token = response.data.access_token;
       const user = jwtDecode(token);
       setRole(user.role_name);
+      dispatch({ type: "SET_TOKEN", payload: response.data.access_token });
       dispatch({ type: "SET_REFRESH_TOKEN", payload: response.data.refresh_token });
-      
+      localStorage.setItem('token', response.data.access_token);
         if (user.role_name === 'ADMIN') {
           navigate('/dashboard')
         }

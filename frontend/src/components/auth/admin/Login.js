@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import authimage from "../../../assets/img/auth.png";
 import "./login.css";
+import { Link } from "react-router-dom";
 
 export default function Login  (props) {
   const [formData, setFormData] = useState({
@@ -63,8 +64,13 @@ export default function Login  (props) {
                   sign in
                 </Button>
               </div>
-            </Form>
+            </Form>              
           </div>
+          <div className="sign-up">
+              <p>Don't Have account yet? 
+                <Link to='/register'><strong> Sign Up</strong> </Link>
+                </p>
+            </div>
         </div>
       </div>
     </>
