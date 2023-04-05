@@ -8,6 +8,10 @@ const initialStateRefreshToken = {
   refreshToken: ""
 };
 
+const intialStateUser = {
+  user: {}
+}
+
 function rootReducerToken(state = initialStatToken, action) {
   switch (action.type) {
     case "SET_TOKEN":
@@ -26,9 +30,19 @@ function rootReducerRefreshToken(state = initialStateRefreshToken, action) {
   }
 }
 
+function rootReducerGetUser(state = intialStateUser, action) {
+  switch (action.type) {
+    case "SET_GET_USER":
+      return { ...state, user: action.payload };
+    default:
+      return state;
+  }
+}
+
 const rootReducer = combineReducers({
   reducerToken: rootReducerToken,
-  reducerRefreshToken: rootReducerRefreshToken
+  reducerRefreshToken: rootReducerRefreshToken,
+  reducerGetUser: rootReducerGetUser
 })
 
 const store = configureStore({
