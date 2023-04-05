@@ -26,7 +26,31 @@ export default function Register(props) {
 
     return (
       <div>
-        {loading ? ( <LoadingSpiner />): (navigate('/login'))}
+        {loading ? (
+
+          <div>
+            <div className="main">
+              <div className="container">
+                <div className="kotak">
+                  <div className="cta-banner">
+                    <div className="row">
+                      <div className="col-md-12 success-banner">
+                        <div className="content-banner">
+                          <h1>Success</h1>
+                          <p>
+                            congralutation, your account has been successfully created
+                          </p>
+                          <LoadingSpiner />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        ) : (navigate('/login'))}
       </div>
     )
   } else {
