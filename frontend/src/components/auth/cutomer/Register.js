@@ -1,9 +1,12 @@
 import { useState } from 'react';
-import axios from 'axios';
-import { Form, Button, Alert } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom'
+import { Form, Button } from 'react-bootstrap';
+import authimage from '../../../assets/img/auth.png'
+import LoadingSpiner from '../../helper/LoadingSpiner'
+import { useNavigate } from 'react-router-dom';
 
-export default function Register() {
+export default function Register(props) {
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -14,89 +17,141 @@ export default function Register() {
     address: '',
   });
 
-  const [message, setMessage] = useState('')
-  const [show, setShow] = useState(false);
 
-  const navigate = useNavigate()
+  if (props.successRegister === true) {
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
 
-  const { email, password, confirm_password, first_name, last_name, phone_number, address } = formData;
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+    return (
+      <div>
+        {loading ? ( <LoadingSpiner />): (navigate('/login'))}
+      </div>
+    )
+  } else {
+    return (
+      <>
+        <div className="row">
+          <div className="col-md-9">
+            <img src={authimage} alt={"hero"} width="100%" height="100%" />
+          </div>
+          <div className="col-md-3">
+            <div className="form-login">
+              <h5>REGISTRATION</h5>
+              {props.message && (
+                <div className="alert alert-danger" role="alert">
+                  {props.message}
+                </div>
+              )}
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
 
-    try {
-     await axios.post('http://localhost:4001/user/register', formData);
-      navigate('/login')
-    
-    } catch (err) {
-      if(err.response) {
-        console.log(err.response.data)
-        setMessage(err.response.data.message)
-        setShow(true)
-      }
-    }
-  };
+              <Form onSubmit={(e) => {
+                e.preventDefault()
+                props.onSubmit(formData)
+              }}>
+                <Form.Group className="mb-3" controlId="password">
+                  <Form.Label>first name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="first name"
+                    name="first_name"
+                    onChange={e => setFormData({
+                      ...formData, ...{ first_name: e.target.value }
+                    })}
+                  />
+                </Form.Group>
 
-  return (
-    <>
-    <Form onSubmit={handleSubmit}>
-      
+                <Form.Group className="mb-3" controlId="password">
+                  <Form.Label>last name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="last name"
+                    name="last_name"
+                    onChange={e => setFormData({
+                      ...formData, ...{ last_name: e.target.value }
+                    })}
+                  />
+                </Form.Group>
 
-        {/* <Alert variant="danger" onClose={() => setShow(false)} dismissible>
-        {message.map(msg => 
-          <p>{msg}</p>
-          )}
-      </Alert> */}
+                <Form.Group className="mb-3" controlId="email">
+                  <Form.Label>Email</Form.Label>
+                  <Form.Control
+                    type="email"
+                    placeholder="Enter email"
+                    name="email"
+                    onChange={e => setFormData({
+                      ...formData, ...{ email: e.target.value }
+                    })}
+                  />
+                </Form.Group>
 
-        <Form.Group className='mb-3' controlId='email'>
-          <Form.Label>Email address</Form.Label>
-          <Form.Control type='email' placeholder='Enter email' name='email' value={email} onChange={handleChange} />
-          <Form.Text className='text-muted'>We'll never share your email with anyone else.</Form.Text>
-        </Form.Group>
+                <Form.Group className="mb-3" controlId="password">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control
+                    type="password"
+                    placeholder="Password"
+                    name="password"
+                    onChange={e => setFormData({
+                      ...formData, ...{ password: e.target.value }
+                    })}
+                  />
+                </Form.Group>
 
-        <Form.Group className='mb-3' controlId='password'>
-          <Form.Label>Password</Form.Label>
-          <Form.Control type='password' placeholder='Password' name='password' value={password} onChange={handleChange} />
-        </Form.Group>
+                <Form.Group className="mb-3" controlId="password">
+                  <Form.Label>Confrim Password</Form.Label>
+                  <Form.Control
+                    type="password"
+                    placeholder="Confirm Password"
+                    name="confirm_password"
+                    onChange={e => setFormData({
+                      ...formData, ...{ confirm_password: e.target.value }
+                    })}
+                  />
+                </Form.Group>
 
-        <Form.Group className='mb-3' controlId='confirmPassword'>
-          <Form.Label>Confirm Password</Form.Label>
-          <Form.Control type='password' placeholder='Confirm Password' name='confirm_password' value={confirm_password} onChange={handleChange} />
-        </Form.Group>
 
-        <Form.Group className='mb-3' controlId='formFirstName'>
-          <Form.Label>First Name</Form.Label>
-          <Form.Control type='text' placeholder='Jhon' name='first_name' value={first_name} onChange={handleChange} />
-        </Form.Group>
+                <Form.Group className="mb-3" controlId="password">
+                  <Form.Label>Phone</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="0823115511"
+                    name="phone_number"
+                    onChange={e => setFormData({
+                      ...formData, ...{ phone_number: e.target.value }
+                    })}
+                  />
+                </Form.Group>
 
-        <Form.Group className='mb-3' controlId='formLastName'>
-          <Form.Label>Last Name</Form.Label>
-          <Form.Control type='text' placeholder='Doe' name='last_name' value={last_name} onChange={handleChange} />
-        </Form.Group>
+                <Form.Group className="mb-3" controlId="password">
+                  <Form.Label>Address</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="address"
+                    onChange={e => setFormData({
+                      ...formData, ...{ address: e.target.value }
+                    })}
+                  />
+                </Form.Group>
 
-        <Form.Group className='mb-3' controlId='formBasiPhone'>
-          <Form.Label>Phone Number</Form.Label>
-          <Form.Control type='text' placeholder='082311241' name='phone_number' value={phone_number} onChange={handleChange} />
-        </Form.Group>
+                <div className="d-grid gap-2 sign-button">
+                  <Button type="sumbit" variant="custome">
+                    Register
+                  </Button>
+                </div>
+              </Form>
+            </div>
 
-        <Form.Group className='mb-3' controlId='address'>
-          <Form.Label>Address</Form.Label>
-          <Form.Control type='text' placeholder='Jakarta' name='address' value={address} onChange={handleChange} />
-        </Form.Group>
+          </div>
+        </div>
+      </>
+    );
 
-        <Form.Group className='mb-3' controlId='formBasicCheckbox'>
-          <Form.Check type='checkbox' label='Check me out' />
-        </Form.Group>
+  }
 
-        <Button variant='primary' type='submit'>
-          Submit
-        </Button>
-      </Form>
-  
-    </>
-  );
+
+}
+
+Register.defaultProps = {
+  onSubmit: () => { }
 }
