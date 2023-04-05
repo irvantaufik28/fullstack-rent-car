@@ -1,18 +1,8 @@
 import { Outlet, Navigate } from 'react-router-dom'
-import jwtDecode from 'jwt-decode'
+import { tokenValidation } from './tokenValidation';
+
 const PrivateRoutes = () => {
-    let auth = { 
-        token: false,
-    };
-    const token = localStorage.getItem('token');
-    if (token) {
-        try {
-            const decoded = jwtDecode(token);
-            auth.token = decoded.exp * 1000 > new Date().getTime();
-        } catch (error) {
-            console.error(error);
-        }
-    }
+   const auth = tokenValidation()
     return (
         auth.token ? <Outlet /> : <Navigate to="/login" />
     )

@@ -9,7 +9,7 @@ const Dashboard = () => {
 
   const [user, setUser] = useState({});
   const [error, setError] = useState(null);
-
+console.log(user)
 
   useEffect(() => {
     if (!userToken) return;
@@ -54,8 +54,10 @@ const Dashboard = () => {
   }
 
   return (
-
-    <div className="dashboard-admin">Welcome back: {user.email}</div>
+<div>
+  <div className="dashboard-admin">Welcome back: {user.email}</div>
+      
+</div>
 
   )
 };

@@ -30,6 +30,9 @@ const LoginPage = () => {
         if (user.role_name === 'ADMIN') {
           navigate('/dashboard')
         }
+        if (user.role_name === 'CUSTOMER') {
+          navigate('/')
+        }
     } catch (err) {
       if (err) {
         setMessage(err.response.data.message);
