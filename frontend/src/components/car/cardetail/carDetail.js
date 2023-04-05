@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import ImageWithLoading from "../helper/ImageWithLoading";
+import ImageWithLoading from "../../helper/ImageWithLoading";
 import { BsFillPeopleFill } from 'react-icons/bs'
 import Accordion from "react-bootstrap/Accordion";
 import "./detailcar.css";
-import LoadingSpiner from "../helper/LoadingSpiner";
-import nullImage from '../../assets/img/imagenotfound.jpeg'
+import LoadingSpiner from "../../helper/LoadingSpiner";
+import nullImage from '../../../assets/img/imagenotfound.jpeg'
 
 
 export default function CarDetail(props) {

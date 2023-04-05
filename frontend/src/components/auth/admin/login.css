@@ -19,3 +19,19 @@
   border-radius: 1px !important;
   color: white !important;
 }
+
+.sign-up {
+  padding: 22px;
+}
+.sign-up a {
+  text-decoration: none;
+}
+
+
+.success-banner {
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  margin-top: 75px;
+}
+

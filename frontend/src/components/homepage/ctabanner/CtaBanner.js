@@ -12,7 +12,7 @@ export default function CtaBanner(props) {
               <div className="row">
                 <div className="col-md-12 center-banner">
                   <div className="content-banner">
-                    <h1>Sewa Mobil di (Lokasimu) Sekarang</h1>
+                    <h1>success</h1>
                     <p>
                       Lorem ipsum dolor sit amet consectetur, adipisicing
                       elit. Assumenda, quas. Eaque esse consequuntur voluptatum
