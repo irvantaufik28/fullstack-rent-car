@@ -7,6 +7,7 @@ import { OrderModule } from './order/order.module';
 import { EventsModule } from 'src/common/events/events.module'; 
 import { NotificationModule } from './notification/notification.module';
 import { CloudinaryModule } from 'src/common/cloudinary/cloudinary.module'; 
+import { CustomerAddressModule } from './customer_address/customer_address.module';
 @Module({
   imports: [
     UserModule,
@@ -17,6 +18,7 @@ import { CloudinaryModule } from 'src/common/cloudinary/cloudinary.module';
     EventsModule,
     NotificationModule,
     CloudinaryModule,
+    CustomerAddressModule,
   ],
   providers: [],
 })
