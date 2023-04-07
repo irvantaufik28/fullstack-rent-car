@@ -8,7 +8,9 @@ import CarDetailPage from '../pages/CarDetailPage'
 import Dashboard from "../components/dashboard/Dashboard";
 import PrivateRoutes from "../utils/PrivateRoutes";
 import '../components/styles/mobile.css'
-
+import UserProfilePage from "../pages/user/UserProfilePage";
+import UserSettingPage from "../pages/user/UserSettingPage";
+import UpdateCarPage from "../pages/car/UpdateCarPage";
 function IndexRoutes() {
   return (
     <Router>
@@ -19,6 +21,9 @@ function IndexRoutes() {
           <Route exact path="/" element={<HomePage />} />
           <Route path="/car" element={<CarList />} />
           <Route path="/car/:id" element={<CarDetailPage />} />
+          <Route path="/car/update" element={< UpdateCarPage />} />
+          <Route path="/user/profile" element={<UserProfilePage />} />
+          <Route path="/user/profile/setting" element= {<UserSettingPage />} />
           <Route element={<PrivateRoutes />}>
                 <Route element={<Dashboard/>} path="/dashboard" />
             </Route>

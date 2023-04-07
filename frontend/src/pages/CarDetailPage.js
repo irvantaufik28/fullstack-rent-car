@@ -1,33 +1,32 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import Banner from '../components/homepage/banner/Banner'
 import CarDetail from '../components/car/cardetail/carDetail'
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
 import Navbar from "../components/layouts/Navbar";
 import Footer from "../components/layouts/Footer";
-import config from "../config/index"
 import FromFilterDetail from '../components/fromfilter/fromFilterDetail';
+import { useDispatch, useSelector } from 'react-redux';
+import { carSelectors, getCarById } from '../features/carSlice';
 
 export default function CarDetailPage() {
-  const [dataCar, setDataCar ] = useState({})
 
   const { id } = useParams();
 
-  useEffect(()=> { 
-    const getCarById = async() => {
-      const apiUrl = config.apiBaseUrl + `/customer/car/${id}`
-      const response = await axios.get(apiUrl)
-      setDataCar(response.data)
-    }
-    getCarById();  
-  },[id])
+  const dispatch = useDispatch();
+  const car = useSelector(carSelectors.selectCarById);
+  
+  useEffect(() => {
+    dispatch(getCarById(id));
+    
+  }, [dispatch]);
 
+console.log(car)
   return (
     <>
     <Navbar />
       <Banner />
-      <FromFilterDetail data={dataCar} />
-      <CarDetail data={dataCar}/>
+      <FromFilterDetail data={car} />
+      <CarDetail data={car}/>
       <Footer />
     </>
   )

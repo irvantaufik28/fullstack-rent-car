@@ -19,7 +19,7 @@ export class UserController {
   }
 
   @Get('profile')
-  @Roles(SecurityType.CUSTOMER) 
+  // @Roles(SecurityType.CUSTOMER) 
   @UseGuards(JwGuard, RolesGuard)
   async getUserById(@GetUser() request: UserEntity): Promise<UserEntity> {
     const user = await this.userService.getUserById(request.id);

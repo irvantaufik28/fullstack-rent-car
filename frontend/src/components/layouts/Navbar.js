@@ -93,8 +93,8 @@ export default function NavbarTop({ linkWhyUs, linkTestimonial, linkOurService, 
 
 
                     <NavDropdown title={user.email} id="collasible-nav-dropdown">
-                      <NavDropdown.Item href="#action/3.1">Profile</NavDropdown.Item>
-                      <NavDropdown.Item href="#action/3.2">
+                      <NavDropdown.Item href="/user/profile">Profile</NavDropdown.Item>
+                      <NavDropdown.Item href="user/profile/setting">
                         setting
                       </NavDropdown.Item>
                      

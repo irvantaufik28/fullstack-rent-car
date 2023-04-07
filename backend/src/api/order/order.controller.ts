@@ -1,4 +1,3 @@
-import { InjectQueue } from '@nestjs/bull';
 import {
   Body,
   ClassSerializerInterceptor,
