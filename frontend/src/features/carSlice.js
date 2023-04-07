@@ -7,7 +7,6 @@ export const getAllCars = createAsyncThunk("car/getAllCars" , async(params = {})
     const response = await axios.get(apiUrl + "/customer/v2/car", {
         params
     })
-    // console.log(response.data)
     return response.data
 })
 

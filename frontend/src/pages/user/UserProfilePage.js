@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import { tokenValidation } from '../../utils/tokenValidation'
 import Navbar from '../../components/layouts/Navbar'
 import Footer from '../../components/layouts/Footer'
-import UserProfile from '../../components/user/UserProfile'
+import UserProfile from './components/UserProfile'
 import { useDispatch } from 'react-redux'
 
 export default function UserProfilePage() {

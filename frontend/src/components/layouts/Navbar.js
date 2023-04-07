@@ -3,12 +3,12 @@ import { Container, Navbar, Nav, Offcanvas, NavDropdown } from "react-bootstrap"
 import { tokenValidation } from "../../utils/tokenValidation";
 import { getUser } from "../../utils/getuser";
 import logo from '../../assets/icon/logo.png'
-import '../styles/navbar.css'
 import { useNavigate } from "react-router-dom";
+import './styles/navbar.css'
 
 
 
-export default function NavbarTop({ linkWhyUs, linkTestimonial, linkOurService, linkFaq }) {
+export default function NavbarLayout({ linkWhyUs, linkTestimonial, linkOurService, linkFaq }) {
   const [user, setUser] = useState({})
   const navigate = useNavigate()
 
@@ -20,7 +20,7 @@ export default function NavbarTop({ linkWhyUs, linkTestimonial, linkOurService, 
       });
     }
   }
-  
+
   const handdleLogout = () => {
     localStorage.removeItem("token");
     navigate('/login')
@@ -28,14 +28,14 @@ export default function NavbarTop({ linkWhyUs, linkTestimonial, linkOurService, 
 
   const auth = tokenValidation()
   useEffect(() => {
-  if (auth.token) {
-  getUser(auth.tokenUser).then(data => setUser(data)) 
-}
-}, []);
+    if (auth.token) {
+      getUser(auth.tokenUser).then(data => setUser(data))
+    }
+  }, []);
 
 
-     
-  
+
+
 
 
   const [colorChange, setColorchange] = useState(false);
@@ -97,12 +97,12 @@ export default function NavbarTop({ linkWhyUs, linkTestimonial, linkOurService, 
                       <NavDropdown.Item href="user/profile/setting">
                         setting
                       </NavDropdown.Item>
-                     
+
                       <NavDropdown.Divider />
                       <NavDropdown.Item
-                       href="#action/3.4"
-                       onClick={() => handdleLogout()}
-                       >
+                        href="#action/3.4"
+                        onClick={() => handdleLogout()}
+                      >
                         Logout
                       </NavDropdown.Item>
                     </NavDropdown>
