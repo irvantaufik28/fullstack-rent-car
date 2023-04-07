@@ -24,7 +24,7 @@ export default function CarList(props) {
     );
   }
 
-  if (!props.data.cars.length) {
+  if (!props.cars.length) {
     return (
       <>
         <Container className="container-car">
@@ -47,7 +47,7 @@ export default function CarList(props) {
     <>
       <Container className="container-car">
         <Row>
-          {props.data.cars.map(o =>
+          {props.cars.map(o =>
 
             <Col md='4' key={o.id}>
               <Card className={Styles.card} >

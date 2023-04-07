@@ -1,43 +1,31 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import CarList from '../components/car/carlist/carList'
-import config from "../config/index"
 import FromFillter from '../components/fromfilter/fromFilter'
 import Banner from '../components/homepage/banner/Banner'
 import Navbar from "../components/layouts/Navbar";
 import Footer from "../components/layouts/Footer";
+import { useDispatch, useSelector } from 'react-redux';
+import { carSelectors, getAllCars } from '../features/carSlice';
 export default function FindCar() {
 
-  const [dataCar, setDataCar] = useState({
-    cars: []
-  });
-
-
+  const dispatch = useDispatch();
+  const data = useSelector(carSelectors.selectAllCars);
+  
   useEffect(() => {
-    getCars();
-  }, []);
+    dispatch(getAllCars());
+  }, [dispatch]);
 
-  const apiUrl = config.apiBaseUrl
-  const getCars = async (params = {}) => {
-    const response = await axios.get(
-      apiUrl + "/customer/v2/car", {
-      params
-    }
-    );
-    setDataCar(response.data);
-  };
 
   const onFilter = (payload) => {
-    getCars(payload)
+    dispatch(getAllCars(payload))
   }
-
 
   return (
     <>
       <Navbar />
       <Banner />
       <FromFillter onSubmit={onFilter} />
-      <CarList data={dataCar} />
+      <CarList cars={data.cars} />
       <Footer />
     </>
   )
