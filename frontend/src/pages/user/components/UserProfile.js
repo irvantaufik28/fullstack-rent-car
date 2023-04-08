@@ -1,13 +1,10 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
-import { selectGetUser } from '../../../store/selector/selector'
 import './userprofile.css'
 import { Link } from 'react-router-dom'
-export default function UserProfile() {
+export default function UserProfile(props) {
 
 
-
-    const userData = useSelector(selectGetUser);
+    const userData = props.data
     const mainAddress = userData?.user_detail?.customer_address?.find(addr => addr.is_main_address);
     const addressType = mainAddress?.address_type?.name;
     const detailAddres = mainAddress?.detail_address;
@@ -20,7 +17,8 @@ export default function UserProfile() {
 
     return (
         <>
-            <div className="container rounded bg-white mt-5 mb-5">
+          
+          <div className="container rounded bg-white mt-5 mb-5">
                 <div className="row">
                     <div className="col-md-3 border-right">
                         <div className="d-flex flex-column align-items-center text-center p-3 py-5"><img className="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-gNclassNamees-profile.jpg" alt='noimage' /><span className="font-weight-bold"></span><span className="text-black-50">
@@ -74,7 +72,6 @@ export default function UserProfile() {
 
                 </div>
             </div>
-
 
 
         </>

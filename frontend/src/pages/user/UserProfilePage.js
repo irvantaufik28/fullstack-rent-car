@@ -1,35 +1,35 @@
 import axios from 'axios'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { tokenValidation } from '../../utils/tokenValidation'
 import Navbar from '../../components/layouts/Navbar'
 import Footer from '../../components/layouts/Footer'
 import UserProfile from './components/UserProfile'
-import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { userSelector, getUser } from '../../features/userSlice'
+
+
 
 export default function UserProfilePage() {
+
+  const navigate = useNavigate()
+  const auth = tokenValidation()
+
   const dispatch = useDispatch()
-    const auth = tokenValidation()
+  const userData = useSelector(userSelector.selectUser)
 
-    useEffect(() => {
-      getUser(auth.tokenUser)
-    }, [])
 
-    const getUser = async(token) => {
-      const response = await axios.get('http://localhost:4001/user/profile', {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      })
-   
-      dispatch({type: "SET_GET_USER", payload: response.data})
+  useEffect(() => {
+    if (!auth.token) {
+      (navigate('/login'))
     }
-
-
+    dispatch(getUser(auth.tokenUser))
+  }, [dispatch])
 
   return (
     <>
-    <Navbar  />
-        <UserProfile />
+      <Navbar />
+      <UserProfile data={userData} />
       <Footer />
     </>
   )

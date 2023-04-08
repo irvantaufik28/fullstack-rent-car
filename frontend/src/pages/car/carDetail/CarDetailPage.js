@@ -20,7 +20,7 @@ export default function CarDetailPage() {
     
   }, [dispatch]);
 
-console.log(car)
+
   return (
     <>
     <Navbar />
