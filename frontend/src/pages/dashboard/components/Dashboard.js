@@ -1,20 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode'
-import { useSelector } from 'react-redux';
-import { selectToken } from '../../../store/selector/selector';
 
 const Dashboard = () => {
-  const userToken = useSelector(selectToken)
-
+ 
   const [user, setUser] = useState({});
   const [error, setError] = useState(null);
-console.log(user)
 
-  useEffect(() => {
-    if (!userToken) return;
-
-    try {
+  const userToken = localStorage.getItem('token');
+  if (!userToken) 
+  try {
       const storedToken = localStorage.getItem('token');
       if (storedToken === null) {
         localStorage.setItem('token', userToken);
@@ -29,7 +24,7 @@ console.log(user)
     } catch (error) {
       console.log('Error decoding token:', error);
     }
-  }, [userToken]);
+  
 
 
   useEffect(() => {
