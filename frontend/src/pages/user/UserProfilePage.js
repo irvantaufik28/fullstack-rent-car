@@ -1,5 +1,4 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { tokenValidation } from '../../utils/tokenValidation'
 import Navbar from '../../components/layouts/Navbar'
 import Footer from '../../components/layouts/Footer'
