@@ -1,52 +1,37 @@
 import React, { useState } from 'react'
 import Login from './components/Login'
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import jwtDecode from "jwt-decode";
 import { useDispatch } from "react-redux";
+import { login } from '../../../features/authSlice';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
-  
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
-  const [role, setRole] = useState("");
 
-
-  const loginAdmin = async (params = {}) => {
+  const onSubmitLogin = async (payload) => {
     try {
-      const response = await axios.post(
-        "http://localhost:4001/auth/login",
-        params
+      const result = await dispatch(login(payload)).unwrap();
+      const access_token = result.access_token
+      const user = jwtDecode(access_token)
+      localStorage.setItem('token', access_token)
 
-      );
-
-      const token = response.data.access_token;
-      const user = jwtDecode(token);
-      setRole(user.role_name);
-      dispatch({ type: "SET_TOKEN", payload: response.data.access_token });
-      dispatch({ type: "SET_REFRESH_TOKEN", payload: response.data.refresh_token });
-      localStorage.setItem('token', response.data.access_token);
-        if (user.role_name === 'ADMIN') {
-          navigate('/dashboard')
-        }
-        if (user.role_name === 'CUSTOMER') {
-          navigate('/')
-        }
-    } catch (err) {
-      if (err) {
-        setMessage(err.response.data.message);
-        console.log(err.response);
+      if (user.role_name === 'ADMIN') {
+        navigate('/dashboard')
       }
-    }
+      if (user.role_name === 'CUSTOMER') {
+        navigate('/')
+      }
 
-  }
-  const onSubmitLogin = (payload) => {
-    loginAdmin(payload)
-  }
+    } catch (err) {
+      setMessage(err.message);
+    }
+  };
+
   return (
     <>
-      <Login onSubmit={onSubmitLogin} message={message} role={role} />
+      <Login onSubmit={onSubmitLogin} message={message} />
     </>
   )
 }

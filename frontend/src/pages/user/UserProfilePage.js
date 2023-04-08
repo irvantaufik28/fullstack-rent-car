@@ -10,22 +10,6 @@ export default function UserProfilePage() {
   const dispatch = useDispatch()
     const auth = tokenValidation()
 
-
-    // useEffect(() => {
-    //     const getUser = async() => {
-    //         const response = await axios.get('http://localhost:4001/user/profile', {
-    //             headers: {
-    //                 Authorization: `Bearer ${auth.tokenUser}`
-    //             }
-    //         })
-            
-            // dispatch({type: "SET_GET_USER", payload: response.data})
-          
-    //     }
-    //     getUser()
-    // }, [])
-
-
     useEffect(() => {
       getUser(auth.tokenUser)
     }, [])
