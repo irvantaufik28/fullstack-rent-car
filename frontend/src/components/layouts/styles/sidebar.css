@@ -5,6 +5,7 @@
 }
 .container-dashboard{
     display:flex;
+    background-color: #E5E5E5;
 }
 /* main{
     width: 100%;

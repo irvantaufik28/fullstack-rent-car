@@ -26,7 +26,7 @@ import { CarProducerService } from 'src/jobs/queue/producer/car.produce.service'
 import { CarService } from './car.service';
 import { CreateCarDto } from './dto/car-create.dto';
 
-@Controller('customer')
+@Controller('car')
 @UseInterceptors(
   ClassSerializerInterceptor)
 export class CarController {
@@ -46,7 +46,7 @@ export class CarController {
     return car;
   }
 
-  @Get('v2/car')
+  @Get()
   @HttpCode(HttpStatus.OK)
   // @UseInterceptors(CarResponseInterceptor, ClassSerializerInterceptor)
   async getCarPagination(
@@ -55,7 +55,7 @@ export class CarController {
     return await this.carService.getAllCarPage(pageOptionDto);
   }
 
-  @Get('car/:id')
+  @Get('/:id')
   async getCarById(@Param('id') id: number): Promise<any> {
     const result = await this.carProducerService.getById(id);
     return result.data;

@@ -1,5 +1,5 @@
 
 export enum SecurityType {
-    STAF = 'STAF',
+    STAF = 'ADMIN',
     CUSTOMER = 'CUSTOMER',
   }

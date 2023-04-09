@@ -9,8 +9,10 @@ import UserProfilePage from "../pages/user/UserProfilePage";
 import UserSettingPage from "../pages/user/UserSettingPage";
 import PrivateRoutes from "../utils/PrivateRoutes";
 import AdminCarListPage from "../pages/admin/car/AdminCarListPage";
-import DashBoardPage from "../pages/admin/dashboard/DashBoardPage";
+import DashboardAdmin from "../pages/admin/dashboard/DashboardAdmin";
+
 import '../components/layouts/styles/mobile.css'
+import AdminAddCar from "../pages/admin/dashboard/AdminAddCar";
 function IndexRoutes() {
   return (
     <Router>
@@ -24,8 +26,8 @@ function IndexRoutes() {
         <Route path="/user/profile/setting" element={<UserSettingPage />} />
         <Route element={<PrivateRoutes />}>
           <Route path="/admin/carlist" element={<AdminCarListPage />} />
-
-          <Route path="/dashboard" element={<DashBoardPage />} />
+          <Route path="/admin/addcar" element={<AdminAddCar />} />
+          <Route path="/dashboard" element={<DashboardAdmin />} />
         </Route>
 
 

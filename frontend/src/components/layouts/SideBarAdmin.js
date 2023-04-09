@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import './styles/sidebar.css'
 
 import {
   FaTh,
@@ -8,9 +9,7 @@ import {
   FaCommentAlt,
 } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
-import './styles/sidebar.css'
-
-export default function SideBar({ children }) {
+export default function SideBarAdmin({ children }) {
 
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
@@ -37,9 +36,10 @@ export default function SideBar({ children }) {
       },
     ];
   return (
-    <>
-    
-      <div className="container-dashboard">
+    <>  
+
+	{/* <!-- SIDEBAR --> */}
+	<div className="container-dashboard">
         <div style={{ width: isOpen ? "200px" : "50px" }} className="sidebar">
           <div className="top_section">
             <h1 style={{ display: isOpen ? "block" : "none" }} className="logo-sidebar">
@@ -57,7 +57,6 @@ export default function SideBar({ children }) {
               to={item.path}
               key={index}
               className="link"
-              // activeclassName="active"
             >
               <div className="icon">{item.icon}</div>
               <div
@@ -69,8 +68,12 @@ export default function SideBar({ children }) {
             </NavLink>
           ))}
         </div>
-        <main>{children}</main>
+       
+            {children}
+        
     </div>
-      </>
+    
+</>  
+    
   )
 }

@@ -46,6 +46,13 @@ export default function AdminCarList(props) {
   return (
     <>
       <Container className="container-car">
+        <div className="top-content">
+          <Row>
+
+          <div className="col-md-6"><strong>List Cars</strong></div>
+          <div className="col-md-6"><button>add Car</button></div>
+          </Row>
+        </div>
         <Row>
           {props.cars.map(o =>
 
