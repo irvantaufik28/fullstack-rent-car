@@ -53,7 +53,7 @@ export class OrderService {
     const order = await this.orderRepository.createOrder(createOrderDto);
 
     const updateCar = {
-      status: false,
+      status: true,
       start_rent_at: order.start_rent_at,
       finish_rent_at: order.finish_rent_at,
     };

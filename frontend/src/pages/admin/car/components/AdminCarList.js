@@ -14,7 +14,7 @@ export default function AdminCarList(props) {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 3000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -59,7 +59,8 @@ export default function AdminCarList(props) {
           </Row>
         </div>
         <Row>
-          {props.cars.map(o =>
+          {props.cars.map(o =>  
+          
 
             <Col md='4' key={o.id}>
               <Card className={Styles.card} >
@@ -96,11 +97,13 @@ export default function AdminCarList(props) {
                           : o.category}
                   </p>
                   <BiTime /> update at {o.updateAt}
+                  <p>status {o.status? 'rental' : 'free'}</p>
                   
                   <Card.Body>
 
                     <Button
                       variant="outline-danger"
+                      disabled={o.status}
                       onClick={(e) => {
                         e.preventDefault()
                         props.handleDelete(o.id)

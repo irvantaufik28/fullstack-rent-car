@@ -8,14 +8,12 @@ import { OrderService } from 'src/api/order/order.service';
 export class OrderCounsumer {
   constructor(private readonly orderService : OrderService){}
   @Process('createOrder-job')
-  @Process('createOrder-job')
   async createOrder(
     job: Job<{ data: CreateOrderDto; user_id: number }>,
   )
   {
     const { user_id, data: createOrderDto } = job.data;
-    
-   await this.orderService.createOrder(createOrderDto, user_id);
+       await this.orderService.createOrder(createOrderDto, user_id);
 
   }
 }

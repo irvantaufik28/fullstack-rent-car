@@ -36,8 +36,8 @@ export class CarController {
   ) {}
   @Post()
   @UseInterceptors(FileInterceptor('file'))
-  // @Roles(SecurityType.STAF)
-  // @UseGuards(JwGuard, RolesGuard)
+  @Roles(SecurityType.STAF)
+  @UseGuards(JwGuard, RolesGuard)
   async createCar(
     @Body() payload: CreateCarDto,
     @UploadedFile() file: Express.Multer.File,
