@@ -94,7 +94,7 @@ export default function NavbarLayout({ linkWhyUs, linkTestimonial, linkOurServic
 
                     <NavDropdown title={user.email} id="collasible-nav-dropdown">
                       <NavDropdown.Item href="/user/profile">Profile</NavDropdown.Item>
-                      <NavDropdown.Item href="user/profile/setting">
+                      <NavDropdown.Item href="/user/profile/setting">
                         setting
                       </NavDropdown.Item>
 

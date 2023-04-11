@@ -1,0 +1,17 @@
+.button_addcar {
+  background: #0d28a6;
+  border: 0;
+  padding: 12px 28px;
+  color: white;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+/* .button_addcar_bar {
+  justify-content: end;
+  display: flex;
+} */
+
+.top-content {
+  margin-top: 25px;
+}

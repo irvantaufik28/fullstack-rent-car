@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
-import Styles from "./carlist.css";
 import { Link } from "react-router-dom";
 import ImageWithLoading from "../../../../components/ui/ImageWithLoading";
 import LoadingSpiner from "../../../../components/ui/LoadingSpiner";
 import nullImage from '../../../../assets/img/imagenotfound.jpeg'
+import { BsFillPeopleFill } from 'react-icons/bs'
+import { BiTime } from 'react-icons/bi'
+import Styles from "./admincarlist.css";
+
 
 export default function AdminCarList(props) {
   const [loading, setLoading] = useState(true);
-
-
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
@@ -43,14 +44,18 @@ export default function AdminCarList(props) {
   });
 
 
+
   return (
     <>
       <Container className="container-car">
         <div className="top-content">
           <Row>
 
-          <div className="col-md-6"><strong>List Cars</strong></div>
-          <div className="col-md-6"><button>add Car</button></div>
+            <div className="col-md-6"><strong>List Cars</strong></div>
+            <div className="col-md-6 button_addcar_bar">
+              <Link to="/admin/addcar">
+                <button className="button_addcar">add Car</button> </Link>
+            </div>
           </Row>
         </div>
         <Row>
@@ -79,16 +84,36 @@ export default function AdminCarList(props) {
                 <Card.Body>
                   <p>{o.name}</p>
                   <h6>{formatter.format(o.price)} / hari</h6>
-                  <Card.Text>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est natus repellendus inventore, similique necessitatibus cumque architecto a nesciunt vitae! Minus.
-                  </Card.Text>
-                  <Link to={`${o.id}`}>
-                    <div className="d-grid gap-2">
-                      <Button variant="flat">
-                        Pilih Mobil
+                  <p className="card-title-detail">
+                    <BsFillPeopleFill />
+
+                    {o.category === "small"
+                      ? "2-4 orang"
+                      : o.category === "medium"
+                        ? "4-6 orang"
+                        : o.category === "large"
+                          ? "6-8 orang"
+                          : o.category}
+                  </p>
+                  <BiTime /> update at {o.updateAt}
+                  
+                  <Card.Body>
+
+                    <Button
+                      variant="outline-danger"
+                      onClick={(e) => {
+                        e.preventDefault()
+                        props.handleDelete(o.id)
+                      }}
+                    >
+                      Delete
+                    </Button>
+                    <Card.Link href="#">
+                      <Button variant="success">
+                        edit
                       </Button>
-                    </div>
-                  </Link>
+                    </Card.Link>
+                  </Card.Body>
                 </Card.Body>
               </Card>
             </Col>
@@ -97,10 +122,4 @@ export default function AdminCarList(props) {
       </Container>
     </>
   );
-}
-
-AdminCarList.defaultProps = {
-  data: {
-    cars: []
-  }
 }

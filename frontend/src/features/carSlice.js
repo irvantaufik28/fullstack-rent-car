@@ -17,6 +17,17 @@ export const getCarById = createAsyncThunk("car/getCar" , async(id) => {
     return response.data
 })
 
+export const deleteCar = createAsyncThunk("car/delete", async (id) => {
+    const token = localStorage.getItem('token');
+    const apiUrl = config.apiBaseUrl;
+    await axios.delete(apiUrl + `/car/${id}`, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+    return id;
+});
+
 const carSlice = createSlice({
     name: "car",
     initialState: {
@@ -32,11 +43,15 @@ const carSlice = createSlice({
         .addCase(getAllCars.fulfilled, (state, action) => {
             state.cars = action.payload
         }) 
+        .addCase(deleteCar.fulfilled, (state, action) => {
+            state.cars = state.cars.cars.filter((car) => car.id !== action.payload);
+        });
+        
     }  
 })
 
 export const carSelectors = {
     selectCarById: (state) => state.car.car,
-    selectAllCars: (state) => state.car.cars
+    selectAllCars: (state) => state.car.cars,
 }
 export default carSlice.reducer;
