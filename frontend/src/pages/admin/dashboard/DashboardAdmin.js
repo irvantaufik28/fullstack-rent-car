@@ -4,7 +4,6 @@ import NavBarAdmin from '../../../components/layouts/NavBarAdmin'
 import AdminCarListPage from '../car/AdminCarListPage'
 
 export default function DashboardAdmin() {
-  
   return (
 <>
 

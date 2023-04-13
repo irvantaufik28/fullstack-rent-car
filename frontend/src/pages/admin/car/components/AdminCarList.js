@@ -111,11 +111,15 @@ export default function AdminCarList(props) {
                     >
                       Delete
                     </Button>
-                    <Card.Link href="#">
+                    
+                    <Link to={`/admin/update/car/${o.id}`}>
+                   
                       <Button variant="success">
                         edit
                       </Button>
-                    </Card.Link>
+                   
+                  </Link>
+                    
                   </Card.Body>
                 </Card.Body>
               </Card>

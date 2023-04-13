@@ -5,9 +5,11 @@ import AdminCarList from './components/AdminCarList';
 import Swal from 'sweetalert2'
 
 export default function AdminCarListPage() {
-    const dispatch = useDispatch();
+ 
+
+  const dispatch = useDispatch();
   const data = useSelector(carSelectors.selectAllCars);
-  
+
   useEffect(() => {
     dispatch(getAllCars());
   }, [dispatch]);
@@ -28,7 +30,7 @@ export default function AdminCarListPage() {
         Swal.fire(
           'Deleted!',
           'Your file has been deleted.',
-          'success'
+          'success',
           )
           window.location.reload(true)
       }
@@ -36,6 +38,6 @@ export default function AdminCarListPage() {
   }
 
   return (
-        <AdminCarList cars={data.cars} handleDelete={handleDelete}/>
+    <AdminCarList cars={data.cars} handleDelete={handleDelete} />
   )
 }

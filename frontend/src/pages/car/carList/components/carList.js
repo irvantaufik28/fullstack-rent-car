@@ -3,38 +3,9 @@ import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import Styles from "./carlist.css";
 import { Link } from "react-router-dom";
 import ImageWithLoading from "../../../../components/ui/ImageWithLoading";
-import LoadingSpiner from "../../../../components/ui/LoadingSpiner";
 import nullImage from '../../../../assets/img/imagenotfound.jpeg'
 
 export default function CarList(props) {
-  const [loading, setLoading] = useState(true);
-
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (loading) {
-    return (
-      <LoadingSpiner />
-    );
-  }
-
-  if (!props.cars.length) {
-    return (
-      <>
-        <Container className="container-car">
-          <div className="carnotfound">
-            <h1>car not found!!!</h1>
-          </div>
-        </Container>
-      </>
-    );
-  }
 
   const formatter = new Intl.NumberFormat("id-ID", {
     style: 'currency',
@@ -42,6 +13,18 @@ export default function CarList(props) {
     minimumFractionDigits: 0
   });
 
+  if (!props.cars || !Array.isArray(props.cars) || !props.cars.length) {
+    return (
+          <>
+        <Container className="container-car">
+          <div className="carnotfound">
+            <h1>car not found!!!</h1>
+          </div>
+        </Container>
+      </>
+
+    )
+  }
 
   return (
     <>
@@ -51,7 +34,7 @@ export default function CarList(props) {
 
             <Col md='4' key={o.id}>
               <Card className={Styles.card} >
-                {o.image === null ?
+                {o.image === null || o.image === undefined ?
                   (
                     <div>
                       <ImageWithLoading

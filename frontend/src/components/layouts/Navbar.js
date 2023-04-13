@@ -1,17 +1,39 @@
 import React, { useEffect, useState } from "react";
 import { Container, Navbar, Nav, Offcanvas, NavDropdown } from "react-bootstrap";
-import { tokenValidation } from "../../utils/tokenValidation";
-import { getUser } from "../../utils/getuser";
+import { TokenValidation } from "../../utils/tokenValidation";
+import { getUser, userSelector } from '../../features/userSlice'
 import logo from '../../assets/icon/logo.png'
 import { useNavigate } from "react-router-dom";
 import './styles/navbar.css'
+import { useDispatch, useSelector } from "react-redux";
+// import { authSelector } from "../../features/authSlice";
 
 
 
 export default function NavbarLayout({ linkWhyUs, linkTestimonial, linkOurService, linkFaq }) {
-  const [user, setUser] = useState({})
+  const dispatch = useDispatch()
   const navigate = useNavigate()
-
+  
+  const auth = TokenValidation()
+  const tokenUser = localStorage.getItem('token')
+  // console.log(auth.tokenUser)
+  
+  const user = useSelector(userSelector.selectUser)
+  // const dataRefToken = useSelector(authSelector.selectRefreshToken)
+  // console.log(dataRefToken)
+  useEffect(() => {
+    if (auth.token) {
+      dispatch(getUser(tokenUser))
+    }
+  }, [dispatch]);
+  
+  
+  const handdleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("refresh_token")
+    navigate('/login')
+  }
+  
   const handleClick = (link) => {
     if (link.current) {
       link.current.scrollIntoView({
@@ -20,21 +42,7 @@ export default function NavbarLayout({ linkWhyUs, linkTestimonial, linkOurServic
       });
     }
   }
-
-  const handdleLogout = () => {
-    localStorage.removeItem("token");
-    navigate('/login')
-  }
-
-  const auth = tokenValidation()
-  useEffect(() => {
-    if (auth.token) {
-      getUser(auth.tokenUser).then(data => setUser(data))
-    }
-  }, []);
-
-
-
+  
 
 
 
@@ -92,7 +100,9 @@ export default function NavbarLayout({ linkWhyUs, linkTestimonial, linkOurServic
                   {auth.token ?
 
 
-                    <NavDropdown title={user.email} id="collasible-nav-dropdown">
+                    <NavDropdown 
+                    title={user.email} 
+                    id="collasible-nav-dropdown">
                       <NavDropdown.Item href="/user/profile">Profile</NavDropdown.Item>
                       <NavDropdown.Item href="/user/profile/setting">
                         setting

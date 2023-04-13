@@ -7,6 +7,7 @@ import { adminAddCar } from '../../../features/carSlice'
 
 
 export default function AdminAddCar() {
+  
   const dispatch = useDispatch()
   
   const addCar = async (payload) => {

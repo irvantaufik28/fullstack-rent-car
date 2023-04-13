@@ -1,15 +1,16 @@
 import { Outlet, Navigate } from 'react-router-dom'
-import { adminValidation } from './tokenValidation';
+import { AdminValidation } from './tokenValidation';
 import Pagenotfound from '../components/pagenotfound/Pagenotfound';
 
 
 const PrivateRoutes = () => {
-    const auth = adminValidation();
+    const auth = AdminValidation();
 
     if (auth.admin && auth.token) {
         return <Outlet />;
     } else if (auth.admin && !auth.token) {
-        return <Navigate to='/login' />
+        return <Outlet />;
+        // return <Navigate to='/login' />
     } else {
         return <Pagenotfound />
     }

@@ -5,6 +5,7 @@ import { PageDto } from 'src/common/pageDTO/page.dto';
 import { Repository } from 'typeorm';
 import { CreateCarDto } from '../dto/car-create.dto';
 import { CarEntity } from 'src/database/entities/car.entity';
+import { UpdateCarDto } from '../dto/car-update.dto ';
 
 export class CarRepository extends Repository<CarEntity> {
   constructor(
@@ -85,8 +86,15 @@ export class CarRepository extends Repository<CarEntity> {
     return await this.carRepository.save(car);
   };
 
-  updateCar = async (id: number, updateCarDto: CreateCarDto): Promise<any> => {
-    return await this.carRepository.update(id, updateCarDto);
+  updateCar = async (id: number, updateCarDto: UpdateCarDto): Promise<any> => {
+    const { name, category, price, image } = updateCarDto;
+    const updatedCar = {
+      name,
+      category,
+      price,
+      image,
+    };
+    return await this.carRepository.update(id, updatedCar);
   };
 
   deleteCar = async (id: number): Promise<any> => {

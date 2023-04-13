@@ -6,11 +6,14 @@ import Navbar from '../../../components/layouts/Navbar';
 import Footer from '../../../components/layouts/Footer';
 import { useDispatch, useSelector } from 'react-redux';
 import { carSelectors, getAllCars } from '../../../features/carSlice';
+import LoadingSpiner from '../../../components/ui/LoadingSpiner';
+
 export default function FindCar() {
 
   const dispatch = useDispatch();
+  const loading = useSelector(carSelectors.loading)
   const data = useSelector(carSelectors.selectAllCars);
-  
+ 
   useEffect(() => {
     dispatch(getAllCars());
   }, [dispatch]);
@@ -25,7 +28,9 @@ export default function FindCar() {
       <Navbar />
       <Banner />
       <FromFillter onSubmit={onFilter} />
-      <CarList cars={data.cars} />
+      {loading ? (<LoadingSpiner />) : (
+        <CarList cars={data.cars} />
+      )}
       <Footer />
     </>
   )

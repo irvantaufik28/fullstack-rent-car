@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { tokenValidation } from '../../utils/tokenValidation'
+import { TokenValidation } from '../../utils/tokenValidation'
 import Navbar from '../../components/layouts/Navbar'
 import Footer from '../../components/layouts/Footer'
 import UserProfile from './components/UserProfile'
@@ -12,7 +12,7 @@ import { userSelector, getUser } from '../../features/userSlice'
 export default function UserProfilePage() {
 
   const navigate = useNavigate()
-  const auth = tokenValidation()
+  const auth = TokenValidation()
 
   const dispatch = useDispatch()
   const userData = useSelector(userSelector.selectUser)

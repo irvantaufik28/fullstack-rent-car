@@ -13,9 +13,11 @@ const LoginPage = () => {
   const onSubmitLogin = async (payload) => {
     try {
       const result = await dispatch(login(payload)).unwrap();
-      const access_token = result.access_token
-      const user = jwtDecode(access_token)
-      localStorage.setItem('token', access_token)
+      
+      const user = jwtDecode(result.access_token)
+      localStorage.setItem('token',result.access_token)
+      localStorage.setItem('refresh_token',result.refresh_token)
+
 
       if (user.role_name === 'ADMIN') {
         navigate('/dashboard')
@@ -23,7 +25,6 @@ const LoginPage = () => {
       if (user.role_name === 'CUSTOMER') {
         navigate('/')
       }
-
     } catch (err) {
       setMessage(err.message);
     }

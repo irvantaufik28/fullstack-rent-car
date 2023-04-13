@@ -13,6 +13,7 @@ import DashboardAdmin from "../pages/admin/dashboard/DashboardAdmin";
 
 import '../components/layouts/styles/mobile.css'
 import AdminAddCar from "../pages/admin/dashboard/AdminAddCar";
+import AdminUpdateCar from "../pages/admin/dashboard/AdminUpdateCar";
 function IndexRoutes() {
   return (
     <Router>
@@ -27,6 +28,7 @@ function IndexRoutes() {
         <Route element={<PrivateRoutes />}>
           <Route path="/admin/carlist" element={<AdminCarListPage />} />
           <Route path="/admin/addcar" element={<AdminAddCar />} />
+          <Route path="/admin/update/car/:id" element={<AdminUpdateCar />} />
           <Route path="/dashboard" element={<DashboardAdmin />} />
         </Route>
 

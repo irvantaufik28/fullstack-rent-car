@@ -25,6 +25,7 @@ import { PageDto } from 'src/common/pageDTO/page.dto';
 import { CarProducerService } from 'src/jobs/queue/producer/car.produce.service';  
 import { CarService } from './car.service';
 import { CreateCarDto } from './dto/car-create.dto';
+import { UpdateCarDto } from './dto/car-update.dto ';
 
 @Controller('car')
 @UseInterceptors(
@@ -63,12 +64,14 @@ export class CarController {
 
   @Put('/:id')
   @Roles(SecurityType.STAF)
+  @UseInterceptors(FileInterceptor('file'))
   @UseGuards(JwGuard, RolesGuard)
   async updateCar(
     @Param('id') id: number,
-    @Body() payload: CreateCarDto,
+    @Body() payload: UpdateCarDto,
+    @UploadedFile() file: Express.Multer.File,
   ): Promise<void> {
-    return this.carService.updateCar(id, payload);
+    return this.carService.updateCar(id, payload, file);
   }
   @Delete('/:id')
   @Roles(SecurityType.STAF)

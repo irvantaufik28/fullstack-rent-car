@@ -1,10 +1,10 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { PageCarOptionsDto } from 'src/common/pageDTO/page-car-options.dto';
-import { PageDto } from 'src/common/pageDTO/page.dto';
 import { CloudinaryService } from 'src/common/cloudinary/cloudinary.service';
 import { CreateCarDto } from './dto/car-create.dto';
 import { CarEntity } from 'src/database/entities/car.entity';
 import { CarRepository } from './repository/car.repository';
+import { UpdateCarDto } from './dto/car-update.dto ';
 
 @Injectable()
 export class CarService {
@@ -18,8 +18,8 @@ export class CarService {
     file: any,
   ): Promise<CreateCarDto> {
     if (file) {
-      const imagaUrl = await this.cloudinaryService.uploadImage(file);
-      createCarDto.image = imagaUrl.url;
+      const imageUrl = await this.cloudinaryService.uploadImage(file);
+      createCarDto.image = imageUrl.url;
     }
 
     return await this.carRepository.createCar(createCarDto);
@@ -45,7 +45,11 @@ export class CarService {
     return car;
   };
 
-  updateCar = async (id: number, updateCarDto: CreateCarDto): Promise<void> => {
+  updateCar = async (id: number, updateCarDto: UpdateCarDto, file: any,): Promise<void> => {
+    if (file) {
+      const imageUrl = await this.cloudinaryService.uploadImage(file);
+      updateCarDto.image = imageUrl.url;
+    }
     const car = await this.carRepository.getCarById(id);
     if (!car) {
       throw new HttpException('car not found', HttpStatus.NOT_FOUND);
