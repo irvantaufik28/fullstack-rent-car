@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
-export default function AddCar(props) {
+export default function UpdateCar(props) {
   const [formData, setFormData] = useState({
     name: "",
     price: "",

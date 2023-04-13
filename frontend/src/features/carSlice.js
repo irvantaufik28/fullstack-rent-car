@@ -35,12 +35,10 @@ export const getCarById = createAsyncThunk("car/getCar", async (id) => {
     return response.data
 })
 
-export const adminUpdateCar = createAsyncThunk("car/update", async (id, params = {}) => {
-
+export const adminUpdateCar = createAsyncThunk("car/update", async ({id, params }) => {
     const token = localStorage.getItem('token');
     const apiUrl = config.apiBaseUrl
     try {
-
         const response = await axios.put(apiUrl + `/car/${id}`, params, {
             headers: {
                 "content-type": "multipart/form-data",
