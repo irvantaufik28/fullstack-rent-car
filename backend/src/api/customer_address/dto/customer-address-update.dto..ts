@@ -1,22 +1,19 @@
-import { IsNotEmpty, IsOptional} from "class-validator";
+import { IsOptional} from "class-validator";
 
-export class CreateCustomerAddressDto {
+export class UpdateCustomerAddressDto {
     @IsOptional()
     id: number;
 
     @IsOptional()
-    user_detail_id: number;
-
-    @IsNotEmpty()
     address_type_id: number;
 
-    @IsNotEmpty()
+    @IsOptional()
     city_id: number;
 
     @IsOptional()
     is_main_address: boolean
 
-    @IsNotEmpty()
+    @IsOptional()
     detail_address: string
 
 

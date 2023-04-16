@@ -54,6 +54,7 @@ export class CarService {
     if (!car) {
       throw new HttpException('car not found', HttpStatus.NOT_FOUND);
     }
+    
     return await this.carRepository.updateCar(id, updateCarDto);
   };
 

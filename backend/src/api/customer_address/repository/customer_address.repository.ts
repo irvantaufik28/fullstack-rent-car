@@ -2,16 +2,17 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CustomerAddressEntity } from 'src/database/entities/customer-address.entity';
 import { Repository } from 'typeorm';
 import { CreateCustomerAddressDto } from '../dto/customer-address-create.dto.';
+import { UpdateCustomerAddressDto } from '../dto/customer-address-update.dto.';
 
 export class CustomerAddressRepository extends Repository<CustomerAddressEntity> {
   constructor(
     @InjectRepository(CustomerAddressEntity)
-    private CustomerAddressRepository: Repository<CustomerAddressEntity>,
+    private customerAddressRepository: Repository<CustomerAddressEntity>,
   ) {
     super(
-      CustomerAddressRepository.target,
-      CustomerAddressRepository.manager,
-      CustomerAddressRepository.queryRunner,
+      customerAddressRepository.target,
+      customerAddressRepository.manager,
+      customerAddressRepository.queryRunner,
     );
   }
 
@@ -25,9 +26,20 @@ export class CustomerAddressRepository extends Repository<CustomerAddressEntity>
     customeAddress.user_detail_id = user_detail_id
     customeAddress.address_type_id = address_type_id
 
-    return await this.CustomerAddressRepository.save(customeAddress)
+    return await this.customerAddressRepository.save(customeAddress)
   
+  }
+  
+  updateCustomerAddress = async (id: number ,updateCustomerAddressDto: UpdateCustomerAddressDto): Promise<any> => {
+    const {city_id, is_main_address, detail_address, address_type_id} = updateCustomerAddressDto
+
+    const updateAddress = {
+      city_id, is_main_address, detail_address, address_type_id
+    }
+    return await this.customerAddressRepository.update(id, updateAddress)
+    
   }  
+
 
 
   
