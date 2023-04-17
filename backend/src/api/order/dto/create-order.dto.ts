@@ -16,14 +16,14 @@ export class CreateOrderDto {
   finish_rent_at: Date;
 
   @IsOptional()
-  status: Boolean;
+  status: string;
 
   @IsOptional()
-  slip: string;
+  slip_id: number;
 
   @IsOptional()
-  UserId: number
+  user_id: number
 
   @IsOptional()
-  CarId: number
+  car_id: number
 }

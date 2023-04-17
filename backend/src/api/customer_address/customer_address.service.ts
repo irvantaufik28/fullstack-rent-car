@@ -4,7 +4,7 @@ import { CreateCustomerAddressDto } from './dto/customer-address-create.dto.';
 import { UserService } from '../user/user.service';
 import { CustomerAddressEntity } from 'src/database/entities/customer-address.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository } from 'typeorm';
 import { UpdateCustomerAddressDto } from './dto/customer-address-update.dto.';
 
 @Injectable()
@@ -83,9 +83,9 @@ export class CustomerAddressService {
     const user = await this.userService.getUserById(user_id);
     const customerAddresses = await this.getAllUserAddress(user.user_detail.id);
     const address = await this.getAddressById(address_id);
-  
+
     if (user.user_detail.id !== address.user_detail_id) {
-      throw new HttpException('you not have access', HttpStatus.FORBIDDEN);
+      throw new HttpException('user not have access', HttpStatus.FORBIDDEN);
     }
 
     if (payload.is_main_address && customerAddresses.length > 1) {
@@ -116,5 +116,25 @@ export class CustomerAddressService {
       address_id,
       payload,
     );
+  }
+
+  async deleteCustomerAddress(
+    user_id: number,
+    address_id: number,
+  ): Promise<DeleteResult> {
+    const user = await this.userService.getUserById(user_id);
+
+    const address = await this.getAddressById(address_id);
+    if (address.is_main_address === true) {
+      throw new HttpException(
+        'cannot delete main address',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+    if (user.user_detail.id !== address.user_detail_id) {
+      throw new HttpException('user not have access', HttpStatus.FORBIDDEN);
+    }
+
+    return await this.customerAddressRepository.delete({ id: address_id });
   }
 }

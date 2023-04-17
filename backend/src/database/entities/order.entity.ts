@@ -24,16 +24,16 @@ export class OrderEntity extends BaseEntity {
   finish_rent_at: Date;
 
   @Column()
-  status: Boolean;
+  status: string;
 
   @Column()
-  slip: string;
+  slip_id: number;
 
   @Column()
-  UserId: number;
+  user_id: number;
 
   @Column()
-  CarId: number;
+  car_id: number;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
@@ -42,10 +42,10 @@ export class OrderEntity extends BaseEntity {
   updateAt: Date;
 
   @ManyToOne(() => UserEntity, (o) => o.order)
-  @JoinColumn({ name: 'UserId' })
+  @JoinColumn({ name: 'user_id' })
   user: UserEntity;
 
   @ManyToOne(() => CarEntity, (o) => o.order)
-  @JoinColumn({ name: "CarId" })
+  @JoinColumn({ name: "car_id" })
   car: CarEntity;
 }

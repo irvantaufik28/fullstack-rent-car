@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Post,
@@ -17,6 +18,7 @@ import { UserEntity } from 'src/database/entities/user.entity';
 import { CustomerAddressService } from './customer_address.service';
 import { CustomerAddressEntity } from 'src/database/entities/customer-address.entity';
 import { UpdateCustomerAddressDto } from './dto/customer-address-update.dto.';
+import { DeleteResult } from 'typeorm';
 
 @Controller('customer-address')
 export class CustomerAddressController {
@@ -70,6 +72,19 @@ export class CustomerAddressController {
       request.id,
       address_id,
       payload,
+    );
+  } 
+  
+  @Delete('/:id')
+  @Roles(SecurityType.CUSTOMER)
+  @UseGuards(JwGuard, RolesGuard)
+  async deleteCustomerAddress(
+    @Param('id') address_id: number,
+    @GetUser() request: UserEntity,
+  ): Promise<DeleteResult> {
+    return await this.customerAddressService.deleteCustomerAddress(
+      request.id,
+      address_id,
     );
   }
 }

@@ -2,7 +2,6 @@ import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColu
 import { AddressTypesEntity } from './address-types.entity';
 import { CitiesEntity } from './cities.entity';
 import { UserDetailEntity } from './user-detail.entity';
-import { UserEntity } from './user.entity';
 
 @Entity('customer_address')
 export class CustomerAddressEntity extends BaseEntity {

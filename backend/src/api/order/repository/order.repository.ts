@@ -24,9 +24,9 @@ export class OrderRepository extends Repository<OrderEntity> {
     const queryBuilder = this.orderRepository.createQueryBuilder('order');
 
     queryBuilder.leftJoinAndSelect('order.user', 'user')
-    queryBuilder.where('user.id = order.UserId')
+    queryBuilder.where('user.id = order.user_id')
     queryBuilder.leftJoinAndSelect('order.car', 'car')
-    queryBuilder.where('car.id = order.CarId')
+    queryBuilder.where('car.id = order.car_id')
 
     queryBuilder
       .orderBy('order.createdAt', pageOptionsDto.order)
@@ -47,8 +47,8 @@ export class OrderRepository extends Repository<OrderEntity> {
       start_rent_at,
       finish_rent_at,
       status,
-      UserId,
-      CarId,
+      user_id,
+      car_id,
     } = createOrderDto;
     const order = createOrderDto;
 
@@ -56,8 +56,8 @@ export class OrderRepository extends Repository<OrderEntity> {
     order.start_rent_at = start_rent_at;
     order.finish_rent_at = finish_rent_at;
     order.status = status;
-    order.UserId = UserId;
-    order.CarId = CarId;
+    order.user_id = user_id;
+    order.car_id = car_id;
     return await this.orderRepository.save(order);
   };
 

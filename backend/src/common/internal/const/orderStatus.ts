@@ -1,0 +1,8 @@
+export const OrderStatus = {
+  PENDING: 'PENDING',
+  SUBMITED: 'SUBMIT',
+  CANCELED: 'CANCELED',
+  COMPLETED: 'COMPLETED',
+  REJECTED: 'REJECTED',
+  PENALTY: 'PENALTY',
+};

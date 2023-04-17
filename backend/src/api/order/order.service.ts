@@ -1,11 +1,11 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { PageOptionsDto } from 'src/common/pageDTO/page-options.dto';
-import { PageDto } from 'src/common/pageDTO/page.dto';
 import { CarRepository } from '../car/repository/car.repository';
 import { CreateNotificationDto } from '../notification/dto/create-notification.dto';
 import { NotificationService } from '../notification/notification.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { OrderRepository } from './repository/order.repository';
+import { OrderStatus } from '../../common/internal/const/orderStatus'
 
 @Injectable()
 export class OrderService {
@@ -29,46 +29,52 @@ export class OrderService {
     return res;
   }
 
-  async createOrder(
-    createOrderDto: CreateOrderDto,
-    userId: number,
-  ): Promise<CreateOrderDto> {
-    const car = await this.carRepository.getCarById(createOrderDto.CarId);
+  async createOrder(createOrderDto: CreateOrderDto, user_id: number): Promise<CreateOrderDto> {
+    const car = await this.carRepository.getCarById(createOrderDto.car_id);
     if (!car) {
       const createNotificationDto: CreateNotificationDto = {
         recipient_id: 2,
-        sender_id: userId,
-        content: `gagal ${userId}`,
+        sender_id: user_id,
+        content: `gagal ${user_id}`,
       };
-
       await this.notificationService.createNotif(createNotificationDto);
     }
-    if (car.status === true) {
+    if (car.status) {
       throw new HttpException('car not available', HttpStatus.NOT_FOUND);
     }
-    createOrderDto.UserId = userId;
-    createOrderDto.total_price = car.price;
-    createOrderDto.status = false;
-    createOrderDto.slip = 'ini slip';
-    const order = await this.orderRepository.createOrder(createOrderDto);
-
-    const updateCar = {
-      status: true,
-      start_rent_at: order.start_rent_at,
-      finish_rent_at: order.finish_rent_at,
-    };
-    await this.carRepository.update(car.id, updateCar);
-
+  
+    const startDate = new Date(createOrderDto.start_rent_at);
+    const finishDate = new Date(createOrderDto.finish_rent_at);
+    const currentDate = new Date();
+  
+    if (startDate <= currentDate || finishDate <= currentDate) {
+      throw new HttpException("Can't place an order on a date earlier than today", HttpStatus.BAD_REQUEST);
+    }
+    if (startDate.getTime() >= finishDate.getTime()) {
+      throw new HttpException("Finish date should be greater than start date", HttpStatus.BAD_REQUEST);
+    }
+  
+    const milisecond = finishDate.getTime() - startDate.getTime();
+    const days = Math.ceil(milisecond / (24 * 60 * 60 * 1000));
+    const total_price = days * car.price;
+  
+    const order = await this.orderRepository.createOrder({
+      ...createOrderDto,
+      user_id,
+      total_price,
+      status: OrderStatus.PENDING,
+      slip_id: 1,
+    });
+  
     const createNotificationDto: CreateNotificationDto = {
       recipient_id: 2,
-      sender_id: userId,
-      content: `Ada Pesanan dari ${userId}`,
+      sender_id: user_id,
+      content: `Ada Pesanan dari ${user_id}`,
     };
-
     await this.notificationService.createNotif(createNotificationDto);
+  
     return order;
   }
-
   async getOrderReport(params): Promise<any> {
     const orders = await this.orderRepository.orderReport(params);
    
