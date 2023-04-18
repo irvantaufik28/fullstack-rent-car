@@ -3,12 +3,14 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UserEntity } from 'src/database/entities/user.entity';
 import { UserDetailRepository } from './repository/user-detail.repository';
 import { UserRepository } from './repository/user.repository';
+import { MailService } from '../mail/mail.service';
 
 @Injectable()
 export class UserService {
   constructor(
     private readonly userRepository: UserRepository,
     private readonly userDetailRepository: UserDetailRepository,
+    private readonly mailService: MailService
   ) {}
 
   async createUser(createUserDto: CreateUserDto): Promise<CreateUserDto> {
@@ -17,6 +19,8 @@ export class UserService {
       createUserDto.user_id = user.id;
       await this.userDetailRepository.createDetailUser(createUserDto);
 
+      // await this.mailService.sendMail()
+      
       return user;
 
   }

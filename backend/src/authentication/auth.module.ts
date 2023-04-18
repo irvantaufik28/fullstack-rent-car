@@ -12,11 +12,10 @@ import { RefreshTokenEntity } from 'src/database/entities/refresh-token.entity';
 
 @Module({
   imports: [
-    JwtModule.register(jwtConfig), TypeOrmModule.forFeature([UserEntity, RefreshTokenEntity])
+    JwtModule.register(jwtConfig),
+    TypeOrmModule.forFeature([UserEntity, RefreshTokenEntity]),
   ],
-  providers: [AuthService, UserRepository,
-    RefreshTokenRepository,
-     JwtStrategy],
+  providers: [AuthService, UserRepository, RefreshTokenRepository, JwtStrategy],
   controllers: [AuthController],
 })
 export class AuthModule {}

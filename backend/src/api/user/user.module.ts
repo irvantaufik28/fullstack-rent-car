@@ -6,10 +6,12 @@ import { UserDetailRepository } from './repository/user-detail.repository';
 import { UserRepository } from './repository/user.repository';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
+import { MailService } from '../mail/mail.service';
+
 
 @Module({
   imports: [TypeOrmModule.forFeature([UserEntity,UserDetailEntity])],
-  providers: [UserService, UserRepository, UserDetailRepository],
+  providers: [UserService, UserRepository, UserDetailRepository, MailService],
   controllers: [UserController],
   exports: [UserService, UserRepository, UserDetailRepository]
 })

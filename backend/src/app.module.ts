@@ -4,6 +4,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { getEnvPath } from './common/helper/env.helper';
 import { dataSourceOptions } from './shared/typeorm/typeormservice';
+import { MailerModule } from '@nestjs-modules/mailer';
 
 const envFilePath: string = getEnvPath(`${__dirname}/common/envs`);
 

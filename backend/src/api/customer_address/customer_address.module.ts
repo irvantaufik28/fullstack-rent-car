@@ -9,6 +9,7 @@ import { UserRepository } from '../user/repository/user.repository';
 import { UserService } from '../user/user.service';
 import { UserDetailRepository } from '../user/repository/user-detail.repository';
 import { UserDetailEntity } from 'src/database/entities/user-detail.entity';
+import { MailService } from '../mail/mail.service';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { UserDetailEntity } from 'src/database/entities/user-detail.entity';
     UserRepository,
     UserService,
     UserDetailRepository,
+    MailService
   ],
   controllers: [CustomerAddressController],
 })
