@@ -17,10 +17,12 @@ import { OrderCounsumer } from './consumer/order.consumer';
 import { OrderProducerService } from './producer/order.produce.service';
 import { CloudinaryProvider } from 'src/common/cloudinary/cloudinary.provider'; 
 import { CloudinaryService } from 'src/common/cloudinary/cloudinary.service'; 
+import { CarDetailEntity } from 'src/database/entities/car-detail.entity';
+import { CarMediaEntity } from 'src/database/entities/car-media.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([CarEntity, OrderEntity, NotificationsEntity]),
+    TypeOrmModule.forFeature([CarEntity, OrderEntity, NotificationsEntity, CarDetailEntity, CarMediaEntity]),
     BullModule.forRoot({
       redis: {
         host: process.env.REDIS_HOST,

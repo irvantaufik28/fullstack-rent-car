@@ -11,6 +11,7 @@ import { CustomerAddressModule } from './customer_address/customer_address.modul
 import { MailModule } from './mail/mail.module';
 import { OtpModule } from './otp/otp.module';
 import { MailerModule } from '@nestjs-modules/mailer';
+import { CarMediaModule } from './car_media/car_media.module';
 @Module({
   imports: [
     UserModule,
@@ -35,6 +36,7 @@ import { MailerModule } from '@nestjs-modules/mailer';
        }
       }
      }),
+    CarMediaModule,
   ],
   providers: [],
 })

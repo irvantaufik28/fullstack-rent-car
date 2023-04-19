@@ -36,10 +36,10 @@ export class UserDetailEntity extends BaseEntity {
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   update_at: Date;
 
-  @OneToOne(()=> UserEntity, (user)=> user.user_detail)
+  @OneToOne(() => UserEntity, (user) => user.user_detail)
   @JoinColumn({ name: 'user_id' })
-  user_detail: UserDetailEntity
+  user_detail: UserDetailEntity;
 
-  @OneToMany(() => CustomerAddressEntity, (o) => o.user_detail) 
+  @OneToMany(() => CustomerAddressEntity, (o) => o.user_detail)
   customer_address: CustomerAddressEntity[];
 }

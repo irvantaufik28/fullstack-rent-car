@@ -22,14 +22,13 @@ import { JwGuard } from 'src/common/guard/jwt.guard';
 import { CarResponseInterceptor } from 'src/common/interceptorts/transform/car-response.interceptors';
 import { PageCarOptionsDto } from 'src/common/pageDTO/page-car-options.dto';
 import { PageDto } from 'src/common/pageDTO/page.dto';
-import { CarProducerService } from 'src/jobs/queue/producer/car.produce.service';  
+import { CarProducerService } from 'src/jobs/queue/producer/car.produce.service';
 import { CarService } from './car.service';
 import { CreateCarDto } from './dto/car-create.dto';
 import { UpdateCarDto } from './dto/car-update.dto ';
 
 @Controller('car')
-@UseInterceptors(
-  ClassSerializerInterceptor)
+@UseInterceptors(ClassSerializerInterceptor)
 export class CarController {
   constructor(
     private readonly carService: CarService,
@@ -51,7 +50,7 @@ export class CarController {
   @HttpCode(HttpStatus.OK)
   // @UseInterceptors(CarResponseInterceptor, ClassSerializerInterceptor)
   async getCarPagination(
-    @Query() pageOptionDto: PageCarOptionsDto, 
+    @Query() pageOptionDto: PageCarOptionsDto,
   ): Promise<PageDto<CreateCarDto>> {
     return await this.carService.getAllCarPage(pageOptionDto);
   }
@@ -73,6 +72,8 @@ export class CarController {
   ): Promise<void> {
     return this.carService.updateCar(id, payload, file);
   }
+
+  
   @Delete('/:id')
   @Roles(SecurityType.STAF)
   @UseGuards(JwGuard, RolesGuard)
