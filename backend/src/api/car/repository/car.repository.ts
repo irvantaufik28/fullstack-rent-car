@@ -24,6 +24,10 @@ export class CarRepository extends Repository<CarEntity> {
   ): Promise<PageDto<CreateCarDto>> => {
     const queryBuilder = this.carRepository.createQueryBuilder('car');
 
+    
+    queryBuilder.leftJoinAndSelect('car.car_media', 'car_media')
+    queryBuilder.leftJoinAndSelect('car.car_detail', 'car_detail')
+
     if (pageOptionsDto.name) {
       queryBuilder.andWhere('LOWER(car.name) LIKE :name', {
         name: `%${pageOptionsDto.name.toLowerCase()}%`,
