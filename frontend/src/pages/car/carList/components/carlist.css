@@ -34,3 +34,13 @@
         margin-top: 100px;
         margin-bottom: 100px;
   }
+
+  .active {
+    background: none !important;
+  }
+
+
+  /* .carousel-control-next-icon {
+    background-image: url();
+
+} */

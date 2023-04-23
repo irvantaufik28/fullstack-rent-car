@@ -5,6 +5,7 @@ import Accordion from "react-bootstrap/Accordion";
 import "./detailcar.css";
 import LoadingSpiner from "../../../../components/ui/LoadingSpiner";
 import nullImage from '../../../../assets/img/imagenotfound.jpeg'
+import { Carousel } from "react-bootstrap";
 
 
 export default function CarDetail(props) {
@@ -23,6 +24,7 @@ export default function CarDetail(props) {
       <LoadingSpiner />
     );
   }
+  console.log(props.data?.car_media)
 
 
   const formatter = new Intl.NumberFormat("id-ID", {
@@ -93,13 +95,25 @@ export default function CarDetail(props) {
         <div className="col-md-5 d-flex mt-5 detail-car-card">
           <div className="card-car">
             <div className="image-car-detail">
-              {props.data.image === null ? (
+              {props.data?.car_media.length <= 0 ? (
                 <ImageWithLoading src={nullImage} alt={'null'} />
 
 
               ) : (
-                <ImageWithLoading src={props.data.image} alt={props.data.name} />
+                <Carousel className="carousel-detail-car" 
+                interval={null}
+                variant="dark"
+                >
+                {props.data.car_media.map(media => (
+                  <Carousel.Item key={media.id}>
+                   <ImageWithLoading src={media.image_url} alt={'null'} />
+                  </Carousel.Item>
+                ))}                
+              </Carousel>
 
+
+            
+          
 
               )}
               <p className="card-title-detail-name"> {props.data.name}</p>

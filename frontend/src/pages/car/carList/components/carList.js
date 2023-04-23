@@ -6,6 +6,7 @@ import ImageWithLoading from "../../../../components/ui/ImageWithLoading";
 import nullImage from '../../../../assets/img/imagenotfound.jpeg'
 
 export default function CarList(props) {
+  console.log(props.cars)
 
   const formatter = new Intl.NumberFormat("id-ID", {
     style: 'currency',
@@ -26,15 +27,23 @@ export default function CarList(props) {
     )
   }
 
+  const getMainImage = (arrayImage) => {
+    let url = ''
+    for(const mainImage of arrayImage) {
+     url = mainImage.is_main_image === true
+    }
+    return url
+  }
+
   return (
     <>
       <Container className="container-car">
         <Row>
           {props.cars.map(o =>
-
-            <Col md='4' key={o.id}>
+          
+              <Col md='4' key={o.id}>
               <Card className={Styles.card} >
-                {o.image === null || o.image === undefined ?
+                {o.car_media?.length <= 0 || o.image === undefined ?
                   (
                     <div>
                       <ImageWithLoading
@@ -46,7 +55,7 @@ export default function CarList(props) {
                   (
                     <div>
                       <ImageWithLoading
-                        src={o.image}
+                        src={o.car_media.find(media => media.is_main_image)?.image_url}
                         alt={o.name}
                       />
                     </div>

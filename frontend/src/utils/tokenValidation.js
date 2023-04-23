@@ -8,7 +8,7 @@ export const TokenValidation = () => {
  
   let auth = {
     token: false,
-    tokenUser : ''
+   
   };
   const token = localStorage.getItem('token');
   if (token) {
@@ -21,8 +21,6 @@ export const TokenValidation = () => {
         };
         dispatch(refreshToken(refresh_token)).unwrap();
         auth.token = true;
-        auth.tokenUser = localStorage.getItem('token')
-        console.log(auth)
       } else {
         auth.token = true;
       }

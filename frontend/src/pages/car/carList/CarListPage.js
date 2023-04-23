@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import CarList from './components/carList'
 import FromFillter from '../../../components/fromfilter/fromFilter'
 import Banner from '../../home/components/banner/Banner';
@@ -9,29 +9,29 @@ import { carSelectors, getAllCars } from '../../../features/carSlice';
 import LoadingSpiner from '../../../components/ui/LoadingSpiner';
 
 export default function FindCar() {
-
   const dispatch = useDispatch();
-  const loading = useSelector(carSelectors.loading)
+  const loading = useSelector(carSelectors.loading);
   const data = useSelector(carSelectors.selectAllCars);
- 
-  useEffect(() => {
+
+  React.useEffect(() => {
     dispatch(getAllCars());
   }, [dispatch]);
 
-
   const onFilter = (payload) => {
-    dispatch(getAllCars(payload))
-  }
+    dispatch(getAllCars(payload));
+  };
 
   return (
     <>
       <Navbar />
       <Banner />
       <FromFillter onSubmit={onFilter} />
-      {loading ? (<LoadingSpiner />) : (
-        <CarList cars={data.cars} />
+      {loading ? (
+        <LoadingSpiner />
+      ) : (
+        <>{data.cars !== undefined && <CarList cars={data.cars} />}</>
       )}
       <Footer />
     </>
-  )
+  );
 }

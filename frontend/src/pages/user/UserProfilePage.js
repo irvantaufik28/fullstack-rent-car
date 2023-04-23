@@ -17,12 +17,11 @@ export default function UserProfilePage() {
   const dispatch = useDispatch()
   const userData = useSelector(userSelector.selectUser)
 
-
   useEffect(() => {
     if (!auth.token) {
       (navigate('/login'))
     }
-    dispatch(getUser(auth.tokenUser))
+    dispatch(getUser(localStorage.getItem('token')))
   }, [dispatch])
 
   return (
