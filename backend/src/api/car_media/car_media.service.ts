@@ -5,6 +5,7 @@ import { UploadImageDto } from './dto/upload-image.dto';
 import { CarMediaEntity } from 'src/database/entities/car-media.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { readFileSync } from 'fs';
 
 @Injectable()
 export class CarMediaService {
@@ -17,20 +18,29 @@ export class CarMediaService {
 
   async uploadCarImage(
     uploadImageDto: UploadImageDto,
-    file: any,
+    files: any,
   ): Promise<CarMediaEntity> {
-
     const car = await this.carService.getCarById(uploadImageDto.car_id);
     if (!car) {
       throw new HttpException('car not found', HttpStatus.NOT_FOUND);
     }
-
-    if (file) {
+    if (files) {
       const isMainImage = car?.car_media?.length <= 0;
-      const image = await this.cloudinaryService.uploadImage(file);
-      uploadImageDto.image_url = image.url;
-      uploadImageDto.is_main_image = isMainImage;
-      return await this.carMediaRepository.save(uploadImageDto);
+      const fileBuffers = await Promise.all(
+        files.map((file: any) => readFileSync(file.path)),
+      );
+
+      for (let i = 0; i < fileBuffers.length; i++) {
+        const fileBuffer = fileBuffers[i];
+        const image = await this.cloudinaryService.uploadImage(fileBuffer);
+        const newUploadImageDto = {
+          ...uploadImageDto,
+          image_url: image.url,
+          is_main_image: isMainImage && i === 0,
+        };
+        await this.carMediaRepository.save(newUploadImageDto);
+      }
+      return;
     }
   }
 }

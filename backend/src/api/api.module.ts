@@ -12,6 +12,8 @@ import { MailModule } from './mail/mail.module';
 import { OtpModule } from './otp/otp.module';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { CarMediaModule } from './car_media/car_media.module';
+import { UploadModule } from './upload/upload.module';
+import { MulterModule } from '@nestjs/platform-express';
 @Module({
   imports: [
     UserModule,
@@ -37,6 +39,8 @@ import { CarMediaModule } from './car_media/car_media.module';
       }
      }),
     CarMediaModule,
+    UploadModule,
+   
   ],
   providers: [],
 })

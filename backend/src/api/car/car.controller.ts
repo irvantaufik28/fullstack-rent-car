@@ -68,7 +68,7 @@ export class CarController {
   async updateCar(
     @Param('id') id: number,
     @Body() payload: UpdateCarDto,
-    @UploadedFile() file: Express.Multer.File,
+    @UploadedFile() file: Express.Multer.File[],
   ): Promise<void> {
     return this.carService.updateCar(id, payload, file);
   }
