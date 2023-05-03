@@ -25,7 +25,6 @@ export class CarMediaService {
       throw new HttpException('car not found', HttpStatus.NOT_FOUND);
     }
     if (files) {
-      const isMainImage = car?.car_media?.length <= 0;
       const fileBuffers = await Promise.all(
         files.map((file: any) => readFileSync(file.path)),
       );
@@ -36,9 +35,21 @@ export class CarMediaService {
         const newUploadImageDto = {
           ...uploadImageDto,
           image_url: image.url,
-          is_main_image: isMainImage && i === 0,
+          is_main_image: false,
         };
         await this.carMediaRepository.save(newUploadImageDto);
+      }
+      const images = await this.carMediaRepository.find({
+        where: { car_id: car.id },
+      });
+
+      const mainImage = images.find((o) => o.is_main_image === true);
+
+      if (!mainImage) {
+        const newMainImage = {
+          is_main_image: true,
+        };
+        await this.carMediaRepository.update(images[0].id, newMainImage);
       }
       return;
     }

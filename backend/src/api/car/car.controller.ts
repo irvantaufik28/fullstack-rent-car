@@ -34,6 +34,7 @@ export class CarController {
     private readonly carService: CarService,
     private readonly carProducerService: CarProducerService,
   ) {}
+  
   @Post()
   @UseInterceptors(FileInterceptor('file'))
   @Roles(SecurityType.STAF)
