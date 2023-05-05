@@ -6,8 +6,20 @@ export default function AddCar(props) {
     name: "",
     price: "",
     category: "",
-    file: null,
+    files: [],
   });
+
+  
+  const selectFiles = (e) => {
+    const selectedFiles = e.target.files;
+    const newFormData = new FormData();
+    for (let i = 0; i < selectedFiles.length; i++) {
+      newFormData.append("uploadImages", selectedFiles[i]);
+    }
+    setFormData({ ...formData, ...{ files: Array.from(selectedFiles) } });
+  };
+
+  
   return (
     <>
       <div className="container">
@@ -16,7 +28,7 @@ export default function AddCar(props) {
           <Form
             onSubmit={(e) => {
               e.preventDefault();
-              props.onSubmit(formData);
+              props.onSubmit(formData)
             }}
           >
             <Form.Group className="mb-3" controlId="name">
@@ -48,17 +60,19 @@ export default function AddCar(props) {
                 }
               />
             </Form.Group>
-
-         <Form.Group controlId="formFile" className="mb-3">
+            <Form.Group controlId="formFile" className="mb-3">
               <Form.Label>Default file input example</Form.Label>
               <Form.Control
                 type="file"
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    ...{ file: e.target.files[0] },
-                  })
-                }
+                multiple
+                accept="image/*"
+                onChange={selectFiles}
+                // onChange={(e) =>
+                //   setFormData({
+                //     ...formData,
+                //     ...{ files: Array.from(e.target.files) },
+                //   })
+                // }
               />
             </Form.Group>
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import Styles from "./carlist.css";
 import { Link } from "react-router-dom";
@@ -27,13 +27,7 @@ export default function CarList(props) {
     )
   }
 
-  const getMainImage = (arrayImage) => {
-    let url = ''
-    for(const mainImage of arrayImage) {
-     url = mainImage.is_main_image === true
-    }
-    return url
-  }
+
 
   return (
     <>

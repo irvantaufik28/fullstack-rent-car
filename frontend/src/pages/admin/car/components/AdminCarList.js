@@ -59,12 +59,12 @@ export default function AdminCarList(props) {
           </Row>
         </div>
         <Row>
-          {props.cars.map(o =>  
-          
+          {props.cars.map(o =>
+
 
             <Col md='4' key={o.id}>
               <Card className={Styles.card} >
-                {o.image === null ?
+                {o.car_media?.length <= 0 || o.image === undefined ?
                   (
                     <div>
                       <ImageWithLoading
@@ -76,11 +76,12 @@ export default function AdminCarList(props) {
                   (
                     <div>
                       <ImageWithLoading
-                        src={o.image}
+                        src={o.car_media.find(media => media.is_main_image)?.image_url}
                         alt={o.name}
                       />
                     </div>
                   )
+
                 }
                 <Card.Body>
                   <p>{o.name}</p>
@@ -97,8 +98,8 @@ export default function AdminCarList(props) {
                           : o.category}
                   </p>
                   <BiTime /> update at {o.updateAt}
-                  <p>status {o.status? 'rental' : 'free'}</p>
-                  
+                  <p>status {o.status ? 'rental' : 'free'}</p>
+
                   <Card.Body>
 
                     <Button
@@ -111,15 +112,15 @@ export default function AdminCarList(props) {
                     >
                       Delete
                     </Button>
-                    
+
                     <Link to={`/admin/update/car/${o.id}`}>
-                   
+
                       <Button variant="success">
                         edit
                       </Button>
-                   
-                  </Link>
-                    
+
+                    </Link>
+
                   </Card.Body>
                 </Card.Body>
               </Card>

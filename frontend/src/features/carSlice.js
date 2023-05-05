@@ -8,7 +8,6 @@ export const getAllCars = createAsyncThunk("car/getAllCars", async (params = {})
     const response = await axios.get(apiUrl + "/car", {
         params
     })
-    // console.log(response.data.cars)
     return response.data
 })
 
@@ -20,6 +19,24 @@ export const adminAddCar = createAsyncThunk("car/addCar", async (params = {}) =>
     try {
         console.log(params)
         await axios.post(apiUrl + "/car", params, {
+            headers: {
+                "content-type": "multipart/form-data",
+                Authorization: `Bearer ${token}`
+            }
+        });
+    } catch (err) {
+        console.log(err)
+    }
+})
+
+export const adminAddImagesCar = createAsyncThunk("car/addImagesCar", async (params = {}) => {
+
+    const token = localStorage.getItem('token')
+
+    const apiUrl = config.apiBaseUrl
+    try {
+        console.log(params)
+        await axios.post(apiUrl + "/car-media", params, {
             headers: {
                 "content-type": "multipart/form-data",
                 Authorization: `Bearer ${token}`
