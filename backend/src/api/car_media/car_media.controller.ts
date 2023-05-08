@@ -44,8 +44,7 @@ export class CarMediaController {
     @Body() payload: UploadImageDto,
     @UploadedFiles() files: Express.Multer.File[],
   ): Promise<CarMediaEntity> {
-    console.log(files)
-    console.log(payload)
+
     return await this.carMediaService.uploadCarImage(payload, files);
   }
 }
