@@ -17,31 +17,14 @@ export const adminAddCar = createAsyncThunk("car/addCar", async (params = {}) =>
 
     const apiUrl = config.apiBaseUrl
     try {
-        console.log(params)
-        await axios.post(apiUrl + "/car", params, {
+    const response =  await axios.post(apiUrl + "/car", params, {
             headers: {
                 "content-type": "multipart/form-data",
                 Authorization: `Bearer ${token}`
             }
         });
-    } catch (err) {
-        console.log(err)
-    }
-})
-
-export const adminAddImagesCar = createAsyncThunk("car/addImagesCar", async (params = {}) => {
-
-    const token = localStorage.getItem('token')
-
-    const apiUrl = config.apiBaseUrl
-    try {
-        console.log(params)
-        await axios.post(apiUrl + "/car-media", params, {
-            headers: {
-                "content-type": "multipart/form-data",
-                Authorization: `Bearer ${token}`
-            }
-        });
+ 
+        return response.data
     } catch (err) {
         console.log(err)
     }
@@ -85,13 +68,14 @@ const carSlice = createSlice({
     name: "car",
     initialState: {
         data: {},
-        loading: false
+        loading: false,
+        addCarResponse: {},
     },
     reducers: {},
     extraReducers: (builder) => {
         builder
             .addCase(adminAddCar.fulfilled, (state, action) => {
-                state.data = action.payload
+                state.addCarResponse = action.payload
             })
             .addCase(getCarById.fulfilled, (state, action) => {
                 state.data = action.payload
@@ -116,7 +100,7 @@ const carSlice = createSlice({
 
     }
 })
-
+export const selectAddCarResponse = (state) => state.car.addCarResponse;
 export const carSelectors = {
     selectCarById: (state) => state.car.data,
     selectAllCars: (state) => state.car.data,
