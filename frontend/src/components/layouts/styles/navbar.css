@@ -148,6 +148,7 @@
     padding: 7rem 2rem;
     display: flex;
     align-items: stretch;
+    height: 100vh;
   }
   
   .ant-main-head{

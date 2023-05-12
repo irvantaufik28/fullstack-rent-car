@@ -5,9 +5,9 @@ import WhyUs from './components/whyus/WhyUs'
 import Testimonial from './components/testimonial/Testimonial'
 import CtaBanner from './components/ctabanner/CtaBanner'
 import Faq from './components/faq/Faq'
-import Navbar from "../../components/layouts/Navbar";
-import Footer from "../../components/layouts/Footer";
-import { whyUsStatic, faqStatic, bestCarStatic, testimonialStatic } from '../../internal/constanta/static'
+import Navbar from "../../../components/layouts/Navbar";
+import Footer from "../../../components/layouts/Footer";
+import { whyUsStatic, faqStatic, bestCarStatic, testimonialStatic } from '../../../internal/constanta/static'
 
 
 

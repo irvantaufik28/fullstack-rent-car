@@ -4,7 +4,7 @@ import "./testimonial.css";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper";
-import star_icon from '../../../../assets/icon/star.svg'
+import star_icon from '../../../../../assets/icon/star.svg'
 
 
 export default function Testimonial({ testimonialStatic, linkTestimonial }) {

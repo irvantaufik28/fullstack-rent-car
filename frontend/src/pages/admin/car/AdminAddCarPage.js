@@ -8,7 +8,7 @@ import { addImageCar } from '../../../features/carMediaSlice'
 import { carMediaSelectors } from '../../../features/carMediaSlice'
 import { useNavigate } from 'react-router-dom'
 
-export default function AdminAddCar() {
+export default function AdminAddCarPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isLoading = useSelector(carMediaSelectors.loading);
@@ -66,22 +66,15 @@ export default function AdminAddCar() {
 
   return (
     <>
-    {isLoading ? (
-     <SideBarAdmin>
-     <NavBarAdmin>
-      <p>Loading....</p>
-     </NavBarAdmin>
-   </SideBarAdmin>
-    ) : (
-      <SideBarAdmin>
-        <NavBarAdmin>
-          <AddCar onSubmit={onSubmitAddCar} />
-        </NavBarAdmin>
-      </SideBarAdmin>
+    <NavBarAdmin />
+    <SideBarAdmin>
+      {isLoading ? (<p>loading...</p>) : (
+        <AddCar onSubmit={onSubmitAddCar} />
+      )}
+      {!isLoading && (
+      navigate("/admin/carlist")
     )}
-    {!isLoading && (
-      navigate("/dashboard")
-    )}
+    </SideBarAdmin>
   </>
   )
 }
