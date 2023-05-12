@@ -3,9 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { carSelectors, deleteCar, getAllCars } from '../../../features/carSlice';
 import AdminCarList from './components/AdminCarList';
 import Swal from 'sweetalert2'
+import ButtonFilter from './components/ButtonFilter';
+import NavBarAdmin from '../../../components/layouts/NavBarAdmin';
+import SideBarAdmin from '../../../components/layouts/SideBarAdmin';
 
 export default function AdminCarListPage() {
- 
+
 
   const dispatch = useDispatch();
   const data = useSelector(carSelectors.selectAllCars);
@@ -31,13 +34,24 @@ export default function AdminCarListPage() {
           'Deleted!',
           'Your file has been deleted.',
           'success',
-          )
-          window.location.reload(true)
+        )
+        window.location.reload(true)
       }
     })
   }
 
+  const filterCategory = (payload) => {
+    dispatch(getAllCars({ category: payload }))
+  }
+
   return (
-    <AdminCarList cars={data.cars} handleDelete={handleDelete} />
+    <>
+      <NavBarAdmin />
+      <SideBarAdmin>
+        <AdminCarList cars={data.cars} handleDelete={handleDelete} >
+          <ButtonFilter handleClick={filterCategory} />
+        </AdminCarList >
+      </SideBarAdmin>
+    </>
   )
 }
