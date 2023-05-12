@@ -10,11 +10,13 @@ import Styles from "./admincarlist.css";
 
 
 export default function AdminCarList(props) {
+
+  const { children } = props
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 3000);
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -50,11 +52,17 @@ export default function AdminCarList(props) {
       <Container className="container-car">
         <div className="top-content">
           <Row>
+            <p><strong>Cars</strong> &gt; List Cars</p>
+            <div className="col-md-6">List Cars</div>
 
-            <div className="col-md-6"><strong>List Cars</strong></div>
             <div className="col-md-6 button_addcar_bar">
               <Link to="/admin/addcar">
                 <button className="button_addcar">add Car</button> </Link>
+            </div>
+            {/* component button filter by category */}
+            <div>
+              {children}
+
             </div>
           </Row>
         </div>

@@ -5,12 +5,14 @@
   color: white;
   font-weight: 700;
   font-size: 15px;
+
+  margin-left: 80%;
+
 }
 
-/* .button_addcar_bar {
-  justify-content: end;
-  display: flex;
-} */
+.button_addcar_bar {
+
+}
 
 .top-content {
   margin-top: 25px;

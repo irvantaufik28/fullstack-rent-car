@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux'
 import { adminUpdateCar } from '../../../features/carSlice'
 import { useParams } from 'react-router-dom'
 
-export default function AdminUpdateCar() {
+export default function AdminUpdateCarPage() {
     const { id } = useParams();
     const dispatch = useDispatch();
 
@@ -29,11 +29,11 @@ export default function AdminUpdateCar() {
 
     return (
         <>
+                <NavBarAdmin />
             <SideBarAdmin>
-                <NavBarAdmin>
                     <UpdateCar onSubmit={onSubmitUpdateCar} />
-                </NavBarAdmin>
             </SideBarAdmin>
+            
         </>
     )
 }

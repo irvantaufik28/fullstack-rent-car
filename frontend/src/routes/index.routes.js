@@ -2,18 +2,18 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginPage from "../pages/auth/login/LoginPage";
 import RegisterPage from "../pages/auth/register/RegisterPage";
-import HomePage from "../pages/home/HomePage";
-import CarListPage from "../pages/car/carList/CarListPage";
-import CarDetailPage from '../pages/car/carDetail/CarDetailPage'
-import UserProfilePage from "../pages/user/UserProfilePage";
-import UserSettingPage from "../pages/user/UserSettingPage";
+import HomePage from "../pages/client/home/HomePage";
+import CarListPage from "../pages/client/car/carList/CarListPage";
+import CarDetailPage from '../pages/client/car/carDetail/CarDetailPage'
+import UserProfilePage from "../pages/client/user/UserProfilePage";
+import UserSettingPage from "../pages/client/user/UserSettingPage";
 import PrivateRoutes from "../utils/PrivateRoutes";
 import AdminCarListPage from "../pages/admin/car/AdminCarListPage";
 import DashboardAdmin from "../pages/admin/dashboard/DashboardAdmin";
 
 import '../components/layouts/styles/mobile.css'
-import AdminAddCar from "../pages/admin/dashboard/AdminAddCar";
-import AdminUpdateCar from "../pages/admin/dashboard/AdminUpdateCar";
+import AdminAddCarPage from "../pages/admin/car/AdminAddCarPage";
+import AdminUpdateCarPage from "../pages/admin/car/AdminUpdateCarPage";
 function IndexRoutes() {
   return (
     <Router>
@@ -27,8 +27,8 @@ function IndexRoutes() {
         <Route path="/user/profile/setting" element={<UserSettingPage />} />
         <Route element={<PrivateRoutes />}>
           <Route path="/admin/carlist" element={<AdminCarListPage />} />
-          <Route path="/admin/addcar" element={<AdminAddCar />} />
-          <Route path="/admin/update/car/:id" element={<AdminUpdateCar />} />
+          <Route path="/admin/addcar" element={<AdminAddCarPage />} />
+          <Route path="/admin/update/car/:id" element={<AdminUpdateCarPage />} />
           <Route path="/dashboard" element={<DashboardAdmin />} />
         </Route>
 

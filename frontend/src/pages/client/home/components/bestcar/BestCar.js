@@ -1,5 +1,5 @@
 import React from 'react';
-import img_service from '../../../../assets/img/img_service.png'
+import img_service from '../../../../../assets/img/img_service.png'
 import "./bestcar.css";
 
 

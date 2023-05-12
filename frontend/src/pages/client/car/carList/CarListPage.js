@@ -1,12 +1,12 @@
 import React from 'react'
 import CarList from './components/carList'
-import FromFillter from '../../../components/fromfilter/fromFilter'
-import Banner from '../../home/components/banner/Banner';
-import Navbar from '../../../components/layouts/Navbar';
-import Footer from '../../../components/layouts/Footer';
+import FromFillter from '../../../../components/fromfilter/fromFilter'
+import Banner from '../../../client/home/components/banner/Banner';
+import Navbar from '../../../../components/layouts/Navbar';
+import Footer from '../../../../components/layouts/Footer';
 import { useDispatch, useSelector } from 'react-redux';
-import { carSelectors, getAllCars } from '../../../features/carSlice';
-import LoadingSpiner from '../../../components/ui/LoadingSpiner';
+import { carSelectors, getAllCars } from '../../../../features/carSlice';
+import LoadingSpiner from '../../../../components/ui/LoadingSpiner';
 
 export default function FindCar() {
   const dispatch = useDispatch();
