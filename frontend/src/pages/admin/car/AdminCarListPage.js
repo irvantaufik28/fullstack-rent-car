@@ -11,6 +11,7 @@ import ReactPaginate from "react-paginate";
 
 export default function AdminCarListPage() {
   const [filterPage, setFilterPage] = useState({
+    name: '',
     category: '',
     page: 1,
     take: 6,
@@ -55,9 +56,13 @@ export default function AdminCarListPage() {
     setFilterPage({...filterPage,...{page: e.selected + 1}})
   };
 
+  const navbarSubmit = (payload) => {
+    setFilterPage({...filterPage,...{name: payload}})
+  }
+
   return (
     <>
-      <NavBarAdmin />
+      <NavBarAdmin onSubmit = {navbarSubmit}/>
       <SideBarAdmin>
         <div className='container-car container'>
         <AdminCarList cars={data.cars} handleDelete={handleDelete} >
@@ -69,7 +74,7 @@ export default function AdminCarListPage() {
         previousLabel={"previous"}
         nextLabel={"next"}
         breakLabel={"..."}
-        pageCount={data?.pageCount}
+        pageCount={data?.pageCount || 0}
         marginPagesDisplayed={2}
         pageRangeDisplayed={3}
         onPageChange={handlePageClick}

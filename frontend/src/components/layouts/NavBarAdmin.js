@@ -1,53 +1,90 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import navbar_logo from '../../assets/icon/navbar_logo.svg'
+import { NavDropdown } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { getUser, userSelector } from '../../features/userSlice'
+import { TokenValidation } from '../../utils/tokenValidation'
 
-export default function NavBarAdmin({children}) {
+export default function NavBarAdmin(props) {
+  const [search, setSearch] = useState('')
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  
+  const auth = TokenValidation()
+  const tokenUser = localStorage.getItem('token')
+  
+  const user = useSelector(userSelector.selectUser)
+  
+  useEffect(() => {
+    if (auth.token) {
+      dispatch(getUser(tokenUser))
+    }
+  }, [dispatch]);
+  
+  
+  const handdleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("refresh_token")
+    navigate('/login')
+  }
+
   return (
+    <>
+      <nav className="navbar nav-ant">
+        <div className="container-fluid ant-container">
+        <div className="col-md-6">
+          <div className="ant-brand">
+            <img src={navbar_logo} alt="brand" className="brand-cat img-fluid" />
+          </div>
+          </div>
 
-    //     <div className='nav-admin' style={{width:'100%'}} >
-// 		<nav className="navbar navbar-expand-lg navbar-light bg-light">
-//   <div className="container-fluid">
-//     <a className="navbar-brand" href="#">Navbar</a>
-//     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-//       <span className="navbar-toggler-icon"></span>
-//     </button>
-//     <div className="collapse navbar-collapse" id="navbarSupportedContent">
-//       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-//         <li className="nav-item">
-//           <a className="nav-link active" aria-current="page" href="#">Home</a>
-//         </li>
-//         <li className="nav-item">
-//           <a className="nav-link" href="#">Link</a>
-//         </li>
-        
-//       </ul>
-//       <form className="d-flex">
-//         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-//         <button className="btn btn-outline-success" type="submit">Search</button>
-//       </form>
-//     </div>
-//   </div>
-// </nav>
-// 		<main>
-// 			{children}
-// 		</main>
-//     </div>
+          <div className="col-md-6 d-flex align-items-center ml-5">
+          <div className='nav-admin-search'>
+            <form className="d-flex" onSubmit={(e) => {
+              e.preventDefault()
+              props.onSubmit(search)
+            }}>
+              <input className="form-control me-2" 
+              type="search" 
+              placeholder="Search" 
+              aria-label="Search"
+              onChange={e => setSearch(e.target.value)}
+              />
+              <button className="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
 
-<>
+          <div className='user-profile-admin'>
+          <NavDropdown 
+                    title={user.user_detail?.first_name} 
+                    id="collasible-nav-dropdown">
+                      <NavDropdown.Item href="/user/profile">Profile</NavDropdown.Item>
+                      <NavDropdown.Item href="/user/profile/setting">
+                        setting
+                      </NavDropdown.Item>
 
+                      <NavDropdown.Divider />
+                      <NavDropdown.Item
+                        href="#action/3.4"
+                        onClick={() => handdleLogout()}
+                      >
+                        Logout
+                      </NavDropdown.Item>
+                    </NavDropdown>
+          </div>
+          </div>
+          <div className="d-flex ant-main-head align-items-center justify-content-between">
+            <button className="btn ant-collapse" type="button"><i className="fa-solid fa-bars"></i></button>
+          </div>
+        </div>
+      </nav>
 
-<nav className="navbar nav-ant">
-  <div className="container-fluid ant-container">
-    <div className="ant-brand">
-      <img src={navbar_logo} alt="brand" className="brand-cat img-fluid" />
-    </div>
-    <div className="d-flex ant-main-head align-items-center justify-content-between">
-      <button className="btn ant-collapse" type="button"><i className="fa-solid fa-bars"></i></button>
-    </div>
-  </div>
-</nav>
-
-</>
+    </>
 
   )
+}
+
+NavBarAdmin.defaultProps = {
+  onSubmit: () => '',
 }
