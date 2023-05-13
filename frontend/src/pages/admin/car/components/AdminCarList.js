@@ -7,37 +7,35 @@ import nullImage from '../../../../assets/img/imagenotfound.jpeg'
 import { BsFillPeopleFill } from 'react-icons/bs'
 import { BiTime } from 'react-icons/bi'
 import Styles from "./admincarlist.css";
-
-
 export default function AdminCarList(props) {
 
   const { children } = props
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1000);
+  // const [loading, setLoading] = useState(true);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setLoading(false);
+  //   }, 1000);
 
-    return () => clearTimeout(timer);
-  }, []);
+  //   return () => clearTimeout(timer);
+  // }, []);
 
-  if (loading) {
-    return (
-      <LoadingSpiner />
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <LoadingSpiner />
+  //   );
+  // }
 
-  if (!props.cars.length) {
-    return (
-      <>
-        <Container className="container-car">
-          <div className="carnotfound">
-            <h1>car not found!!!</h1>
-          </div>
-        </Container>
-      </>
-    );
-  }
+  // if (!props.cars?.length) {
+  //   return (
+  //     <>
+  //       <Container className="container-car">
+  //         <div className="carnotfound">
+  //           <h1>car not found!!!</h1>
+  //         </div>
+  //       </Container>
+  //     </>
+  //   );
+  // }
 
   const formatter = new Intl.NumberFormat("id-ID", {
     style: 'currency',
@@ -49,7 +47,7 @@ export default function AdminCarList(props) {
 
   return (
     <>
-      <Container className="container-car">
+    
         <div className="top-content">
           <Row>
             <p><strong>Cars</strong> &gt; List Cars</p>
@@ -67,7 +65,7 @@ export default function AdminCarList(props) {
           </Row>
         </div>
         <Row>
-          {props.cars.map(o =>
+          {props.cars?.map(o =>
 
 
             <Col md='4' key={o.id}>
@@ -135,7 +133,9 @@ export default function AdminCarList(props) {
             </Col>
           )}
         </Row>
-      </Container>
+     
+
+    
     </>
   );
 }
