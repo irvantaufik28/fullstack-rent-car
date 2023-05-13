@@ -1,23 +1,22 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 import './styles/navbar.css'
-import AdminCarListPage from "../../pages/admin/car/AdminCarListPage";
+// import AdminCarListPage from "../../pages/admin/car/AdminCarListPage";
 import sidebar_logo from "../../assets/icon/sidebar_logo.svg"
 
 import {
   FaTh,
-  FaBars,
   FaUserAlt,
   FaRegChartBar,
   FaCommentAlt,
 } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
-import { Button, Modal, Offcanvas } from "react-bootstrap";
+// import { Button, Modal, Offcanvas } from "react-bootstrap";
 export default function SideBarAdmin({ children }) {
 
-  const [show, setShow] = useState(false);
+  // const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  // const handleClose = () => setShow(false);
+  // const handleShow = () => setShow(true);
 
     // const [isOpen, setIsOpen] = useState(false);
     // const toggle = () => setIsOpen(!isOpen);
@@ -118,6 +117,9 @@ export default function SideBarAdmin({ children }) {
     </div> */}
     <div className="col ant-content d-flex align-items-stretch">
    {children}
+    </div>
+    <div>
+      
     </div>
   </div>
 </div>
