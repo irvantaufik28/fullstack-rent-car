@@ -32,6 +32,38 @@ export class PageOrderOptionsDto {
   @IsOptional()
   readonly q?:string;
 
+  @Type(()=> String)
+  @IsOptional()
+  readonly email?:string;
+ 
+  @Type(()=> String)
+  @IsOptional()
+  readonly start_rent_at?:string;
+
+  @Type(()=> String)
+  @IsOptional()
+  readonly finish_rent_at?:string;
+  
+  @Type(()=> String)
+  @IsOptional()
+  readonly category?:string;
+  
+  @Type(()=> String)
+  @IsOptional()
+  readonly total_price?:string;
+    
+  @Type(()=> String)
+  @IsOptional()
+  readonly orderBy?:string;
+  
+  @Type(()=> String)
+  @IsOptional()
+  readonly createdAt?:string;
+  
+  @Type(()=> String)
+  @IsOptional()
+  readonly updateAt?:string;
+
   get skip(): number {
     return (this.page - 1) * this.take;
   }

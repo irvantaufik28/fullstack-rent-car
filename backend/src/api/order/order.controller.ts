@@ -22,6 +22,7 @@ import { OrderProducerService } from 'src/jobs/queue/producer/order.produce.serv
 import { UserEntity } from 'src/database/entities/user.entity';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { OrderService } from './order.service';
+import { PageOrderOptionsDto } from 'src/common/pageDTO/page-order-options.dto';
 
 @Controller('order')
 @UseInterceptors(ClassSerializerInterceptor)
@@ -34,8 +35,9 @@ export class OrderController {
   @Get()
   @HttpCode(HttpStatus.OK)
   async gerOrderPagination(
-    @Query() pageOptionsDto: PageOptionsDto,
+    @Query() pageOptionsDto: PageOrderOptionsDto,
   ): Promise<PageDto<CreateOrderDto>> {
+    console.log(pageOptionsDto)
     return this.orderService.adminGetAllOrderPage(pageOptionsDto);
   }
 
@@ -46,7 +48,11 @@ export class OrderController {
     @Body() payload: CreateOrderDto,
     @GetUser() request: UserEntity,
   ): Promise<any> {
-    const order = await this.orderProduceService.createOrder(
+    // const order = await this.orderProduceService.createOrder(
+    //   payload,
+    //   request.id,
+    // );
+    const order = await this.orderService.createOrder(
       payload,
       request.id,
     );

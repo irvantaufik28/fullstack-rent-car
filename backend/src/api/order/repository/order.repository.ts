@@ -24,12 +24,71 @@ export class OrderRepository extends Repository<OrderEntity> {
     const queryBuilder = this.orderRepository.createQueryBuilder('order');
 
     queryBuilder.leftJoinAndSelect('order.user', 'user')
-    queryBuilder.where('user.id = order.user_id')
-    queryBuilder.leftJoinAndSelect('order.car', 'car')
-    queryBuilder.where('car.id = order.car_id')
+    .leftJoinAndSelect('order.car', 'car')
+    .where('user.id = order.user_id')
+    .andWhere('car.id = order.car_id');
+
+
+    if(pageOptionsDto.category) {
+      queryBuilder.andWhere('car.category = :category', {
+        category: `${pageOptionsDto.category.toLowerCase()}`
+      }) 
+    }
+    
+    if(pageOptionsDto.email) {
+      queryBuilder.andWhere('user.email = :email', {
+        email: `${pageOptionsDto.email.toLowerCase()}`
+      }) 
+    } 
+    
+    
+    if(pageOptionsDto.total_price) {
+      queryBuilder.andWhere('order.total_price = :total_price', {
+        total_price: `${pageOptionsDto.total_price}`
+      }) 
+    }
+    if (pageOptionsDto.start_rent_at) {
+      const startRentAt = new Date(pageOptionsDto.start_rent_at);
+      queryBuilder.andWhere('order.start_rent_at = :start_rent_at', {
+        start_rent_at: startRentAt.toISOString()
+      });
+    } 
+    
+    if (pageOptionsDto.finish_rent_at) {
+      const finihsRentAt = new Date(pageOptionsDto.finish_rent_at);
+      queryBuilder.andWhere('order.finish_rent_at = :finish_rent_at', {
+        finish_rent_at: finihsRentAt.toISOString()
+      });
+    }
+
+  if (pageOptionsDto.createdAt) {
+      const createdAt = new Date(pageOptionsDto.createdAt);
+      queryBuilder.andWhere('order.createdAt = :createdAt', {
+        createdAt: createdAt.toISOString()
+      });
+    }
+
+  if (pageOptionsDto.updateAt) {
+      const updatedAt = new Date(pageOptionsDto.updateAt);
+      queryBuilder.andWhere('order.createdAt = :createdAt', {
+        updatedAt: updatedAt.toISOString()
+      });
+    }
+
+
+    const orderByMap = {
+      user_email: 'user.email',
+      start_rent_at: 'order.start_rent_at',
+      finish_rent_at: 'order.finish_rent_at',
+      category: 'car.category',
+      total_price: 'order.total_price',
+      createdAt: 'order.createdAt'
+    };
+    const orderValue = orderByMap[pageOptionsDto.orderBy] || '';
+    
 
     queryBuilder
-      .orderBy('order.createdAt', pageOptionsDto.order)
+      .orderBy(`${orderValue}`,pageOptionsDto.order)
       .skip(pageOptionsDto.skip)
       .take(pageOptionsDto.take);
     const itemCount = await queryBuilder.getCount();
