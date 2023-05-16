@@ -6,7 +6,6 @@ import ImageWithLoading from "../../../../../components/ui/ImageWithLoading";
 import nullImage from '../../../../../assets/img/imagenotfound.jpeg'
 
 export default function CarList(props) {
-  console.log(props.cars)
 
   const formatter = new Intl.NumberFormat("id-ID", {
     style: 'currency',

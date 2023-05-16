@@ -5,10 +5,11 @@ import axios from "axios";
 export const adminGetAllOrder = createAsyncThunk('order/admin/getAllOrder', async(params = {}) => {
     const token = localStorage.getItem('token')
     const apiUrl = config.apiBaseUrl
-
+    console.log(params)
     try {
         
-        const response =  await axios.get(apiUrl + "/order", params, {
+        const response =  await axios.get(apiUrl + "/order", {
+            params
             // headers: {
             //     Authorization: `Bearer ${token}`
             // }

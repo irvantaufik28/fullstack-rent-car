@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import CarList from './components/carList'
 import FromFillter from '../../../../components/fromfilter/fromFilter'
 import Banner from '../../../client/home/components/banner/Banner';
@@ -12,10 +12,9 @@ export default function FindCar() {
   const dispatch = useDispatch();
   const loading = useSelector(carSelectors.loading);
   const data = useSelector(carSelectors.selectAllCars);
-
-  React.useEffect(() => {
+useEffect(() => {
     dispatch(getAllCars());
-  }, [dispatch]);
+  }, []);
 
   const onFilter = (payload) => {
     dispatch(getAllCars(payload));

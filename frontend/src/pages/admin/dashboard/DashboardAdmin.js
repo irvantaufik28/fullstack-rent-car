@@ -9,7 +9,6 @@ export default function DashboardAdmin() {
 <NavBarAdmin />
 <SideBarAdmin>
   <BasicTable />
-  
   </SideBarAdmin>
 </>
   )
