@@ -34,10 +34,11 @@ export class OrderController {
 
   @Get()
   @HttpCode(HttpStatus.OK)
+  // @Roles(SecurityType.STAF)
+  // @UseGuards(JwGuard, RolesGuard)
   async gerOrderPagination(
     @Query() pageOptionsDto: PageOrderOptionsDto,
   ): Promise<PageDto<CreateOrderDto>> {
-    console.log(pageOptionsDto)
     return this.orderService.adminGetAllOrderPage(pageOptionsDto);
   }
 

@@ -74,9 +74,10 @@ export class OrderRepository extends Repository<OrderEntity> {
         updatedAt: updatedAt.toISOString()
       });
     }
-
+    console.log(pageOptionsDto.orderBy)
 
     const orderByMap = {
+      car : 'car.name',
       user_email: 'user.email',
       start_rent_at: 'order.start_rent_at',
       finish_rent_at: 'order.finish_rent_at',
