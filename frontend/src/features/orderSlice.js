@@ -29,7 +29,12 @@ const orderSlice = createSlice({
     initialState: {
         data: {},
     },
-    reducers: {},
+    reducers: {
+        setOrder: (state, action) => {
+            console.log(action.payload)
+            return action.payload;
+          },
+    },
     extraReducers: (builder) => {
         builder
         .addCase(adminGetAllOrder.fulfilled, (state, action) => {
@@ -37,6 +42,8 @@ const orderSlice = createSlice({
         })
     }
 })
+
+export const { setOrder } = orderSlice.actions;
 
 export const orderSelector = {
     selectAllOrders: (state) => state.order.data

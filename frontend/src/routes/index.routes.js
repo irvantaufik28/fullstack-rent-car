@@ -14,6 +14,8 @@ import DashboardAdmin from "../pages/admin/dashboard/DashboardAdmin";
 import '../components/layouts/styles/mobile.css'
 import AdminAddCarPage from "../pages/admin/car/AdminAddCarPage";
 import AdminUpdateCarPage from "../pages/admin/car/AdminUpdateCarPage";
+import PrivateRoutesCustomer from "../utils/PrivateRouteCustomer";
+import PaymentPage from "../pages/client/payment/PaymentPage";
 function IndexRoutes() {
   return (
     <Router>
@@ -25,6 +27,12 @@ function IndexRoutes() {
         <Route path="/car/:id" element={<CarDetailPage />} />
         <Route path="/user/profile" element={<UserProfilePage />} />
         <Route path="/user/profile/setting" element={<UserSettingPage />} />
+
+        <Route element={<PrivateRoutesCustomer />}>
+
+          <Route path="/payment" element={<PaymentPage />} />
+
+        </Route>
         <Route element={<PrivateRoutes />}>
           <Route path="/admin/carlist" element={<AdminCarListPage />} />
           <Route path="/admin/addcar" element={<AdminAddCarPage />} />

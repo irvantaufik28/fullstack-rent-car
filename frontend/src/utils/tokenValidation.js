@@ -59,3 +59,32 @@ export const AdminValidation = () => {
   }
   return auth;
 }
+
+
+export const CustomerValidation = () => {
+  const dispatch = useDispatch()
+  let auth = {
+    token: false,
+    customer: false
+  }
+  const token = localStorage.getItem('token')
+  if (token) {
+    try {
+      const decoded = jwtDecode(token)
+      if (decoded.exp * 1000 < new Date().getTime()) {
+        const get_refresh_token = localStorage.getItem('refresh_token')
+        let refresh_token = {
+          refresh_token: get_refresh_token
+        }
+        dispatch(refreshToken(refresh_token)).unwrap()
+        auth.token = true
+      };
+      if (decoded.role_name === 'CUSTOMER') {
+        auth.admin = true
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  return auth;
+}

@@ -1,38 +1,20 @@
 import React, { useEffect, useState } from "react";
-import ImageWithLoading from "../../../../../components/ui/ImageWithLoading";
-import { BsFillPeopleFill } from 'react-icons/bs'
-import Accordion from "react-bootstrap/Accordion";
-import "./detailcar.css";
-import LoadingSpiner from "../../../../../components/ui/LoadingSpiner";
-import nullImage from '../../../../../assets/img/imagenotfound.jpeg'
-import { Carousel } from "react-bootstrap";
+import { Accordion } from "react-bootstrap";
+import { useSelector } from "react-redux";
 
-export default function CarDetail(props) {
+
+export default function PaymentPage(props) {
   const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (loading) {
-    return (
-      <LoadingSpiner />
-    );
-  }
-
-
-
   const formatter = new Intl.NumberFormat("id-ID", {
     style: 'currency',
     currency: 'IDR',
     minimumFractionDigits: 0
   });
-
-
+//  const order = localStorage.getItem('order')
+//  const data = JSON.parse(order)
+//  console.log(data)
+const order = useSelector((state) => state.order);
+console.log(order)
   return (
     <div className="container detailcar">
       <div className="row row-car-detail">
@@ -94,46 +76,7 @@ export default function CarDetail(props) {
         <div className="col-md-5 d-flex mt-5 detail-car-card">
           <div className="card-car">
             <div className="image-car-detail">
-              {props.data?.car_media.length <= 0 ? (
-                <ImageWithLoading src={nullImage} alt={'null'} />
-
-
-              ) : (
-                <Carousel className="carousel-detail-car"
-                  interval={null}
-                  variant="dark"
-                >
-                  {props.data.car_media.map(media => (
-                    <Carousel.Item key={media.id}>
-                      <ImageWithLoading src={media.image_url} alt={'null'} />
-                    </Carousel.Item>
-                  ))}
-                </Carousel>
-              )}
-              <p className="card-title-detail-name"> {props.data.name}</p>
-              <p className="card-title-detail">
-                <BsFillPeopleFill />
-                {" "}
-                {props.data.category === "small"
-                  ? "2-4 orang"
-                  : props.data.category === "medium"
-                    ? "4-6 orang"
-                    : props.data.category === "large"
-                      ? "6-8 orang"
-                      : props.data.category}
-              </p>
-
-              <div className="row align-items-start">
-                <div className="col totaldetail">Total</div>
-                <div className="col pricedetail">
-                  {formatter.format(props.data.price)}
-                </div>
-              </div>
-              {/* Calendar section */}
-              <div className="calendar-section">
-                {props.children}
-
-              </div>
+             <h1>hallo</h1>
             </div>
           </div>
         </div>
