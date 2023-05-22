@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { DateRangePicker } from "rsuite";
 import './styles/calendar.css'
 
@@ -21,11 +21,11 @@ const Calendar = (props) => {
         value={dateRange}
         onChange={handleDateChange}
       />
-    <div className="grid-input-button">
-      <button type="submit" className="button_banner" onClick={handleSubmit}>
-        Submit
-      </button>
-    </div>
+      <div className="grid-input-button">
+        <button type="submit" className="button_banner" onClick={handleSubmit}>
+          Submit
+        </button>
+      </div>
   </>
   );
 };

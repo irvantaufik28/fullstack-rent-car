@@ -21,7 +21,7 @@ export default function CarDetailPage() {
   useEffect(() => {
     dispatch(getCarById(id));
     
-  }, [dispatch]);
+  }, []);
   
   
   const handleData = (payload) => {
@@ -34,7 +34,10 @@ export default function CarDetailPage() {
       car_id: car?.id
     };
 
+    const newData = {...requestOrder,...car}
+
     dispatch(setOrder(requestOrder))
+     localStorage.setItem('car', JSON.stringify(newData))
     navigate('/payment')
      
   };

@@ -16,6 +16,7 @@ import AdminAddCarPage from "../pages/admin/car/AdminAddCarPage";
 import AdminUpdateCarPage from "../pages/admin/car/AdminUpdateCarPage";
 import PrivateRoutesCustomer from "../utils/PrivateRouteCustomer";
 import PaymentPage from "../pages/client/payment/PaymentPage";
+import { PaymentValidationPage } from "../pages/client/payment/PaymentValidationPage";
 function IndexRoutes() {
   return (
     <Router>
@@ -31,6 +32,7 @@ function IndexRoutes() {
         <Route element={<PrivateRoutesCustomer />}>
 
           <Route path="/payment" element={<PaymentPage />} />
+          <Route path="/payment/validation" element={<PaymentValidationPage />} />
 
         </Route>
         <Route element={<PrivateRoutes />}>

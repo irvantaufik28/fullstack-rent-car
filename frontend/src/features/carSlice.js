@@ -17,13 +17,13 @@ export const adminAddCar = createAsyncThunk("car/addCar", async (params = {}) =>
 
     const apiUrl = config.apiBaseUrl
     try {
-    const response =  await axios.post(apiUrl + "/car", params, {
+        const response = await axios.post(apiUrl + "/car", params, {
             headers: {
                 "content-type": "multipart/form-data",
                 Authorization: `Bearer ${token}`
             }
         });
- 
+
         return response.data
     } catch (err) {
         console.log(err)
@@ -36,7 +36,7 @@ export const getCarById = createAsyncThunk("car/getCar", async (id) => {
     return response.data
 })
 
-export const adminUpdateCar = createAsyncThunk("car/update", async ({id, params }) => {
+export const adminUpdateCar = createAsyncThunk("car/update", async ({ id, params }) => {
     const token = localStorage.getItem('token');
     const apiUrl = config.apiBaseUrl
     try {
@@ -100,6 +100,7 @@ const carSlice = createSlice({
 
     }
 })
+export const { setCar } = carSlice.actions
 export const selectAddCarResponse = (state) => state.car.addCarResponse;
 export const carSelectors = {
     selectCarById: (state) => state.car.data,
