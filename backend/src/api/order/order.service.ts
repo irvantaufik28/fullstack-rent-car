@@ -6,6 +6,7 @@ import { NotificationService } from '../notification/notification.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { OrderRepository } from './repository/order.repository';
 import { OrderStatus } from '../../common/internal/const/orderStatus';
+import { OrderEntity } from 'src/database/entities/order.entity';
 
 @Injectable()
 export class OrderService {
@@ -108,5 +109,10 @@ export class OrderService {
     );
 
     return result;
+  }
+
+  async customerGetOrder (id: number): Promise<OrderEntity> {
+    const order = await this.orderRepository.getOrderById(id)
+    return order
   }
 }

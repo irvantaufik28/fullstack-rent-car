@@ -5,6 +5,7 @@ import {
   Get,
   HttpCode,
   HttpStatus,
+  Param,
   Post,
   Query,
   UseGuards,
@@ -23,6 +24,7 @@ import { UserEntity } from 'src/database/entities/user.entity';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { OrderService } from './order.service';
 import { PageOrderOptionsDto } from 'src/common/pageDTO/page-order-options.dto';
+import { OrderEntity } from 'src/database/entities/order.entity';
 
 @Controller('order')
 @UseInterceptors(ClassSerializerInterceptor)
@@ -40,6 +42,15 @@ export class OrderController {
     @Query() pageOptionsDto: PageOrderOptionsDto,
   ): Promise<PageDto<CreateOrderDto>> {
     return this.orderService.adminGetAllOrderPage(pageOptionsDto);
+  }
+
+  @Get('/:id')
+  @HttpCode(HttpStatus.OK)
+  @Roles(SecurityType.CUSTOMER)
+  @UseGuards(JwGuard, RolesGuard)
+  async customerGetOrder(@Param('id') id: number) :Promise <OrderEntity> {
+    const result = await this.orderService.customerGetOrder(id)
+    return result
   }
 
   @Post()

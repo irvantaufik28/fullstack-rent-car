@@ -143,4 +143,15 @@ export class OrderRepository extends Repository<OrderEntity> {
     });
     return order;
   };
+
+  getOrderById = async (id:number, options: object = {}):Promise<OrderEntity> => {
+    const order = this.orderRepository.findOne({
+      where: {
+        id
+      },
+      relations:{user: true, car: true}
+    })
+    return order
+  }
+
 }
