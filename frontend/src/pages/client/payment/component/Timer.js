@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/timer.css'
-const Timer = () => {
+const Timer = (props) => {
+
+  // console.log(props.data)
   const [time, setTime] = useState(86400); // 86400 detik = 1 hari
 
   useEffect(() => {

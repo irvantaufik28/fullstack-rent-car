@@ -5,13 +5,13 @@ import axios from "axios";
 export const adminGetAllOrder = createAsyncThunk('order/admin/getAllOrder', async (params = {}) => {
     const token = localStorage.getItem('token')
     const apiUrl = config.apiBaseUrl
-    console.log(params)
+   
     try {
-
+        
         const response = await axios.get(apiUrl + "/order", {
             params
             // headers: {
-            //     Authorization: `Bearer ${token}`
+                //     Authorization: `Bearer ${token}`
             // }
         });
 
@@ -19,13 +19,13 @@ export const adminGetAllOrder = createAsyncThunk('order/admin/getAllOrder', asyn
 
     } catch (error) {
         console.log(error)
-
+        
     }
 })
 
 export const customerAddOrder = createAsyncThunk("customer/order", async (params = {}) => {
-
     const token = localStorage.getItem('token')
+
     const apiUrl = config.apiBaseUrl
     try {
         const response = await axios.post(apiUrl + "/order", params, {
@@ -34,13 +34,26 @@ export const customerAddOrder = createAsyncThunk("customer/order", async (params
                 Authorization: `Bearer ${token}`
             }
         });
-        console.log(params)
+      
 
         return response.data
     } catch (err) {
         console.log(err)
     }
 })
+
+export const customerGetOrderById = createAsyncThunk("customer/order/id", async (id) => {
+    const token = localStorage.getItem('token')
+    const apiUrl = config.apiBaseUrl
+    const response = await axios.get(apiUrl + `/order/${id}`,{
+        headers: {
+            "content-type": "multipart/form-data",
+                Authorization: `Bearer ${token}`
+        }
+    })
+    return response.data
+})
+
 
 
 const orderSlice = createSlice({
@@ -51,7 +64,6 @@ const orderSlice = createSlice({
     },
     reducers: {
         setOrder: (state, action) => {
-            console.log(action.payload)
             return action.payload;
         },
     },
@@ -63,6 +75,9 @@ const orderSlice = createSlice({
             .addCase(customerAddOrder.fulfilled, (state, action) => {
                 state.addCarResponse = action.payload
             })
+            .addCase(customerGetOrderById.fulfilled, (state, action) => {
+                state.data = action.payload
+            })
     }
 })
 
@@ -70,6 +85,7 @@ export const { setOrder } = orderSlice.actions;
 export const selectAddOrderResponse = (state) => state.car.addCarResponse;
 export const orderSelector = {
     selectAllOrders: (state) => state.order.data,
+    selectCustomerOrdeyById: (state) => state.order.data 
 
 }
 

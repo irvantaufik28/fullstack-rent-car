@@ -38,7 +38,7 @@ export default function CarDetailPage() {
     localStorage.setItem('dayRent',JSON.stringify(newData))
     // dispatch(setOrder(requestOrder))
      localStorage.setItem('car', JSON.stringify(newData))
-   
+    navigate('/payment')
      
   };
 

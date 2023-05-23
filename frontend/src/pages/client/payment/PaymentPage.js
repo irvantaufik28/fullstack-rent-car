@@ -44,7 +44,7 @@ export default function PaymentPage() {
           "Content-Type": "application/json"
         }
       });
-      console.log(response);
+      navigate(`/payment/validation/order/${response.data?.id}`)
       return response;
     } catch (error) {
       console.log(error);
@@ -61,7 +61,6 @@ export default function PaymentPage() {
     }
 
     addOrder(payload)
-    navigate('/payment/validation')
 
   }
 

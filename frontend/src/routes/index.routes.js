@@ -32,7 +32,7 @@ function IndexRoutes() {
         <Route element={<PrivateRoutesCustomer />}>
 
           <Route path="/payment" element={<PaymentPage />} />
-          <Route path="/payment/validation" element={<PaymentValidationPage />} />
+          <Route path="/payment/validation/order/:id" element={<PaymentValidationPage />} />
 
         </Route>
         <Route element={<PrivateRoutes />}>

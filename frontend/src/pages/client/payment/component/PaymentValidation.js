@@ -1,14 +1,21 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import '../styles/paymentvalidation.css'
 import { Button, Col, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 export const PaymentValidation = (props) => {
 
-    const order = localStorage.getItem('orderdata')
-    console.log(JSON.parse(order))
+    const [inputValue, setInputValue] = useState(0);
+    const [inputBankType, setInputBankType] = useState('')
+    const [inputNoRek, setInputNoRek] = useState('')
+    const [inputTitleBank, setInputTitleBank] = useState('')
+
+    function handleChange(event) {
+      const newValue = event.target.value;
+      setInputValue(newValue);
+    }
+
 
     const inputRef = useRef(null);
-
     const handleCopy = () => {
         if (inputRef.current) {
             inputRef.current.select();
@@ -21,6 +28,28 @@ export const PaymentValidation = (props) => {
                 });
         }
     };
+
+    const getOrderData = localStorage.getItem('orderdata')
+    const getOrderDataJson = JSON.parse(getOrderData)
+    const bankType = getOrderDataJson.bankType
+
+    
+    useEffect(()=> {
+
+        if (bankType === 'BCA') {
+            setInputBankType('BCA')
+            setInputNoRek('14122331')
+            setInputTitleBank("BCA")
+        } else if (bankType === 'BNI') {
+            setInputBankType('BNI')
+            setInputNoRek('1244112323231')
+            setInputTitleBank("BNI")
+        } else {
+            setInputBankType('Mandiri')
+            setInputNoRek('52311112')
+            setInputTitleBank("MANDIRI")
+        }
+    },[bankType])
     return (
 
         <div className="container">
@@ -50,17 +79,20 @@ export const PaymentValidation = (props) => {
                                         <Col>
                                             <Button
                                                 variant="light"
-                                            >BCA</Button>{' '}
+                                            >{inputTitleBank}</Button>{' '}
                                         </Col>
                                         <Col>
-                                            <p>BCA Transfer</p>
+                                            <p>{inputBankType} Transfer</p>
                                             <p>a.n Binar Car Rental</p>
                                         </Col>
                                     </Row>
                                 </div>
                                 <div className='coloumn-copy-rek'>
                                     <h5>no rekening</h5>
-                                    <input ref={inputRef} type="text" />
+                                    <input ref={inputRef} 
+                                    type="text"
+                                    value={inputNoRek}
+                                    />
                                     <button onClick={handleCopy}>
                                         <p>copy</p>
                                     </button>
@@ -68,7 +100,12 @@ export const PaymentValidation = (props) => {
                                 </div>
                                 <div className='coloumn-copy-totalpay'>
                                     <h5>total bayar</h5>
-                                    <input ref={inputRef} type="text" />
+                                    <input 
+                                    ref={inputRef} 
+                                    type="text"
+                                    value={props.data?.total_price}
+                                    onChange={handleChange} 
+                                     />
                                     <button onClick={handleCopy}>
                                         <p>copy</p>
                                     </button>
