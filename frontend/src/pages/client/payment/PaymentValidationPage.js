@@ -17,10 +17,15 @@ export const PaymentValidationPage = () => {
     dispatch(customerGetOrderById(id))
   }, [])
 
+
+  const confirmationPayment = (payload) => {
+    console.log(payload)
+  }
+
   
   return (
   <>
-   <PaymentValidation data = {order} >
+   <PaymentValidation data = {order} handleClick ={confirmationPayment} >
     <Timer data = {order}/>
    </PaymentValidation >
   </>

@@ -1,36 +1,64 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/timer.css'
 const Timer = (props) => {
-
-  // console.log(props.data)
-  const [time, setTime] = useState(86400); // 86400 detik = 1 hari
+  const [time, setTime] = useState(0);
+  const [deadlineTime, setDeadlineTime] = useState('');
 
   useEffect(() => {
+    const createdAt = new Date(props.data.createdAt).getTime();
+    const currentTime = new Date().getTime();
+    const oneDayInMilliseconds = 24 * 60 * 60 * 1000;
+    const timeDifference = currentTime - createdAt;
+    const remainingTime = oneDayInMilliseconds - timeDifference;
+    const deadlinePayment = createdAt + oneDayInMilliseconds;
+
+    const date = new Date(deadlinePayment);
+    const dayOfWeek = date.toLocaleDateString('id-ID', { weekday: 'long' });
+    const dayOfMonth = date.getDate();
+    const month = date.toLocaleDateString('id-ID', { month: 'long' });
+    const year = date.getFullYear();
+    const hour = date.getHours();
+    const minute = date.getMinutes();
+
+    const formattedDate = `${dayOfWeek}, ${dayOfMonth} ${month} ${year} jam ${hour}.${minute} WIB`;
+
+    setTime(remainingTime);
+    setDeadlineTime(formattedDate);
+
     const timer = setInterval(() => {
-      setTime((prevTime) => prevTime - 1);
+      setTime((prevTime) => prevTime - 1000);
     }, 1000);
 
     return () => {
       clearInterval(timer);
     };
-  }, []);
+  }, [props.data.createdAt]);
 
   const formatTime = (time) => {
-    const hours = Math.floor(time / 3600);
-    const minutes = Math.floor((time % 3600) / 60);
-    const seconds = time % 60;
+    if (time <= 0) {
+      return '00:00:00';
+    }
 
-    return `${hours.toString().padStart(2, '0')}:${minutes
-      .toString()
-      .padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    const hours = Math.floor(time / (60 * 60 * 1000));
+    const minutes = Math.floor((time % (60 * 60 * 1000)) / (60 * 1000));
+    const seconds = Math.floor((time % (60 * 1000)) / 1000);
+
+    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
   };
 
   return (
-    <div>
-
-      <p className="countdown">{formatTime(time)}</p>
+    <div className='row'>
+      <div className='col-md-6'>
+        <div className='reminder-title'>
+          <h5>Selesaikan pembayaran sebelum</h5>
+          <h5>{deadlineTime}</h5>
+        </div>
+      </div>
+      <div className='col-md-6'>
+        <p className="countdown">{formatTime(time)}</p>
+      </div>
     </div>
   );
-};
+}
 
 export default Timer;
