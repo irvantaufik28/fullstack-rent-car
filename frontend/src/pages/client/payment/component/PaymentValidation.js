@@ -1,11 +1,11 @@
 import React, { useRef } from 'react'
 import '../styles/paymentvalidation.css'
-import Timer from './Timer'
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faCopy } from '@fortawesome/free-solid-svg-icons';
 import { Button, Col, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 export const PaymentValidation = (props) => {
+
+    const order = localStorage.getItem('orderdata')
+    console.log(JSON.parse(order))
 
     const inputRef = useRef(null);
 
