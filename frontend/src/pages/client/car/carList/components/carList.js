@@ -26,8 +26,6 @@ export default function CarList(props) {
     )
   }
 
-
-
   return (
     <>
       <Container className="container-car">
@@ -48,7 +46,7 @@ export default function CarList(props) {
                   (
                     <div>
                       <ImageWithLoading
-                        src={o.car_media.find(media => media.is_main_image)?.image_url}
+                        src={o.car_media?.find(media => media.is_main_image)?.image_url}
                         alt={o.name}
                       />
                     </div>
