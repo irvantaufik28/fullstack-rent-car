@@ -7,7 +7,7 @@ import Footer from "../../../../components/layouts/Footer";
 import FromFilterDetail from '../../../../components/fromfilter/fromFilterDetail';
 import { useDispatch, useSelector } from 'react-redux';
 import { carSelectors, getCarById } from '../../../../features/carSlice';
-import Calendar from '../../../../components/ui/Calendar';
+import Calendar from './components/Calendar';
 import { format } from 'date-fns';
 import { setOrder } from '../../../../features/orderSlice';
 
@@ -34,10 +34,9 @@ export default function CarDetailPage() {
       car_id: car?.id
     };
 
-    const newData = {...requestOrder,...car}
-    localStorage.setItem('dayRent',JSON.stringify(newData))
-    // dispatch(setOrder(requestOrder))
-     localStorage.setItem('car', JSON.stringify(newData))
+    const newData = {...requestOrder,...car}  
+    localStorage.setItem('order_detail',JSON.stringify(newData))
+  
     navigate('/payment')
      
   };

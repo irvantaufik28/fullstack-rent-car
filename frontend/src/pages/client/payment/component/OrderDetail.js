@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const DetailOrder = (props) => {
+export default function OrderDetail (props) {
   return (
    
     <div className="container seacrh-car">
@@ -64,6 +64,6 @@ export const DetailOrder = (props) => {
 }
 
 
-DetailOrder.defaulProps = {
+OrderDetail.defaulProps = {
     
 }

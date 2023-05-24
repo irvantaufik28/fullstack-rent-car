@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ImageWithLoading from "../../../../../components/ui/ImageWithLoading";
 import { BsFillPeopleFill } from 'react-icons/bs'
 import Accordion from "react-bootstrap/Accordion";
-import "./detailcar.css";
+import "../styles/detailcar.css"
 import LoadingSpiner from "../../../../../components/ui/LoadingSpiner";
 import nullImage from '../../../../../assets/img/imagenotfound.jpeg'
 import { Carousel } from "react-bootstrap";

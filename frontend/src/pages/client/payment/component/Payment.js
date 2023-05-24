@@ -7,10 +7,10 @@ import { Link } from "react-router-dom";
 
 export default function Payment(props) {
 
-   const  {children} = props 
+    const { children } = props
 
     const [loading, setLoading] = useState(true);
-    
+
     const [bcaTransfer, setBCATransfer] = useState(false);
     const [bniTransfer, setBNITransfer] = useState(false);
     const [mandiriTransfer, setMandiriTransfer] = useState(false);
@@ -28,14 +28,14 @@ export default function Payment(props) {
     const timeDifference = finishDate.getTime() - startDate.getTime();
     const dayDifference = Math.round(timeDifference / millisecondsPerDay);
     const totalPriceRent = props.data.price * dayDifference
-   
+
     const handleBCAClick = (e) => {
         e.preventDefault();
         setBCATransfer(true);
         setBNITransfer(false);
         setMandiriTransfer(false)
-       
-        props.handleClick({BankType: "BCA", totalPrice: totalPriceRent});
+
+        props.handleClick({ BankType: "BCA", totalPrice: totalPriceRent });
     };
 
     const handleBNIClick = (e) => {
@@ -43,7 +43,7 @@ export default function Payment(props) {
         setBNITransfer(true);
         setBCATransfer(false);
         setMandiriTransfer(false)
-        props.handleClick({BankType: "BNI", totalPrice: totalPriceRent});
+        props.handleClick({ BankType: "BNI", totalPrice: totalPriceRent });
     };
 
     const handleMandiriClick = (e) => {
@@ -51,7 +51,7 @@ export default function Payment(props) {
         setMandiriTransfer(true)
         setBNITransfer(false);
         setBCATransfer(false);
-        props.handleClick({BankType: "Mandiri", totalPrice: totalPriceRent});
+        props.handleClick({ BankType: "Mandiri", totalPrice: totalPriceRent });
     };
     //  const order = localStorage.getItem('order')
     //  const data = JSON.parse(order)
@@ -73,7 +73,7 @@ export default function Payment(props) {
                                         <Button
                                             variant="light"
                                             onClick={handleBCAClick}
-                                           
+
                                         >BCA</Button>
                                     </Col>
                                     <Col>
@@ -86,7 +86,7 @@ export default function Payment(props) {
                                         <Button
                                             variant="light"
                                             onClick={handleBNIClick}
-                                           
+
                                         >BNI</Button>
                                     </Col>
                                     <Col>
@@ -99,7 +99,7 @@ export default function Payment(props) {
                                         <Button
                                             variant="light"
                                             onClick={handleMandiriClick}
-                                           
+
                                         >MANDIRI</Button>
                                     </Col>
                                     <Col>
@@ -130,7 +130,7 @@ export default function Payment(props) {
                                         <li>
                                             <Row>
                                                 <Col>Sewa Mobil {formatter.format(props.data.price)}  x {dayDifference} hari </Col>
-                                                <Col>{formatter.format( props.data.price * dayDifference)}</Col>
+                                                <Col>{formatter.format(props.data.price * dayDifference)}</Col>
                                             </Row></li>
                                     </ul>
                                     <h5>Biaya Lainya</h5>
@@ -159,7 +159,7 @@ export default function Payment(props) {
                         <div className="total-payment">
                             <Row>
                                 <Col>Total</Col>
-                                <Col>{formatter.format( props.data.price * dayDifference)}</Col>
+                                <Col>{formatter.format(props.data.price * dayDifference)}</Col>
                             </Row>
                         </div>
 

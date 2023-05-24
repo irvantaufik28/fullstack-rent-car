@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/timer.css'
-const Timer = (props) => {
+import '../styles/paymentreminder.css'
+export default function PaymentReminder (props) {
   const [time, setTime] = useState(0);
   const [deadlineTime, setDeadlineTime] = useState('');
 
@@ -17,11 +17,11 @@ const Timer = (props) => {
     const dayOfMonth = date.getDate();
     const month = date.toLocaleDateString('id-ID', { month: 'long' });
     const year = date.getFullYear();
-    const hour = date.getHours();
-    const minute = date.getMinutes();
+    const hour = date.getHours(); 
+    const minute = date.getMinutes().toString().padStart(2, '0');
 
     const formattedDate = `${dayOfWeek}, ${dayOfMonth} ${month} ${year} jam ${hour}.${minute} WIB`;
-
+    console.log(formattedDate)
     setTime(remainingTime);
     setDeadlineTime(formattedDate);
 
@@ -60,5 +60,3 @@ const Timer = (props) => {
     </div>
   );
 }
-
-export default Timer;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { DateRangePicker } from "rsuite";
-import './styles/calendar.css'
+import '../styles/calendar.css'
 
 const Calendar = (props) => {
   const [dateRange, setDateRange] = useState([]); 

@@ -2,9 +2,9 @@ import React, { useEffect, useRef, useState, useCallback } from 'react'
 import '../styles/paymentvalidation.css'
 import '../styles/dropzone.css'
 import { Button, Col, Row } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
 import { useDropzone } from 'react-dropzone'
-export const PaymentValidation = (props) => {
+
+export default function PaymentValidation(props) {
     const [previewImage, setPreviewImage] = useState(null);
     const [image, setImage] = useState(null)
     const [inputValue, setInputValue] = useState(0);
@@ -17,22 +17,32 @@ export const PaymentValidation = (props) => {
         setInputValue(newValue);
     }
 
-
-    const inputRef = useRef(null);
-    const handleCopy = () => {
-        if (inputRef.current) {
-            inputRef.current.select();
-            navigator.clipboard.writeText(inputRef.current.value)
-                .then(() => {
-                    console.log('Text copied to clipboard');
-                })
-                .catch((error) => {
-                    console.error('Failed to copy text:', error);
-                });
-        }
+    const inputRefRekNumber = useRef(null);
+    const inputRefTotalPrice = useRef(null);
+    
+    const handleCopyText = (inputRef) => {
+      if (inputRef.current) {
+        inputRef.current.select();
+        navigator.clipboard
+          .writeText(inputRef.current.value)
+          .then(() => {
+            console.log('Text copied to clipboard');
+          })
+          .catch((error) => {
+            console.error('Failed to copy text:', error);
+          });
+      }
+    };
+    
+    const handleCopyRekNumber = () => {
+      handleCopyText(inputRefRekNumber);
+    };
+    
+    const handleCopyTotalPrice = () => {
+      handleCopyText(inputRefTotalPrice);
     };
 
-    const getOrderData = localStorage.getItem('orderdata')
+    const getOrderData = localStorage.getItem('order_data')
     const getOrderDataJson = JSON.parse(getOrderData)
     const bankType = getOrderDataJson.bankType
 
@@ -135,11 +145,11 @@ export const PaymentValidation = (props) => {
                                 </div>
                                 <div className='coloumn-copy-rek'>
                                     <h5>no rekening</h5>
-                                    <input ref={inputRef}
+                                    <input ref={inputRefRekNumber}
                                         type="text"
                                         value={inputNoRek}
                                     />
-                                    <button onClick={handleCopy}>
+                                    <button onClick={handleCopyRekNumber}>
                                         <p>copy</p>
                                     </button>
 
@@ -147,12 +157,12 @@ export const PaymentValidation = (props) => {
                                 <div className='coloumn-copy-totalpay'>
                                     <h5>total bayar</h5>
                                     <input
-                                        ref={inputRef}
+                                        ref={inputRefTotalPrice}
                                         type="text"
                                         value={props.data?.total_price}
                                         onChange={handleChange}
                                     />
-                                    <button onClick={handleCopy}>
+                                    <button onClick={handleCopyTotalPrice}>
                                         <p>copy</p>
                                     </button>
 

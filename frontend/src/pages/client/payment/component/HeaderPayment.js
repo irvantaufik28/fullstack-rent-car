@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 export default function HeaderPayment() {
   return (
     <>
@@ -10,11 +9,7 @@ export default function HeaderPayment() {
             </div>
             <div className="col-md-6 d-flex align-items-center mt-5">
             <h5>pilih metode</h5>
-
             </div>
-           
-              {/* <img className="img-fluid " src={hero} alt="hero" /> */}
-           
           </div>
         </div>
       </div>

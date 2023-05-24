@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
-import { PaymentValidation } from './component/PaymentValidation'
-import Timer from './component/Timer'
+import PaymentValidation from './component/PaymentValidation'
+import PaymentReminder from './component/PaymentReminder'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { customerGetOrderById, orderSelector } from '../../../features/orderSlice'
@@ -26,7 +26,7 @@ export const PaymentValidationPage = () => {
   return (
   <>
    <PaymentValidation data = {order} handleClick ={confirmationPayment} >
-    <Timer data = {order}/>
+    <PaymentReminder data = {order}/>
    </PaymentValidation >
   </>
   )
