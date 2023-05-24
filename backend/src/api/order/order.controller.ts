@@ -38,10 +38,20 @@ export class OrderController {
   @HttpCode(HttpStatus.OK)
   // @Roles(SecurityType.STAF)
   // @UseGuards(JwGuard, RolesGuard)
-  async gerOrderPagination(
+  async adminGetOrderPagination(
     @Query() pageOptionsDto: PageOrderOptionsDto,
   ): Promise<PageDto<CreateOrderDto>> {
     return this.orderService.adminGetAllOrderPage(pageOptionsDto);
+  }
+
+  @Get('/customer/list')
+  @HttpCode(HttpStatus.OK)
+  @Roles(SecurityType.CUSTOMER)
+  @UseGuards(JwGuard, RolesGuard)
+  async customerGetOrderPagination(
+    @Query() pageOptionsDto: PageOrderOptionsDto, @GetUser() request: UserEntity 
+  ): Promise<PageDto<CreateOrderDto>> {
+    return this.orderService.customerGetAllOrderPage(pageOptionsDto, request.id);
   }
 
   @Get('/:id')

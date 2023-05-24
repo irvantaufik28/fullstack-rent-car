@@ -74,7 +74,6 @@ export class OrderRepository extends Repository<OrderEntity> {
         updatedAt: updatedAt.toISOString()
       });
     }
-    console.log(pageOptionsDto.orderBy)
 
     const orderByMap = {
       car : 'car.name',
@@ -99,6 +98,32 @@ export class OrderRepository extends Repository<OrderEntity> {
     return new PageOrderDto(entities, pageMetaDto);
   };
 
+
+
+  customerGetAllOrdersPagination = async (
+    pageOptionsDto: PageOrderOptionsDto,
+    user_id: number
+  ): Promise<PageOrderDto<CreateOrderDto>> => {
+    const queryBuilder = this.orderRepository.createQueryBuilder('order');
+  
+    queryBuilder
+      .leftJoinAndSelect('order.user', 'user')
+      .leftJoinAndSelect('order.car', 'car')
+      .where('user.id = :user_id', { user_id }) 
+      .andWhere('car.id = order.car_id');
+  
+    queryBuilder
+      .orderBy('order.createdAt', pageOptionsDto.order)
+      .skip(pageOptionsDto.skip)
+      .take(pageOptionsDto.take);
+  
+    const itemCount = await queryBuilder.getCount();
+    const { entities } = await queryBuilder.getRawAndEntities();
+    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
+  
+    return new PageOrderDto(entities, pageMetaDto);
+  };
+  
   createOrder = async (
     createOrderDto: CreateOrderDto,
   ): Promise<CreateOrderDto> => {

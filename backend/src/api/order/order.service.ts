@@ -114,5 +114,21 @@ export class OrderService {
   async customerGetOrder (id: number): Promise<OrderEntity> {
     const order = await this.orderRepository.getOrderById(id)
     return order
+  } 
+  
+  async customerGetAllOrderPage(pageOptionsDto: PageOptionsDto, user_id: number): Promise<any> {
+    const order = await this.orderRepository.customerGetAllOrdersPagination(
+      pageOptionsDto,
+      user_id
+    );
+    const res = {
+      page: order.meta.page,
+      pageSize: order.meta.take,
+      pageCount: order.meta.pageCount,
+      Count: order.meta.itemCount,
+      orders: order.orders,
+    };
+    return res;
   }
+
 }
