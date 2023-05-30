@@ -5,12 +5,11 @@ dotenv.config();
 
 export const dataSourceOptions: DataSourceOptions = {
     type: 'postgres',
-      host:
-        process.env.DATABASE_HOST,
-      port: parseInt(process.env.DATABASE_PORT),
-      database: process.env.DATABASE_NAME,
-      username: process.env.DATABASE_USER,
-      password: process.env.DATABASE_PASSWORD,
+      host:"containers-us-west-210.railway.app",
+      port: 7229,
+      database: "railway",
+      username: "postgres",
+      password: "oh74QDXPO0xUwLdvUAxF",
       entities: ['dist/**/*.entity.{ts,js}'], // linux config entities
       // entities: [UserEntity, UserDetailEntity, CarEntity, OrderEntity], //  window config entities
       migrations: ['dist/shared/typeorm/migrations/*.js'],
