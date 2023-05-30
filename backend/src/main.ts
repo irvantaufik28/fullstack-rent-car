@@ -8,9 +8,9 @@ async function bootstrap() {
   app.enableCors();
 
   const config: ConfigService = app.get(ConfigService);
-  // const port: number = config.get<number>('PORT');
+  const port: number = config.get<number>('PORT');
   // const host: number = config.get<any>('HOST');
-  const port: number = 3000;
+  // const port: number = 3000;
   const host: string = '0.0.0.0';
   
 
