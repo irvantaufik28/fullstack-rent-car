@@ -14,7 +14,7 @@ export const dataSourceOptions: DataSourceOptions = {
       // entities: [UserEntity, UserDetailEntity, CarEntity, OrderEntity], //  window config entities
       migrations: ['dist/shared/typeorm/migrations/*.js'],
       logging: true,
-      synchronize: true
+      synchronize: false
 }
 
 const dataSource = new DataSource(dataSourceOptions)
