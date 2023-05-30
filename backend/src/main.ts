@@ -3,17 +3,18 @@ import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { NestFastifyApplication } from '@nestjs/platform-fastify';
+
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(AppModule);
   app.enableCors();
 
   const config: ConfigService = app.get(ConfigService);
-  const port: number = config.get<number>('PORT');
-  const host: number = config.get<any>('HOST');
+  const port: number = parseInt(config.get('PORT'), 10);
+  const host: string = config.get<string>('HOST');
 
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
 
-  await app.listen(port, () => {
+  await app.listen(port, host, () => {
     console.log(`Server listening on http://${host}:${port}`);
   });
 
