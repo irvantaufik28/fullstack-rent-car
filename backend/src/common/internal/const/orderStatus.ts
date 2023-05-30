@@ -5,4 +5,5 @@ export const OrderStatus = {
   COMPLETED: 'COMPLETED',
   REJECTED: 'REJECTED',
   PENALTY: 'PENALTY',
+  CONFIRM : "CONFIRM"
 };
