@@ -8,17 +8,15 @@ async function bootstrap() {
   app.enableCors();
 
   const config: ConfigService = app.get(ConfigService);
-  const port: number = config.get<number>('PORT');
+  // const port: number = config.get<number>('PORT');
   // const host: number = config.get<any>('HOST');
-  // const port: number = 3000;
+  const port: number = 3000;
   const host: string = '0.0.0.0';
   
 
     app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
 
-    await app.listen(port, () => {
-      console.log(`Server listening on http://${host}:${port}`);
-    });
+    await app.listen(3000, '0.0.0.0')
 
   app.enableVersioning({
     type: VersioningType.URI,
