@@ -25,8 +25,10 @@ import { CarMediaEntity } from 'src/database/entities/car-media.entity';
     TypeOrmModule.forFeature([CarEntity, OrderEntity, NotificationsEntity, CarDetailEntity, CarMediaEntity]),
     BullModule.forRoot({
       redis: {
-        host: process.env.REDIS_HOST,
-        port: parseInt(process.env.REDIS_PORT),
+        host: "containers-us-west-177.railway.app",
+        port: 6385,
+        password: "wMTy25uuSLvjoUdjrJRe",
+        username: "default",
       },
     }),
     BullModule.registerQueue(
