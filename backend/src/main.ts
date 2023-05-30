@@ -10,13 +10,13 @@ async function bootstrap() {
   const config: ConfigService = app.get(ConfigService);
   // const port: number = config.get<number>('PORT');
   // const host: number = config.get<any>('HOST');
-  const port: number = 3000;
+  const port: number = 4021;
   const host: string = '0.0.0.0';
   
 
     app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
 
-    await app.listen(3000, '0.0.0.0')
+    await app.listen(4021, '0.0.0.0')
 
   app.enableVersioning({
     type: VersioningType.URI,
