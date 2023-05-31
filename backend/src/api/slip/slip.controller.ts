@@ -31,7 +31,6 @@ export class SlipController {
   ): Promise<any> {
     
     payload.user_id = request.id
-    console.log(file)
     return this.slipService.createSlip(payload, request.id, file);
   }
 }

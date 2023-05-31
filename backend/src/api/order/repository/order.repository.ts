@@ -5,6 +5,7 @@ import { PageOrderDto } from 'src/common/pageDTO/page-order.dto ';
 import { Raw, Repository } from 'typeorm';
 import { CreateOrderDto } from '../dto/create-order.dto';
 import { OrderEntity } from 'src/database/entities/order.entity';
+import { UpdateOrderDto } from '../dto/update-order.dto ';
 
 export class OrderRepository extends Repository<OrderEntity> {
   constructor(
@@ -176,5 +177,17 @@ export class OrderRepository extends Repository<OrderEntity> {
       relations: ['user', 'user.user_detail', 'car', 'slip'],
     });
     return order;
+  };
+
+  updateOrder = async (
+    id: number,
+    updaeOrderDto: UpdateOrderDto,
+  ): Promise<any> => {
+    const { status } = updaeOrderDto;
+
+    const updateOrder = {
+      status,
+    };
+    return await this.orderRepository.update(id, updateOrder);
   };
 }
