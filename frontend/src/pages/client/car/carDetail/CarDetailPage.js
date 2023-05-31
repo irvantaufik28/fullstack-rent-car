@@ -10,6 +10,8 @@ import { carSelectors, getCarById } from '../../../../features/carSlice';
 import Calendar from './components/Calendar';
 import { format } from 'date-fns';
 import LoadingSpiner from '../../../../components/ui/LoadingSpiner';
+import SiginModal from '../../../../components/modals/SiginModal';
+
 
 export default function CarDetailPage() {
   const navigate = useNavigate()
@@ -19,6 +21,9 @@ export default function CarDetailPage() {
   const car = useSelector(carSelectors.selectCarById);
   const loading = useSelector(carSelectors.loading)
   const [message, setMessage] = useState('')
+
+  const [show, setShow] = useState(false);
+
   useEffect(() => {
     dispatch(getCarById(id));
 
@@ -26,27 +31,33 @@ export default function CarDetailPage() {
 
 
   const handleData = (payload) => {
-    console.log(payload.length <= 0)
     if (payload.length <= 0) {
-      setMessage('pilih tanggal sewa terlebih dahulu')
+      setMessage('pilih tanggal sewa terlebih dahulu');
     } else {
-          const formattedDate = (date) => {
-            return format(date, "yyyy-MM-dd");
-          };
-          let requestOrder = {
-            start_date_at: formattedDate(payload[0]),
-            finish_date_at: formattedDate(payload[1]),
-            car_id: car?.id
-          };
-      
-          const newData = { ...requestOrder, ...car }
-          localStorage.setItem('order_detail', JSON.stringify(newData))
-      
-          navigate('/payment')
+      const token = document.cookie
+        .split('; ')
+        .find((row) => row.startsWith('token='))
+        ?.split('=')[1];
+  
+      if (!token) {
+        setShow(true);
+      } else {
+        const formattedDate = (date) => {
+          return format(date, 'yyyy-MM-dd');
+        };
+        let requestOrder = {
+          start_date_at: formattedDate(payload[0]),
+          finish_date_at: formattedDate(payload[1]),
+          car_id: car?.id,
+        };
+  
+        const newData = { ...requestOrder, ...car };
+        localStorage.setItem('order_detail', JSON.stringify(newData));
+  
+        navigate('/payment');
+      }
     }
-
   };
-
   return (
     <>
       <Navbar />
@@ -56,12 +67,14 @@ export default function CarDetailPage() {
       {loading ? (
         <LoadingSpiner />
       ) : (
-        <>{car !== undefined && <CarDetail data={car}  message= {message}>
-          <Calendar onSubmit={handleData}  message= {message}/>
+        <>{car !== undefined && <CarDetail data={car} message={message}>
+          <Calendar onSubmit={handleData} message={message} />
         </CarDetail>} </>
       )}
 
       <Footer />
+
+      <SiginModal show = {show} />
     </>
   )
 }

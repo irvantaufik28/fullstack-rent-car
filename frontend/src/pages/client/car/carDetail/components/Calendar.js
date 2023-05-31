@@ -12,7 +12,6 @@ const Calendar = (props) => {
     props.onSubmit(dateRange);
   };
 
-  console.log(props.message)
   return (
     <>
       <div className="description-date">

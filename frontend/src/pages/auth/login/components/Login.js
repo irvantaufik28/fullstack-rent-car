@@ -4,7 +4,7 @@ import authimage from "../../../../assets/img/auth.png";
 import "./login.css";
 import { Link } from "react-router-dom";
 
-export default function Login  (props) {
+export default function Login(props) {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -19,7 +19,7 @@ export default function Login  (props) {
         <div className="col-md-3">
           <div className="form-login">
             <h5>Welcome, Admin BCR</h5>
-             {props.message && (
+            {props.message && (
               <div className="alert alert-danger" role="alert">
                 {props.message}
               </div>
@@ -29,7 +29,7 @@ export default function Login  (props) {
               <div className="alert alert-danger" role="alert">
                 you don't have admin access
               </div>
-            )} 
+            )}
 
             <Form onSubmit={(e) => {
               e.preventDefault()
@@ -42,7 +42,7 @@ export default function Login  (props) {
                   placeholder="Enter email"
                   name="email"
                   onChange={e => setFormData({
-                    ...formData,...{email: e.target.value}
+                    ...formData, ...{ email: e.target.value }
                   })}
                 />
               </Form.Group>
@@ -54,7 +54,7 @@ export default function Login  (props) {
                   placeholder="Password"
                   name="password"
                   onChange={e => setFormData({
-                    ...formData,...{password: e.target.value}
+                    ...formData, ...{ password: e.target.value }
                   })}
                 />
               </Form.Group>
@@ -64,13 +64,13 @@ export default function Login  (props) {
                   sign in
                 </Button>
               </div>
-            </Form>              
+            </Form>
           </div>
           <div className="sign-up">
-              <p>Don't Have account yet? 
-                <Link to='/register'><strong> Sign Up</strong> </Link>
-                </p>
-            </div>
+            <p>Don't Have account yet?
+              <Link to='/register'><strong> Sign Up</strong> </Link>
+            </p>
+          </div>
         </div>
       </div>
     </>
@@ -78,5 +78,5 @@ export default function Login  (props) {
 };
 
 Login.defaultProps = {
-  onSubmit: () => {}
+  onSubmit: () => { }
 }
