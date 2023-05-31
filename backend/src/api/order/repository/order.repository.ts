@@ -27,6 +27,7 @@ export class OrderRepository extends Repository<OrderEntity> {
     queryBuilder
       .leftJoinAndSelect('order.user', 'user')
       .leftJoinAndSelect('order.car', 'car')
+      .leftJoinAndSelect('car.car_media','car_media')
       .where('user.id = order.user_id')
       .andWhere('car.id = order.car_id');
 
