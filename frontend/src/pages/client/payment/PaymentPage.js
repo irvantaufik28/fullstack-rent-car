@@ -8,6 +8,7 @@ import jwtDecode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import axios from "axios";
+import config from "../../../config";
 
 export default function PaymentPage() {
   const navigate = useNavigate()
@@ -33,9 +34,10 @@ export default function PaymentPage() {
   }
   
   const addOrder = async (params) => {
+    const apiUrl = config.apiBaseUrl
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.post("http://localhost:4001/order", params, {
+      const response = await axios.post(apiUrl + "/order", params, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json"

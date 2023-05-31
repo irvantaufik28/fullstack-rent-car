@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import config from "../config";
 // import config from "../config";
 
 const initialState = {
@@ -9,10 +10,10 @@ const initialState = {
   }
 
 export const getUser = createAsyncThunk('user/getUser', async ( token,rejectWithValue) => {
-    // const apiUrl = config.apiBaseUrl
+  const apiUrl = config.apiBaseUrl
     try {
 
-        const response = await axios.get('http://localhost:4001/user/profile', {
+        const response = await axios.get(apiUrl + '/user/profile', {
             headers: {
                 Authorization: `Bearer ${token}`
             }

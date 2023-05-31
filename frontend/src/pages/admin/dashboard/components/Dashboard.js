@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode'
+import config from '../../../../config';
 
 const Dashboard = () => {
  
@@ -25,13 +26,13 @@ const Dashboard = () => {
       console.log('Error decoding token:', error);
     }
   
-
+    const apiUrl = config.apiBaseUrl
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:4001/user/profile', {
+        const response = await axios.get(apiUrl + '/user/profile', {
           headers: {
             Authorization: `Bearer ${token}`
           }

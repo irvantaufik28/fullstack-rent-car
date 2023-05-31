@@ -31,14 +31,14 @@ export default function HomePage() {
   return (
     <>
       <Navbar {...props} />
-      <div>
+      
         <Banner />
         <BestCar {...props} />
         <WhyUs {...props} />
         <Testimonial {...props} />
         <CtaBanner {...props} />
         <Faq {...props} />
-      </div>
+      
       <Footer />
     </>
   )

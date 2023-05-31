@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import Banner from '../../home/components/banner/Banner'; 
+import React, { useEffect, useState } from 'react'
+import Banner from '../../home/components/banner/Banner';
 import CarDetail from './components/carDetail'
 import { useNavigate, useParams } from 'react-router-dom';
 import Navbar from "../../../../components/layouts/Navbar";
@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { carSelectors, getCarById } from '../../../../features/carSlice';
 import Calendar from './components/Calendar';
 import { format } from 'date-fns';
-import { setOrder } from '../../../../features/orderSlice';
+import LoadingSpiner from '../../../../components/ui/LoadingSpiner';
 
 export default function CarDetailPage() {
   const navigate = useNavigate()
@@ -17,38 +17,50 @@ export default function CarDetailPage() {
 
   const dispatch = useDispatch();
   const car = useSelector(carSelectors.selectCarById);
-  
+  const loading = useSelector(carSelectors.loading)
+  const [message, setMessage] = useState('')
   useEffect(() => {
     dispatch(getCarById(id));
-    
-  }, []);
-  
-  
-  const handleData = (payload) => {
-    const formattedDate = (date) => {
-      return format(date, "yyyy-MM-dd");
-    };
-    let requestOrder = {
-      start_date_at: formattedDate(payload[0]),
-      finish_date_at: formattedDate(payload[1]),
-      car_id: car?.id
-    };
 
-    const newData = {...requestOrder,...car}  
-    localStorage.setItem('order_detail',JSON.stringify(newData))
-  
-    navigate('/payment')
-     
+  }, []);
+
+
+  const handleData = (payload) => {
+    console.log(payload.length <= 0)
+    if (payload.length <= 0) {
+      setMessage('pilih tanggal sewa terlebih dahulu')
+    } else {
+          const formattedDate = (date) => {
+            return format(date, "yyyy-MM-dd");
+          };
+          let requestOrder = {
+            start_date_at: formattedDate(payload[0]),
+            finish_date_at: formattedDate(payload[1]),
+            car_id: car?.id
+          };
+      
+          const newData = { ...requestOrder, ...car }
+          localStorage.setItem('order_detail', JSON.stringify(newData))
+      
+          navigate('/payment')
+    }
+
   };
 
   return (
     <>
-    <Navbar />
+      <Navbar />
       <Banner />
       <FromFilterDetail data={car} />
-      <CarDetail data={car}>
-        <Calendar onSubmit={handleData} />
-      </CarDetail>
+
+      {loading ? (
+        <LoadingSpiner />
+      ) : (
+        <>{car !== undefined && <CarDetail data={car}  message= {message}>
+          <Calendar onSubmit={handleData}  message= {message}/>
+        </CarDetail>} </>
+      )}
+
       <Footer />
     </>
   )

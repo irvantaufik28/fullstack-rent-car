@@ -18,6 +18,7 @@ import PrivateRoutesCustomer from "../utils/PrivateRouteCustomer";
 import PaymentPage from "../pages/client/payment/PaymentPage";
 import { PaymentValidationPage } from "../pages/client/payment/PaymentValidationPage";
 import OrderStatusPage from "../pages/client/order-status/OrderStatusPage";
+
 function IndexRoutes() {
   return (
     <Router>
@@ -29,7 +30,7 @@ function IndexRoutes() {
         <Route path="/car/:id" element={<CarDetailPage />} />
         <Route path="/user/profile" element={<UserProfilePage />} />
         <Route path="/user/profile/setting" element={<UserSettingPage />} />
-
+\
         <Route element={<PrivateRoutesCustomer />}>
 
           <Route path="/payment" element={<PaymentPage />} />

@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
 import Register from './components/Register'
 import axios from 'axios' 
+import config from '../../../config'
 
 const RegisterPage = () => {
   const [message, setMessage] = useState("")
   const [successRegister, setSuccessRegister] = useState(false);
-
+  const apiUrl = config.apiBaseUrl
   const registerUser = async (params = {}) => {
     try {
-      await axios.post("http://localhost:4001/user/register", params)
+      await axios.post(apiUrl + "/user/register", params)
     
       setSuccessRegister(true)
     } catch (err) {

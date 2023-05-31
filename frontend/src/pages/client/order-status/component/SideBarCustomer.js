@@ -58,17 +58,6 @@ export default function SideBarCustomer({ children }) {
 
 <div className="container-fluid">
   <div className="row">
-
-    {/* <div className="ant-siderside animate__animated">
-      <ul className="ant-list-clip">
-        <li>
-          <a href="#"><i className="fa"></i> Adult</a>
-        </li>
-        <li>
-          <a href="#"><i className="fa"></i> Asia</a>
-        </li>
-      </ul>
-    </div> */}
     <div className="col ant-content d-flex align-items-stretch">
    {children}
     </div>

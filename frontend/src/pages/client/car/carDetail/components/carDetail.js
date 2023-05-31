@@ -1,29 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ImageWithLoading from "../../../../../components/ui/ImageWithLoading";
 import { BsFillPeopleFill } from 'react-icons/bs'
 import Accordion from "react-bootstrap/Accordion";
 import "../styles/detailcar.css"
-import LoadingSpiner from "../../../../../components/ui/LoadingSpiner";
 import nullImage from '../../../../../assets/img/imagenotfound.jpeg'
 import { Carousel } from "react-bootstrap";
 
 export default function CarDetail(props) {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (loading) {
-    return (
-      <LoadingSpiner />
-    );
-  }
-
 
 
   const formatter = new Intl.NumberFormat("id-ID", {
@@ -31,7 +14,6 @@ export default function CarDetail(props) {
     currency: 'IDR',
     minimumFractionDigits: 0
   });
-
 
   return (
     <div className="container detailcar">
@@ -94,7 +76,7 @@ export default function CarDetail(props) {
         <div className="col-md-5 d-flex mt-5 detail-car-card">
           <div className="card-car">
             <div className="image-car-detail">
-              {props.data?.car_media.length <= 0 ? (
+              {props.data?.car_media?.length <= 0 ? (
                 <ImageWithLoading src={nullImage} alt={'null'} />
 
 
@@ -103,7 +85,7 @@ export default function CarDetail(props) {
                   interval={null}
                   variant="dark"
                 >
-                  {props.data.car_media.map(media => (
+                  {props.data?.car_media?.map(media => (
                     <Carousel.Item key={media.id}>
                       <ImageWithLoading src={media.image_url} alt={'null'} />
                     </Carousel.Item>
