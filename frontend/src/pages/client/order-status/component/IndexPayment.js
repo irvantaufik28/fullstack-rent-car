@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import { Tab, Tabs } from "react-bootstrap";
-import AllPaymentStatus from "./AllPaymentStatus";
 import { useDispatch, useSelector } from "react-redux";
 import { customerGetAllOrder, orderSelector } from "../../../../features/orderSlice";
-import NotPaidPaymentStatus from "./NotPaidPaymentStatus";
-import SubmitPaymentStatus from "./SubmitPaymentStatus";
-import ConfirmPaymentStatus from "./ConfirmPaymentStatus";
-import CompletedPaymentStatus from "./CompletedPaymentStatus";
+import AllPaymentStatus from "./payment-status/AllPaymentStatus";
+import NotPaidPaymentStatus from "./payment-status/NotPaidPaymentStatus";
+import SubmitPaymentStatus from "./payment-status/SubmitPaymentStatus";
+import ConfirmPaymentStatus from "./payment-status/ConfirmPaymentStatus";
+import CompletedPaymentStatus from "./payment-status/CompletedPaymentStatus";
+import CanceledPaymentStatus from "./payment-status/CanceledPaymentStatus ";
 
 export default function IndexPayment(props) {
   const dispatch = useDispatch()
@@ -41,6 +42,9 @@ export default function IndexPayment(props) {
             </Tab>
             <Tab eventKey="payment-finish" title="Selesai">
               <CompletedPaymentStatus data = {data} />
+            </Tab> 
+            <Tab eventKey="payment-canceled" title="DiBatalkan">
+              <CanceledPaymentStatus data = {data} />
             </Tab>
           </Tabs>
         </div>

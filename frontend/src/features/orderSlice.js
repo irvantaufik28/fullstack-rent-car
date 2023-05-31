@@ -72,7 +72,7 @@ export const customerGetAllOrder = createAsyncThunk('order/customer/getAllOrder'
 
     try {
 
-        const response = await axios.get(apiUrl + "/order/customer/list", {
+        const response = await axios.get(apiUrl + "/order", {
             params,
             headers: {
                 Authorization: `Bearer ${token}`

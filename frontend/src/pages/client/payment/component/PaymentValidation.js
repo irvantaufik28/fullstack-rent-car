@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import { Button, Col, Modal, Row} from 'react-bootstrap';
+import { Button, Col, Modal, Row } from 'react-bootstrap';
 import { useDropzone } from 'react-dropzone';
 import { useNavigate } from 'react-router-dom';
 import '../styles/paymentvalidation.css'
@@ -115,7 +115,7 @@ export const PaymentValidation = (props) => {
         dropzoneStyleDynamic = { ...dropzoneStyleDynamic, ...rejectStyle };
     }
 
-   
+
 
 
 
@@ -212,6 +212,11 @@ export const PaymentValidation = (props) => {
                     <div className="col-md-4">
                         <div className="right-content-payment">
                             <p>Klik konfirmasi pembayaran untuk mempercepat proses pengecekan</p>
+                            {props.message && (
+                                <div className="alert alert-danger" role="alert">
+                                    {props.message}
+                                </div>
+                            )}
                             <div>
                                 <section className="container">
                                     <div {...getRootProps({ className: 'dropzone', style: dropzoneStyleDynamic })}>
@@ -292,10 +297,10 @@ export const PaymentValidation = (props) => {
                 </Modal.Body>
                 <Modal.Footer>
 
-                    <Button 
-                    variant="primary" 
-                    onClick={handleClose}
-                    disabled = {!inputTitleBank}
+                    <Button
+                        variant="primary"
+                        onClick={handleClose}
+                        disabled={!inputTitleBank}
                     >
                         Save Changes
                     </Button>

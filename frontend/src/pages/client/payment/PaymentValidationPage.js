@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import PaymentValidation from './component/PaymentValidation'
 import PaymentReminder from './component/PaymentReminder'
 import { useParams } from 'react-router-dom'
@@ -13,7 +13,7 @@ import { useCookies } from 'react-cookie';
 import jwtDecode from 'jwt-decode';
 
 export const PaymentValidationPage = () => {
-
+  const [message, setMessage] = useState('')
   const { id } = useParams()
   const dispatch = useDispatch()
   const order = useSelector(orderSelector.selectCustomerOrdeyById)
@@ -45,7 +45,8 @@ export const PaymentValidationPage = () => {
       })
       
     } catch (err) {
-      console.log(err.message)
+      setMessage((err.response.data.message))
+
     }
   }
 
@@ -54,7 +55,7 @@ export const PaymentValidationPage = () => {
     <>
       <NavbarLayout />
       <HeaderPayment />
-      <PaymentValidation data={order} handleClick={confirmationPayment} >
+      <PaymentValidation data={order} handleClick={confirmationPayment} message={message} >
         <PaymentReminder data={order} />
       </PaymentValidation >
       <FooterLayout />
