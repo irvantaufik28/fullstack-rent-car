@@ -74,7 +74,7 @@ export class OrderService {
       user_id,
       total_price,
       status: OrderStatus.PENDING,
-      slip_id: 1,
+    
     });
     
     const createNotificationDto: CreateNotificationDto = {

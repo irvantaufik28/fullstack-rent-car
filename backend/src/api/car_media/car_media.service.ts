@@ -20,7 +20,6 @@ export class CarMediaService {
     uploadImageDto: UploadImageDto,
     files: any,
   ): Promise<CarMediaEntity> {
-    console.log(files)
     const car = await this.carService.getCarById(uploadImageDto.car_id);
     if (!car) {
       throw new HttpException('car not found', HttpStatus.NOT_FOUND);

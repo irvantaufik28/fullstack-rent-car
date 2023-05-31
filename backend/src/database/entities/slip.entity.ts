@@ -1,4 +1,5 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { OrderEntity } from './order.entity';
 
 
 @Entity('slip')
@@ -10,7 +11,7 @@ export class SlipEntity extends BaseEntity {
   user_id: number;
 
   @Column()
-  order_id: string;
+  order_id: number;
 
   @Column()
   url_slip: string;
@@ -21,5 +22,8 @@ export class SlipEntity extends BaseEntity {
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   updateAt: Date;
 
+  @OneToOne(() => OrderEntity, (o) => o.slip )
+  @JoinColumn({ name: "order_id"})
+  slip: SlipEntity
  
 }

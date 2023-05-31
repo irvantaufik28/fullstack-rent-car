@@ -14,6 +14,7 @@ import { MailerModule } from '@nestjs-modules/mailer';
 import { CarMediaModule } from './car_media/car_media.module';
 import { UploadModule } from './upload/upload.module';
 import { MulterModule } from '@nestjs/platform-express';
+import { SlipModule } from './slip/slip.module';
 @Module({
   imports: [
     UserModule,
@@ -40,6 +41,7 @@ import { MulterModule } from '@nestjs/platform-express';
      }),
     CarMediaModule,
     UploadModule,
+    SlipModule,
    
   ],
   providers: [],

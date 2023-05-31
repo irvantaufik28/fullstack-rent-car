@@ -23,72 +23,70 @@ export class OrderRepository extends Repository<OrderEntity> {
   ): Promise<PageOrderDto<CreateOrderDto>> => {
     const queryBuilder = this.orderRepository.createQueryBuilder('order');
 
-    queryBuilder.leftJoinAndSelect('order.user', 'user')
-    .leftJoinAndSelect('order.car', 'car')
-    .where('user.id = order.user_id')
-    .andWhere('car.id = order.car_id');
+    queryBuilder
+      .leftJoinAndSelect('order.user', 'user')
+      .leftJoinAndSelect('order.car', 'car')
+      .where('user.id = order.user_id')
+      .andWhere('car.id = order.car_id');
 
-
-    if(pageOptionsDto.category) {
+    if (pageOptionsDto.category) {
       queryBuilder.andWhere('car.category = :category', {
-        category: `${pageOptionsDto.category.toLowerCase()}`
-      }) 
+        category: `${pageOptionsDto.category.toLowerCase()}`,
+      });
     }
-    
-    if(pageOptionsDto.email) {
+
+    if (pageOptionsDto.email) {
       queryBuilder.andWhere('user.email = :email', {
-        email: `${pageOptionsDto.email.toLowerCase()}`
-      }) 
-    } 
-    
-    
-    if(pageOptionsDto.total_price) {
+        email: `${pageOptionsDto.email.toLowerCase()}`,
+      });
+    }
+
+    if (pageOptionsDto.total_price) {
       queryBuilder.andWhere('order.total_price = :total_price', {
-        total_price: `${pageOptionsDto.total_price}`
-      }) 
+        total_price: `${pageOptionsDto.total_price}`,
+      });
     }
     if (pageOptionsDto.start_rent_at) {
       const startRentAt = new Date(pageOptionsDto.start_rent_at);
       queryBuilder.andWhere('order.start_rent_at = :start_rent_at', {
-        start_rent_at: startRentAt.toISOString()
+        start_rent_at: startRentAt.toISOString(),
       });
-    } 
-    
+    }
+
     if (pageOptionsDto.finish_rent_at) {
       const finihsRentAt = new Date(pageOptionsDto.finish_rent_at);
       queryBuilder.andWhere('order.finish_rent_at = :finish_rent_at', {
-        finish_rent_at: finihsRentAt.toISOString()
+        finish_rent_at: finihsRentAt.toISOString(),
       });
     }
 
-  if (pageOptionsDto.createdAt) {
+    if (pageOptionsDto.createdAt) {
       const createdAt = new Date(pageOptionsDto.createdAt);
       queryBuilder.andWhere('order.createdAt = :createdAt', {
-        createdAt: createdAt.toISOString()
+        createdAt: createdAt.toISOString(),
       });
     }
 
-  if (pageOptionsDto.updateAt) {
+    if (pageOptionsDto.updateAt) {
       const updatedAt = new Date(pageOptionsDto.updateAt);
       queryBuilder.andWhere('order.createdAt = :createdAt', {
-        updatedAt: updatedAt.toISOString()
+        updatedAt: updatedAt.toISOString(),
       });
     }
 
     const orderByMap = {
-      car : 'car.name',
+      car: 'car.name',
       user_email: 'user.email',
       start_rent_at: 'order.start_rent_at',
       finish_rent_at: 'order.finish_rent_at',
       category: 'car.category',
       total_price: 'order.total_price',
-      createdAt: 'order.createdAt'
+      createdAt: 'order.createdAt',
     };
     const orderValue = orderByMap[pageOptionsDto.orderBy] || '';
-    
 
     queryBuilder
-      .orderBy(`${orderValue}`,pageOptionsDto.order)
+      .orderBy(`${orderValue}`, pageOptionsDto.order)
       .skip(pageOptionsDto.skip)
       .take(pageOptionsDto.take);
     const itemCount = await queryBuilder.getCount();
@@ -98,32 +96,30 @@ export class OrderRepository extends Repository<OrderEntity> {
     return new PageOrderDto(entities, pageMetaDto);
   };
 
-
-
   customerGetAllOrdersPagination = async (
     pageOptionsDto: PageOrderOptionsDto,
-    user_id: number
+    user_id: number,
   ): Promise<PageOrderDto<CreateOrderDto>> => {
     const queryBuilder = this.orderRepository.createQueryBuilder('order');
-  
+
     queryBuilder
       .leftJoinAndSelect('order.user', 'user')
       .leftJoinAndSelect('order.car', 'car')
-      .where('user.id = :user_id', { user_id }) 
+      .where('user.id = :user_id', { user_id })
       .andWhere('car.id = order.car_id');
-  
+
     queryBuilder
       .orderBy('order.createdAt', pageOptionsDto.order)
       .skip(pageOptionsDto.skip)
       .take(pageOptionsDto.take);
-  
+
     const itemCount = await queryBuilder.getCount();
     const { entities } = await queryBuilder.getRawAndEntities();
     const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
-  
+
     return new PageOrderDto(entities, pageMetaDto);
   };
-  
+
   createOrder = async (
     createOrderDto: CreateOrderDto,
   ): Promise<CreateOrderDto> => {
@@ -169,14 +165,16 @@ export class OrderRepository extends Repository<OrderEntity> {
     return order;
   };
 
-  getOrderById = async (id:number, options: object = {}):Promise<OrderEntity> => {
+  getOrderById = async (
+    id: number,
+    options: object = {},
+  ): Promise<OrderEntity> => {
     const order = this.orderRepository.findOne({
       where: {
-        id
+        id,
       },
-      relations:{user: true, car: true}
-    })
-    return order
-  }
-
+      relations: ['user', 'user.user_detail', 'car', 'slip'],
+    });
+    return order;
+  };
 }

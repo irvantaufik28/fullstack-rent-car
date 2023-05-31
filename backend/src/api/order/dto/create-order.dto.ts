@@ -19,9 +19,6 @@ export class CreateOrderDto {
   status: string;
 
   @IsOptional()
-  slip_id: number;
-
-  @IsOptional()
   user_id: number
 
   @IsOptional()

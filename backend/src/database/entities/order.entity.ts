@@ -1,4 +1,5 @@
 import { CarEntity } from './car.entity'; 
+import { SlipEntity } from './slip.entity';
 import { UserEntity } from './user.entity'; 
 import {
   BaseEntity,
@@ -6,6 +7,7 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -27,9 +29,6 @@ export class OrderEntity extends BaseEntity {
   status: string;
 
   @Column()
-  slip_id: number;
-
-  @Column()
   user_id: number;
 
   @Column()
@@ -48,4 +47,7 @@ export class OrderEntity extends BaseEntity {
   @ManyToOne(() => CarEntity, (o) => o.order)
   @JoinColumn({ name: "car_id" })
   car: CarEntity;
+
+  @OneToOne(() => SlipEntity, (o) => o.slip)
+  slip: SlipEntity
 }
