@@ -21,7 +21,7 @@ export default function PaymentReminder (props) {
     const minute = date.getMinutes().toString().padStart(2, '0');
 
     const formattedDate = `${dayOfWeek}, ${dayOfMonth} ${month} ${year} jam ${hour}.${minute} WIB`;
-    console.log(formattedDate)
+  
     setTime(remainingTime);
     setDeadlineTime(formattedDate);
 

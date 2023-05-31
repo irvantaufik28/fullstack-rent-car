@@ -39,7 +39,6 @@ export default function AdminAddCarPage() {
   };
 
   const onSubmitAddCar = async (formData) => {
-    console.log(formData)
     try {
       // setIsSubmitting(true);
       const { name, price, category } = formData;

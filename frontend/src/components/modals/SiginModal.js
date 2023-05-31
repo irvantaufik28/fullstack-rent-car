@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { Button, Form, Modal } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import jwtDecode from "jwt-decode";
 import { login } from '../../features/authSlice';
 import { useCookies } from 'react-cookie';
 
@@ -11,7 +10,7 @@ export default function SignInModal(props) {
     const [message, setMessage] = useState("");
     const [show, setShow] = useState(false);
     const [cookies, setCookie] = useCookies(['token', 'refresh_token']);
-  
+
     const [formData, setFormData] = useState({
         email: "",
         password: "",
@@ -30,11 +29,11 @@ export default function SignInModal(props) {
     const handleSaveChanges = async (e) => {
         e.preventDefault()
         try {
-            
+
             const result = await dispatch(login(formData)).unwrap();
             setCookie('token', result.access_token, { path: '/' });
             setCookie('refresh_token', result.refresh_token, { path: '/' });
-         
+
             handleClose();
         } catch (err) {
             setMessage(err.message);
@@ -42,13 +41,18 @@ export default function SignInModal(props) {
     };
 
     return (
-        <Modal show={show} onHide={handleClose} backdrop="static" >
+        <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
-                <Modal.Title>Modal heading</Modal.Title>
+                <Modal.Title>Sigin untuk melanjutkan pembayaran</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form >
                     <Form.Group className="mb-3" controlId="email">
+                        {message && (
+                            <div className="alert alert-danger" role="alert">
+                                {message}
+                            </div>
+                        )}
                         <Form.Label>Email</Form.Label>
                         <Form.Control
                             type="email"

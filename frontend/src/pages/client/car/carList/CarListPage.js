@@ -12,7 +12,6 @@ export default function FindCar() {
   const dispatch = useDispatch();
   const loading = useSelector(carSelectors.loading);
   const data = useSelector(carSelectors.selectAllCars);
-  console.log(data)
 useEffect(() => {
     dispatch(getAllCars());
   }, []);
