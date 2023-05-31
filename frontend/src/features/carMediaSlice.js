@@ -4,7 +4,10 @@ import config from "../config"
 
 
 export const addImageCar = createAsyncThunk('car/media', async(params = {}) => {
-    const token = localStorage.getItem('token')
+    const token= document.cookie
+    .split('; ')
+    .find((row) => row.startsWith('token='))
+    ?.split('=')[1];
     const apiUrl =  config.apiBaseUrl
 
     try {

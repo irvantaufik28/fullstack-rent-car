@@ -4,20 +4,22 @@ import { useNavigate } from 'react-router-dom';
 import jwtDecode from "jwt-decode";
 import { useDispatch } from "react-redux";
 import { login } from '../../../features/authSlice';
+import { useCookies } from 'react-cookie';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
-
+  const [cookies, setCookie] = useCookies(['token', 'refresh_token']);
+  
   const onSubmitLogin = async (payload) => {
     try {
       const result = await dispatch(login(payload)).unwrap();
       
       const user = jwtDecode(result.access_token)
-      localStorage.setItem('token',result.access_token)
-      localStorage.setItem('refresh_token',result.refresh_token)
-
+      setCookie('token', result.access_token, { path: '/' });
+      setCookie('refresh_token', result.refresh_token, { path: '/' });
+      
 
       if (user.role_name === 'ADMIN') {
         navigate('/dashboard')
@@ -28,6 +30,7 @@ const LoginPage = () => {
     } catch (err) {
       setMessage(err.message);
     }
+ 
   };
 
   return (

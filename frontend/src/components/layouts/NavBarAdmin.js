@@ -5,27 +5,29 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { getUser, userSelector } from '../../features/userSlice'
 import { TokenValidation } from '../../utils/tokenValidation'
+import { useCookies } from 'react-cookie'
+import Cookies from 'js-cookie'
 
 export default function NavBarAdmin(props) {
   const [search, setSearch] = useState('')
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const [cookies ] = useCookies(['token', 'refresh_token']);
   
   const auth = TokenValidation()
-  const tokenUser = localStorage.getItem('token')
-  
+  const tokenUser = cookies.token
   const user = useSelector(userSelector.selectUser)
-  
+
   useEffect(() => {
     if (auth.token) {
       dispatch(getUser(tokenUser))
     }
   }, [dispatch]);
   
-  
+
   const handdleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("refresh_token")
+    Cookies.remove('token', { path: '/' }) 
+    Cookies.remove('refresh_token', { path: '/' }) 
     navigate('/login')
   }
 

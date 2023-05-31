@@ -1,21 +1,22 @@
 import jwtDecode from 'jwt-decode';
 import { refreshToken } from '../features/authSlice';
 import { useDispatch } from 'react-redux';
+import { useCookies } from 'react-cookie';
 
 export const TokenValidation = () => {
   const dispatch = useDispatch()
+  const [cookies] = useCookies(['token', 'refresh_token']);
 
- 
   let auth = {
     token: false,
-   
+
   };
-  const token = localStorage.getItem('token');
+  const token = cookies.token
   if (token) {
     try {
       const decoded = jwtDecode(token);
       if (decoded.exp * 1000 < new Date().getTime()) {
-        const get_refresh_token = localStorage.getItem('refresh_token');
+        const get_refresh_token = cookies.refresh_token
         let refresh_token = {
           refresh_token: get_refresh_token,
         };
@@ -28,22 +29,23 @@ export const TokenValidation = () => {
       console.error(error);
     }
   }
- 
+
   return auth;
 };
 
 export const AdminValidation = () => {
+  const [cookies] = useCookies(['token', 'refresh_token']);
   const dispatch = useDispatch()
   let auth = {
     token: false,
     admin: false
   }
-  const token = localStorage.getItem('token')
+  const token = cookies.token
   if (token) {
     try {
       const decoded = jwtDecode(token)
       if (decoded.exp * 1000 < new Date().getTime()) {
-        const get_refresh_token = localStorage.getItem('refresh_token')
+        const get_refresh_token = cookies.refresh_token
         let refresh_token = {
           refresh_token: get_refresh_token
         }
@@ -62,17 +64,18 @@ export const AdminValidation = () => {
 
 
 export const CustomerValidation = () => {
+  const [cookies] = useCookies(['token', 'refresh_token']);
   const dispatch = useDispatch()
   let auth = {
     token: false,
     customer: false
   }
-  const token = localStorage.getItem('token')
+  const token = cookies.token
   if (token) {
     try {
       const decoded = jwtDecode(token)
       if (decoded.exp * 1000 < new Date().getTime()) {
-        const get_refresh_token = localStorage.getItem('refresh_token')
+        const get_refresh_token = cookies.refresh_token
         let refresh_token = {
           refresh_token: get_refresh_token
         }

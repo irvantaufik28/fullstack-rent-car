@@ -16,12 +16,15 @@ export default function UserProfilePage() {
 
   const dispatch = useDispatch()
   const userData = useSelector(userSelector.selectUser)
-
+  const token= document.cookie
+        .split('; ')
+        .find((row) => row.startsWith('token='))
+        ?.split('=')[1];
   useEffect(() => {
     if (!auth.token) {
       (navigate('/login'))
     }
-    dispatch(getUser(localStorage.getItem('token')))
+    dispatch(getUser(token))
   }, [dispatch])
 
   return (

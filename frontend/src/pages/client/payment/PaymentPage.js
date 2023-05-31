@@ -13,7 +13,10 @@ import config from "../../../config";
 export default function PaymentPage() {
   const navigate = useNavigate()
   const [disabledButton, setDisableButton] = useState(true)
-  const token = localStorage.getItem('token')
+  const token = document.cookie
+    .split('; ')
+    .find((row) => row.startsWith('token='))
+    ?.split('=')[1];
   const user = jwtDecode(token);
 
   const order_detail = localStorage.getItem('order_detail')
@@ -29,14 +32,17 @@ export default function PaymentPage() {
       totalPrice: payload.totalPrice,
     }
     setDisableButton(payload.BankType ? false : true)
-    
+
     localStorage.setItem('order_data', JSON.stringify(orderData))
   }
-  
+
   const addOrder = async (params) => {
     const apiUrl = config.apiBaseUrl
     try {
-      const token = localStorage.getItem('token');
+      const token= document.cookie
+      .split('; ')
+      .find((row) => row.startsWith('token='))
+      ?.split('=')[1];
       const response = await axios.post(apiUrl + "/order", params, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -58,12 +64,12 @@ export default function PaymentPage() {
       finish_rent_at: formDataJson.finish_rent_at,
       car_id: formDataJson.car_id
     }
-    
+
     addOrder(payload)
-    
+
   }
 
-  
+
   return (
     <>
       <Navbar />
@@ -77,7 +83,7 @@ export default function PaymentPage() {
             variant="flat"
             onClick={clickButton}
             disabled={disabledButton}
-            >
+          >
             Bayar
           </Button>
         </div>

@@ -13,7 +13,10 @@ export const getAllCars = createAsyncThunk("car/getAllCars", async (params = {})
 
 export const adminAddCar = createAsyncThunk("car/addCar", async (params = {}) => {
 
-    const token = localStorage.getItem('token')
+    const token = document.cookie
+        .split('; ')
+        .find((row) => row.startsWith('token='))
+        ?.split('=')[1];
 
     const apiUrl = config.apiBaseUrl
     try {
@@ -37,7 +40,10 @@ export const getCarById = createAsyncThunk("car/getCar", async (id) => {
 })
 
 export const adminUpdateCar = createAsyncThunk("car/update", async ({ id, params }) => {
-    const token = localStorage.getItem('token');
+    const token = document.cookie
+        .split('; ')
+        .find((row) => row.startsWith('token='))
+        ?.split('=')[1];
     const apiUrl = config.apiBaseUrl
     try {
         const response = await axios.put(apiUrl + `/car/${id}`, params, {
@@ -54,7 +60,10 @@ export const adminUpdateCar = createAsyncThunk("car/update", async ({ id, params
 })
 
 export const deleteCar = createAsyncThunk("car/delete", async (id) => {
-    const token = localStorage.getItem('token');
+    const token = document.cookie
+        .split('; ')
+        .find((row) => row.startsWith('token='))
+        ?.split('=')[1];
     const apiUrl = config.apiBaseUrl;
     await axios.delete(apiUrl + `/car/${id}`, {
         headers: {
