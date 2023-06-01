@@ -3,10 +3,10 @@ import config from "../config";
 import axios from "axios";
 
 export const adminGetAllOrder = createAsyncThunk('order/admin/getAllOrder', async (params = {}) => {
-    const token= document.cookie
-    .split('; ')
-    .find((row) => row.startsWith('token='))
-    ?.split('=')[1];
+    const token = document.cookie
+        .split('; ')
+        .find((row) => row.startsWith('token='))
+        ?.split('=')[1];
     const apiUrl = config.apiBaseUrl
 
     try {
@@ -87,12 +87,36 @@ export const customerGetAllOrder = createAsyncThunk('order/customer/getAllOrder'
     }
 })
 
+export const customerUploadSlip = createAsyncThunk(
+    'order/customer/slip',
+    async (params = {}, { rejectWithValue }) => {
+      const token = document.cookie
+        .split('; ')
+        .find((row) => row.startsWith('token='))
+        ?.split('=')[1];
+      const apiUrl = config.apiBaseUrl;
+  
+      try {
+        await axios.post(apiUrl + '/slip/post', params, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        return params;
+      } catch (error) {
+        return rejectWithValue(error.response.data.message);
+      }
+    }
+  );
 
 
 const orderSlice = createSlice({
     name: 'order',
     initialState: {
         data: {},
+        loading: false,
+        errorMessage: null,
         selectAddOrderResponse: {},
     },
     reducers: {
@@ -114,6 +138,18 @@ const orderSlice = createSlice({
             .addCase(customerGetOrderById.fulfilled, (state, action) => {
                 state.data = action.payload
             })
+            .addCase(customerUploadSlip.fulfilled, (state, action) => {
+                state.data = action.payload;
+                state.loading = false;
+                state.errorMessage = null;
+            })
+            .addCase(customerUploadSlip.rejected, (state, action) => {
+                state.errorMessage = action.payload
+            })
+            .addCase(customerUploadSlip.pending, (state, action) => {
+                state.loading = true
+                state.errorMessage = null
+            })
     }
 })
 
@@ -122,7 +158,9 @@ export const selectAddOrderResponse = (state) => state.car.addCarResponse;
 export const orderSelector = {
     selectAllOrders: (state) => state.order.data,
     selectCustomerAllOrders: (state) => state.order.data,
-    selectCustomerOrdeyById: (state) => state.order.data
+    selectCustomerOrdeyById: (state) => state.order.data,
+    loading: (state) => state.order.loading,
+    errorMessage: (state) => state.order.errorMessage
 
 }
 
