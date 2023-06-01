@@ -160,153 +160,148 @@ export const PaymentValidation = (props) => {
 
     return (
         <>
-            <div className="container">
-                <div className="row">
-                    <div className="col-md-8">
-                        <div className="image_service">
-                            <div className="left-content-paymnet">
-                                <div className="payment-section reminder-payment">{props.children}</div>
-                                <div className="payment-section">
-                                    <h5>lakukan transfer ke</h5>
-                                    <div className="payment-section-bank">
-                                        <Row>
-                                            <Col>
-                                                <Button variant="light">{inputTitleBank}</Button>
-                                            </Col>
-                                            <Col>
-                                                <p>
-                                                    {inputBankType} Transfer
-                                                </p>
-                                                <p>a.n Binar Car Rental</p>
-                                            </Col>
-                                        </Row>
-                                    </div>
-                                    <div className="coloumn-copy-rek">
-                                        <h5>no rekening</h5>
-                                        <input ref={inputRefRekNumber} type="text" value={inputNoRek} readOnly />
-                                        <button onClick={handleCopyRekNumber}>
-                                            <p>copy</p>
-                                        </button>
-                                    </div>
-                                    <div className="coloumn-copy-totalpay">
-                                        <h5>total bayar</h5>
-                                        <input
-                                            ref={inputRefTotalPrice}
-                                            type="text"
-                                            value={props.data?.total_price}
-                                            onChange={handleChange}
-                                        />
-                                        <button onClick={handleCopyTotalPrice}>
-                                            <p>copy</p>
-                                        </button>
-                                    </div>
+        <div className="container">
+            <div className="row">
+                <div className="col-md-8">
+                    <div className="image_service">
+                        <div className="left-content-paymnet">
+                            <div className="payment-section reminder-payment">{props.children}</div>
+                            <div className="payment-section">
+                                <h5>lakukan transfer ke</h5>
+                                <div className="payment-section-bank">
+                                    <Row>
+                                        <Col>
+                                            <Button variant="light">{inputTitleBank}</Button>
+                                        </Col>
+                                        <Col>
+                                            <p>
+                                                {inputBankType} Transfer
+                                            </p>
+                                            <p>a.n Binar Car Rental</p>
+                                        </Col>
+                                    </Row>
                                 </div>
-                                <div className="payment-section">
-                                    <div className="payment-info">
-                                        {/* <PaymentInstruction/> */}
-                                    </div>
+                                <div className="coloumn-copy-rek">
+                                    <h5>no rekening</h5>
+                                    <input ref={inputRefRekNumber} type="text" value={inputNoRek} readOnly />
+                                    <button onClick={handleCopyRekNumber}>
+                                        <p>copy</p>
+                                    </button>
+                                </div>
+                                <div className="coloumn-copy-totalpay">
+                                    <h5>total bayar</h5>
+                                    <input
+                                        ref={inputRefTotalPrice}
+                                        type="text"
+                                        value={props.data?.total_price}
+                                        onChange={handleChange}
+                                    />
+                                    <button onClick={handleCopyTotalPrice}>
+                                        <p>copy</p>
+                                    </button>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div className="col-md-4">
-                        <div className="right-content-payment">
-                            <p>Klik konfirmasi pembayaran untuk mempercepat proses pengecekan</p>
-                            {props.message && (
-                                <div className="alert alert-danger" role="alert">
-                                    {props.message}
+                            <div className="payment-section">
+                                <div className="payment-info">
+                                    {/* <PaymentInstruction/> */}
                                 </div>
-                            )}
-                            <div>
-                                <section className="container">
-                                    <div {...getRootProps({ className: 'dropzone', style: dropzoneStyleDynamic })}>
-                                        <input {...getInputProps()} accept="image/*" />
-                                        {previewImage ? (
-                                            <img src={previewImage} alt="Preview" style={{ maxHeight: '200px' }} />
-                                        ) : (
-                                            <p>Drag 'n' drop some files here, or click to select files</p>
-                                        )}
-                                    </div>
-                                    <aside>
-                                        {acceptedFiles.map((file) => (
-                                            <li key={file.path}>
-                                                {file.path} - {file.size} bytes
-                                            </li>
-                                        ))}
-                                    </aside>
-                                </section>
-                            </div>
-                            <div className="d-grid gap-2">
-                                <Button variant="flat" onClick={handleClickConfirmation}>
-                                    konfirmasi pembayaran
-                                </Button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <Modal show={show}>
-                <Modal.Header >
-                    <Modal.Title>Modal heading</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <div className="bank-option">
+                <div className="col-md-4">
+                    <div className="right-content-payment">
+                        <p>Klik konfirmasi pembayaran untuk mempercepat proses pengecekan</p>
                         <div>
-                            <Row>
-                                <Col>
-                                    <Button
-                                        variant="light"
-                                        onClick={handleBCAClick}
-
-                                    >BCA</Button>
-                                </Col>
-                                <Col>
-                                    <p>BCA Transfer</p>
-                                </Col>
-                                <Col> {bcaTransfer ? <span>&#10003;</span> : null}</Col>
-                            </Row>
-                            <Row>
-                                <Col>
-                                    <Button
-                                        variant="light"
-                                        onClick={handleBNIClick}
-
-                                    >BNI</Button>
-                                </Col>
-                                <Col>
-                                    <p>BNI Transfer</p>
-                                </Col>
-                                <Col> {bniTransfer ? <span>&#10003;</span> : null}</Col>
-                            </Row>
-                            <Row>
-                                <Col>
-                                    <Button
-                                        variant="light"
-                                        onClick={handleMandiriClick}
-
-                                    >MANDIRI</Button>
-                                </Col>
-                                <Col>
-                                    <p>Mandiri Transfer</p>
-                                </Col>
-                                <Col> {mandiriTransfer ? <span>&#10003;</span> : null}</Col>
-                            </Row>
+                            <section className="container">
+                                <div {...getRootProps({ className: 'dropzone', style: dropzoneStyleDynamic })}>
+                                    <input {...getInputProps()} accept="image/*" />
+                                    {previewImage ? (
+                                        <img src={previewImage} alt="Preview" style={{ maxHeight: '200px' }} />
+                                    ) : (
+                                        <p>Drag 'n' drop some files here, or click to select files</p>
+                                    )}
+                                </div>
+                                <aside>
+                                    {acceptedFiles.map((file) => (
+                                        <li key={file.path}>
+                                            {file.path} - {file.size} bytes
+                                        </li>
+                                    ))}
+                                </aside>
+                            </section>
+                        </div>
+                        <div className="d-grid gap-2">
+                            <Button variant="flat" onClick={handleClickConfirmation}>
+                                konfirmasi pembayaran
+                            </Button>
                         </div>
                     </div>
-                </Modal.Body>
-                <Modal.Footer>
+                </div>
+            </div>
+        </div>
 
-                    <Button
-                        variant="primary"
-                        onClick={handleClose}
-                        disabled={!inputTitleBank}
-                    >
-                        Save Changes
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-        </>
+        <Modal show={show}>
+            <Modal.Header >
+                <Modal.Title>Modal heading</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <div className="bank-option">
+                    <div>
+                        <Row>
+                            <Col>
+                                <Button
+                                    variant="light"
+                                    onClick={handleBCAClick}
+
+                                >BCA</Button>
+                            </Col>
+                            <Col>
+                                <p>BCA Transfer</p>
+                            </Col>
+                            <Col> {bcaTransfer ? <span>&#10003;</span> : null}</Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Button
+                                    variant="light"
+                                    onClick={handleBNIClick}
+
+                                >BNI</Button>
+                            </Col>
+                            <Col>
+                                <p>BNI Transfer</p>
+                            </Col>
+                            <Col> {bniTransfer ? <span>&#10003;</span> : null}</Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Button
+                                    variant="light"
+                                    onClick={handleMandiriClick}
+
+                                >MANDIRI</Button>
+                            </Col>
+                            <Col>
+                                <p>Mandiri Transfer</p>
+                            </Col>
+                            <Col> {mandiriTransfer ? <span>&#10003;</span> : null}</Col>
+                        </Row>
+                    </div>
+                </div>
+            </Modal.Body>
+            <Modal.Footer>
+
+                <Button 
+                variant="primary" 
+                onClick={handleClose}
+                disabled = {!inputTitleBank}
+                >
+                    Save Changes
+                </Button>
+            </Modal.Footer>
+        </Modal>
+    </>
     );
 };
 
