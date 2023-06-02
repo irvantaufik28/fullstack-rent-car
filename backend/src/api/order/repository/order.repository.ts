@@ -28,6 +28,8 @@ export class OrderRepository extends Repository<OrderEntity> {
       .leftJoinAndSelect('order.user', 'user')
       .leftJoinAndSelect('order.car', 'car')
       .leftJoinAndSelect('car.car_media','car_media')
+      .leftJoinAndSelect('user.user_detail','user_detail')
+      .leftJoinAndSelect('order.slip','slip')
       .where('user.id = order.user_id')
       .andWhere('car.id = order.car_id');
 
