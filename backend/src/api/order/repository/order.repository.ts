@@ -23,6 +23,7 @@ export class OrderRepository extends Repository<OrderEntity> {
     pageOptionsDto: PageOrderOptionsDto,
   ): Promise<PageOrderDto<CreateOrderDto>> => {
     const queryBuilder = this.orderRepository.createQueryBuilder('order');
+    
 
     queryBuilder
       .leftJoinAndSelect('order.user', 'user')
@@ -38,10 +39,16 @@ export class OrderRepository extends Repository<OrderEntity> {
         category: `${pageOptionsDto.category.toLowerCase()}`,
       });
     }
-
+    
     if (pageOptionsDto.email) {
       queryBuilder.andWhere('user.email = :email', {
         email: `${pageOptionsDto.email.toLowerCase()}`,
+      });
+    }
+    
+    if (pageOptionsDto.status) {
+      queryBuilder.andWhere('order.status = :status', {
+        status: `${pageOptionsDto.status.toUpperCase()}`,
       });
     }
 

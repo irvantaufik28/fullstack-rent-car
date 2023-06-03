@@ -51,6 +51,10 @@ export class PageOrderOptionsDto {
   @Type(()=> String)
   @IsOptional()
   readonly total_price?:string;
+
+  @Type(()=> String)
+  @IsOptional()
+  readonly status?:string;
     
   @Type(()=> String)
   @IsOptional()
