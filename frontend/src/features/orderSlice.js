@@ -11,11 +11,11 @@ export const adminGetAllOrder = createAsyncThunk('order/admin/getAllOrder', asyn
 
     try {
 
-        const response = await axios.get(apiUrl + "/order", {
-            params
-            // headers: {
-            //     Authorization: `Bearer ${token}`
-            // }
+        const response = await axios.get(apiUrl + "/order/admin", {
+            params,
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
         });
 
         return response.data
@@ -97,13 +97,13 @@ export const customerUploadSlip = createAsyncThunk(
       const apiUrl = config.apiBaseUrl;
   
       try {
-        await axios.post(apiUrl + '/slip/post', params, {
+     const response = await axios.post(apiUrl + '/slip/post', params, {
           headers: {
             'Content-Type': 'multipart/form-data',
             Authorization: `Bearer ${token}`,
           },
         });
-        return params;
+        return response;
       } catch (error) {
         return rejectWithValue(error.response.data.message);
       }
@@ -118,11 +118,16 @@ const orderSlice = createSlice({
         loading: false,
         errorMessage: null,
         selectAddOrderResponse: {},
+        paginate: {}
     },
     reducers: {
         setOrder: (state, action) => {
             return action.payload;
         },
+        setPaginate: (state, action) => {
+            state.paginate = action.payload
+        }
+        
     },
     extraReducers: (builder) => {
         builder
@@ -153,7 +158,7 @@ const orderSlice = createSlice({
     }
 })
 
-export const { setOrder } = orderSlice.actions;
+export const { setOrder, setPaginate } = orderSlice.actions;
 export const selectAddOrderResponse = (state) => state.car.addCarResponse;
 export const orderSelector = {
     selectAllOrders: (state) => state.order.data,

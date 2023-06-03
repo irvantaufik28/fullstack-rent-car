@@ -19,6 +19,7 @@ import PaymentPage from "../pages/client/payment/PaymentPage";
 import { PaymentValidationPage } from "../pages/client/payment/PaymentValidationPage";
 import OrderStatusPage from "../pages/client/order-status/OrderStatusPage";
 import PaymentReceiptPage from "../pages/client/payment/PaymentReceiptPage";
+import AdminOrderPage from "../pages/admin/order/AdminOrderPage";
 
 function IndexRoutes() {
   return (
@@ -45,6 +46,7 @@ function IndexRoutes() {
           <Route path="/admin/addcar" element={<AdminAddCarPage />} />
           <Route path="/admin/update/car/:id" element={<AdminUpdateCarPage />} />
           <Route path="/dashboard" element={<DashboardAdmin />} />
+          <Route path="/admin/order" element={<AdminOrderPage />} />
         </Route>
 
 

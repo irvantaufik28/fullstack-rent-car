@@ -34,13 +34,20 @@ export const PaymentValidationPage = () => {
     formData.append("user_id", decoded.id)
     formData.append("order_id", id)
     formData.append("file", payload)
-    dispatch(customerUploadSlip(formData))
-    setShow(true)
+ 
+    try {
+      
+      const response = await dispatch(customerUploadSlip(formData)).unwrap()
+     if (response.status === 201) {
+      setShow(true)
+     } 
+    } catch (error) {
+      console.log(error.message)
+    }
+    
    
     
   }
-
-  
 
   return (
     <>
@@ -49,7 +56,7 @@ export const PaymentValidationPage = () => {
       <PaymentValidation data={order} handleClick={confirmationPayment} message={errorMessage} >
         <PaymentReminder data={order} />
       </PaymentValidation >
-      <NotifPayment show = {show} order_id = {order?.id}/>
+      <NotifPayment show = {show} order_id = {id}/>
       <FooterLayout />
     </>
   )
