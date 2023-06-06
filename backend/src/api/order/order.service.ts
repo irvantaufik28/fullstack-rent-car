@@ -74,7 +74,9 @@ export class OrderService {
       }),
     );
 
-    return result;
+    return {
+      data: result
+    } 
   }
 
   async adminDeleteOrder(id: number): Promise<any> {
@@ -119,7 +121,6 @@ export class OrderService {
     user_id: number,
   ): Promise<CreateOrderDto> {
     const car = await this.carRepository.getCarById(createOrderDto.car_id);
-    console.log(car);
     if (!car) {
       const createNotificationDto: CreateNotificationDto = {
         recipient_id: 2,
