@@ -29,7 +29,7 @@ export default function IndexPayment(props) {
       page: 1,
       take: 6,
     });
-    if (selectedStatus === "payment-all") {
+    if (!selectedStatus) {
       dispatch(adminGetAllOrder(filterPage));
     } else if (selectedStatus === "payment-pending") {
       dispatch(adminGetAllOrder({ ...filterPage, status: "PENDING" } || { take: 10, page: 1, status: "PENDING" }));
@@ -48,6 +48,8 @@ export default function IndexPayment(props) {
     }
     else if (selectedStatus === "payment-finish") {
       dispatch(adminGetAllOrder({ ...filterPage, status: "COMPLETED" } || { take: 10, page: 1, status: "COMPLETED" }));
+    } else if (selectedStatus === "payment-all") {
+      dispatch(adminGetAllOrder(filterPage));
     }
   }, [selectedStatus, paginate]);
 

@@ -15,7 +15,9 @@ export default function AllPaymentStatus(props) {
     currency: 'IDR',
     minimumFractionDigits: 0
   });
-console.log(props?.data?.orders)
+
+  
+
   return (
     <>
       {props.data?.orders?.map(o => (
@@ -25,7 +27,7 @@ console.log(props?.data?.orders)
             o.status === 'SUBMIT' ? "SEDANG PROSES" : 
             o.status === 'CONFIRM' ? "SUDAH DI KONFIRMASI":
             o.status === 'CANCELED' ? "DIBATALKAN" : 
-            o.status === "COMPLETED" ? "SELESAI" : "DIBATALKAN"
+            o.status === "COMPLETED" ? "SELESAI" : "DITOLAK"
             }
           
           </Card.Header><Card.Body>
@@ -93,8 +95,15 @@ console.log(props?.data?.orders)
                 <Button variant="primary">Lihat Detail</Button>
                 </>
               }
-              {
+               {
                 o.status === "CANCELED" &&
+                <>
+                <Button variant="primary">Lihat Detail</Button>
+                <Button variant="primary">Sewa Lagi</Button>
+                </>
+              }
+              {
+                o.status === "REJECTED" &&
                 <>
                 <Button variant="primary">Lihat Detail</Button>
                 <Button variant="primary">Sewa Lagi</Button>

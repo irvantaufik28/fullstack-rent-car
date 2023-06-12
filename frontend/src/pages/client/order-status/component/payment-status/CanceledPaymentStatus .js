@@ -15,12 +15,9 @@ export default function CanceledPaymentStatus(props) {
     currency: 'IDR',
     minimumFractionDigits: 0
   });
-
-  const filteredOrder = props.data?.orders?.filter(o => o.status === "CANCELED");
-
   return (
     <>
-      {filteredOrder?.map(o => (
+      {props.data?.orders?.map(o => (
         <Card className='card-status-payment' key={o.id}>
           <Card.Header>
             {o.status === 'PENDING' ? "BELUM BAYAR" :

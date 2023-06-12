@@ -11,7 +11,7 @@ import CanceledPaymentStatus from "./payment-status/CanceledPaymentStatus ";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
-export default function IndexPayment() {
+export default function IndexPayment(props) {
   const dispatch = useDispatch()
   const data = useSelector(orderSelector.selectCustomerAllOrders)
   const navigate = useNavigate();
