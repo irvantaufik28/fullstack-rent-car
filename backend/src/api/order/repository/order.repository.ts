@@ -114,8 +114,11 @@ export class OrderRepository extends Repository<OrderEntity> {
     const queryBuilder = this.orderRepository.createQueryBuilder('order');
 
     queryBuilder
-      .leftJoinAndSelect('order.user', 'user')
-      .leftJoinAndSelect('order.car', 'car')
+    .leftJoinAndSelect('order.user', 'user')
+    .leftJoinAndSelect('order.car', 'car')
+    .leftJoinAndSelect('car.car_media','car_media')
+    .leftJoinAndSelect('user.user_detail','user_detail')
+    .leftJoinAndSelect('order.slip','slip')
       .where('user.id = :user_id', { user_id })
       .andWhere('car.id = order.car_id');
 
