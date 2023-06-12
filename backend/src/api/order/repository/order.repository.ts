@@ -23,14 +23,13 @@ export class OrderRepository extends Repository<OrderEntity> {
     pageOptionsDto: PageOrderOptionsDto,
   ): Promise<PageOrderDto<CreateOrderDto>> => {
     const queryBuilder = this.orderRepository.createQueryBuilder('order');
-    
 
     queryBuilder
       .leftJoinAndSelect('order.user', 'user')
       .leftJoinAndSelect('order.car', 'car')
-      .leftJoinAndSelect('car.car_media','car_media')
-      .leftJoinAndSelect('user.user_detail','user_detail')
-      .leftJoinAndSelect('order.slip','slip')
+      .leftJoinAndSelect('car.car_media', 'car_media')
+      .leftJoinAndSelect('user.user_detail', 'user_detail')
+      .leftJoinAndSelect('order.slip', 'slip')
       .where('user.id = order.user_id')
       .andWhere('car.id = order.car_id');
 
@@ -39,13 +38,13 @@ export class OrderRepository extends Repository<OrderEntity> {
         category: `${pageOptionsDto.category.toLowerCase()}`,
       });
     }
-    
+
     if (pageOptionsDto.email) {
       queryBuilder.andWhere('user.email = :email', {
         email: `${pageOptionsDto.email.toLowerCase()}`,
       });
     }
-    
+
     if (pageOptionsDto.status) {
       queryBuilder.andWhere('order.status = :status', {
         status: `${pageOptionsDto.status.toUpperCase()}`,
@@ -114,16 +113,33 @@ export class OrderRepository extends Repository<OrderEntity> {
     const queryBuilder = this.orderRepository.createQueryBuilder('order');
 
     queryBuilder
-    .leftJoinAndSelect('order.user', 'user')
-    .leftJoinAndSelect('order.car', 'car')
-    .leftJoinAndSelect('car.car_media','car_media')
-    .leftJoinAndSelect('user.user_detail','user_detail')
-    .leftJoinAndSelect('order.slip','slip')
+      .leftJoinAndSelect('order.user', 'user')
+      .leftJoinAndSelect('order.car', 'car')
+      .leftJoinAndSelect('car.car_media', 'car_media')
+      .leftJoinAndSelect('user.user_detail', 'user_detail')
+      .leftJoinAndSelect('order.slip', 'slip')
       .where('user.id = :user_id', { user_id })
       .andWhere('car.id = order.car_id');
 
-    queryBuilder
-      .orderBy('order.createdAt', pageOptionsDto.order)
+      if (pageOptionsDto.status) {
+        queryBuilder.andWhere('order.status = :status', {
+          status: `${pageOptionsDto.status.toUpperCase()}`,
+        });
+      }
+      const orderByMap = {
+        car: 'car.name',
+        user_email: 'user.email',
+        start_rent_at: 'order.start_rent_at',
+        finish_rent_at: 'order.finish_rent_at',
+        category: 'car.category',
+        total_price: 'order.total_price',
+        createdAt: 'order.createdAt',
+      };
+      const orderValue = orderByMap[pageOptionsDto.orderBy] || '';
+  
+
+      queryBuilder
+      .orderBy(`${orderValue}`, pageOptionsDto.order)
       .skip(pageOptionsDto.skip)
       .take(pageOptionsDto.take);
 
