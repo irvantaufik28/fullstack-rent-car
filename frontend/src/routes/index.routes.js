@@ -21,6 +21,7 @@ import OrderStatusPage from "../pages/client/order-status/OrderStatusPage";
 import PaymentReceiptPage from "../pages/client/payment/PaymentReceiptPage";
 import AdminOrderPage from "../pages/admin/order/AdminOrderPage";
 import ProcessOrderPage from "../pages/admin/order/ProcessOrderPage";
+import OrderDetailPage from "../pages/client/order-status/OrderDetailPage";
 
 function IndexRoutes() {
   return (
@@ -39,7 +40,7 @@ function IndexRoutes() {
           <Route path="/payment/confirm/order/:id" element={<PaymentValidationPage />} />
           <Route path="/order/status" element={<OrderStatusPage />} />
           <Route path="/payment/ticket/:id" element={<PaymentReceiptPage />} />
-
+          <Route path="/customer/order/detail/:id" element={<OrderDetailPage />} />
         </Route>
         <Route element={<PrivateRoutes />}>
           <Route path="/admin/car/list" element={<AdminCarListPage />} />

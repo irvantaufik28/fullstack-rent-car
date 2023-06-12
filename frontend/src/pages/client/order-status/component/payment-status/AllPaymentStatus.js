@@ -16,41 +16,41 @@ export default function AllPaymentStatus(props) {
     minimumFractionDigits: 0
   });
 
-  
+
 
   return (
     <>
-      {props.data?.orders?.map(o => (
+      {props.data?.map(o => (
         <Card className='card-status-payment' key={o.id}>
           <Card.Header>
             {o.status === 'PENDING' ? "BELUM BAYAR" :
-            o.status === 'SUBMIT' ? "SEDANG PROSES" : 
-            o.status === 'CONFIRM' ? "SUDAH DI KONFIRMASI":
-            o.status === 'CANCELED' ? "DIBATALKAN" : 
-            o.status === "COMPLETED" ? "SELESAI" : "DITOLAK"
+              o.status === 'SUBMIT' ? "SEDANG PROSES" :
+                o.status === 'CONFIRM' ? "SUDAH DI KONFIRMASI" :
+                  o.status === 'CANCELED' ? "DIBATALKAN" :
+                    o.status === "COMPLETED" ? "SELESAI" : "DITOLAK"
             }
-          
+
           </Card.Header><Card.Body>
             <div className='row'>
               <div className='col-md-9 card-content-payment'>
                 {o?.car?.car_media?.length <= 0 || o?.car?.car_media === null || o?.car?.car_media === undefined ?
-                (
-                  <div>
-                    <ImageWithLoading
-                      src={nullImage}
-                      alt={'null'}
-                    />
-                  </div>
-                ) :
-                (
-                  <div>
-                    <ImageWithLoading
-                     src={o?.car?.car_media?.find(media => media.is_main_image)?.image_url}
-                     alt={o.name}
-                    />
-                  </div>
-                )
-              }
+                  (
+                    <div>
+                      <ImageWithLoading
+                        src={nullImage}
+                        alt={'null'}
+                      />
+                    </div>
+                  ) :
+                  (
+                    <div>
+                      <ImageWithLoading
+                        src={o?.car?.car_media?.find(media => media.is_main_image)?.image_url}
+                        alt={o.name}
+                      />
+                    </div>
+                  )
+                }
                 <div>
                   <h5>Nama/Type Mobil {o?.car?.name} </h5>
                   <h5>tanggal Sewa {moment(o?.start_rent_at).format('DD MMMM YYYY')}</h5>
@@ -62,58 +62,76 @@ export default function AllPaymentStatus(props) {
                 total bayar: {formatter.format(o?.total_price)}
               </div>
             </div>
-            
+
             <div className='payment-option-button'>
               {
-                o.status === "PENDING"  &&
+                o.status === "PENDING" &&
                 <>
-                  <Button variant="primary">Bayar Sekarang</Button>
-                 
-                  <Button
-                      variant="outline-danger"
-                      onClick={(e) => {
-                        e.preventDefault()
-                        props.handleCancelOrder(o.id)
-                      }}
-                    >
-                      Batalkan Pesanan
-                    </Button>
                   <Link to={`/payment/confirm/order/${o.id}`}>
-                  <Button variant="primary">Lihat Detail</Button>
+                    <Button variant="primary">Bayar Sekarang</Button>
+                  </Link>
+
+                  <Button
+                    variant="outline-danger"
+                    onClick={(e) => {
+                      e.preventDefault()
+                      props.handleCancelOrder(o.id)
+                    }}
+                  >
+                    Batalkan Pesanan
+                  </Button>
+                  <Link to={`/customer/order/detail/${o.id}`}>
+                    <Button variant="primary">Lihat Detail</Button>
                   </Link>
                 </>
               }
               {
                 o.status === "SUBMIT" &&
                 <>
-                  <Button variant="primary">Lihat Detail</Button>
+                <Link to={`/customer/order/detail/${o.id}`}>
+                    <Button variant="primary">Lihat Detail</Button>
+                  </Link>
                 </>
               }
               {
                 o.status === "CONFIRM" &&
                 <>
-                <Button variant="primary">Lihat Detail</Button>
+                <Link to={`/customer/order/detail/${o.id}`}>
+                    <Button variant="primary">Lihat Detail</Button>
+                  </Link>
                 </>
               }
-               {
+              {
                 o.status === "CANCELED" &&
                 <>
-                <Button variant="primary">Lihat Detail</Button>
-                <Button variant="primary">Sewa Lagi</Button>
+                 <Link to={`/customer/order/detail/${o.id}`}>
+                    <Button variant="primary">Lihat Detail</Button>
+                  </Link>
+                  <Link to={`/car/${o.car_id}`}>
+                    <Button variant="primary">sewa lagi</Button>
+                  </Link>
                 </>
               }
               {
                 o.status === "REJECTED" &&
                 <>
-                <Button variant="primary">Lihat Detail</Button>
-                <Button variant="primary">Sewa Lagi</Button>
+                  <Link to={`/customer/order/detail/${o.id}`}>
+                    <Button variant="primary">Lihat Detail</Button>
+                  </Link>
+                  <Link to={`/car/${o.car_id}`}>
+                    <Button variant="primary">sewa lagi</Button>
+                  </Link>
                 </>
               }
-               {
+              {
                 o.status === "COMPLETED" &&
                 <>
-                <Button variant="primary">Lihat Detail</Button>
-                <Button variant="primary">Sewa Lagi</Button>
+                <Link to={`/customer/order/detail/${o.id}`}>
+                    <Button variant="primary">Lihat Detail</Button>
+                  </Link>
+                  <Link to={`/car/${o.car_id}`}>
+                    <Button variant="primary">sewa lagi</Button>
+                  </Link>
                 </>
               }
             </div>

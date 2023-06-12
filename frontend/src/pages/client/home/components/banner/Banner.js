@@ -10,7 +10,7 @@ export default function Banner() {
           <div className="row">
             <div className="col-md-6 d-flex align-items-center mt-5">
               <div className="hero_description">
-                <h1 className="title">
+                <h1 className="title-banner">
                   Sewa & Rental Mobil Terbaik di kawasan (Lokasimu)
                 </h1>
                 <p className="decription">
