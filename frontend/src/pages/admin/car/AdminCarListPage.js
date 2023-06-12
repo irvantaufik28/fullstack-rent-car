@@ -61,8 +61,8 @@ export default function AdminCarListPage() {
   }
 
   return (
-    <>
-      <NavBarAdmin onSubmit = {navbarSubmit}/>
+    <> 
+  
       <SideBarAdmin>
         <div className='container-car container'>
         <AdminCarList cars={data.cars} handleDelete={handleDelete} >

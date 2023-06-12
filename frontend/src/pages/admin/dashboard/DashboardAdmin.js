@@ -51,7 +51,7 @@ const data = [
 export default function DashboardAdmin() {
   return (
     <>
-      <NavBarAdmin />
+    
       <SideBarAdmin>
         <Row>
           <ResponsiveContainer width="80%" height={400}>

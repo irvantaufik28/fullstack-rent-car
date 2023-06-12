@@ -10,32 +10,6 @@ import Styles from "./admincarlist.css";
 export default function AdminCarList(props) {
 
   const { children } = props
-  // const [loading, setLoading] = useState(true);
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     setLoading(false);
-  //   }, 1000);
-
-  //   return () => clearTimeout(timer);
-  // }, []);
-
-  // if (loading) {
-  //   return (
-  //     <LoadingSpiner />
-  //   );
-  // }
-
-  // if (!props.cars?.length) {
-  //   return (
-  //     <>
-  //       <Container className="container-car">
-  //         <div className="carnotfound">
-  //           <h1>car not found!!!</h1>
-  //         </div>
-  //       </Container>
-  //     </>
-  //   );
-  // }
 
   const formatter = new Intl.NumberFormat("id-ID", {
     style: 'currency',

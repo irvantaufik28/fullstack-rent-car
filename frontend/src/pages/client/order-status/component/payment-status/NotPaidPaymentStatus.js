@@ -73,7 +73,7 @@ export default function NotPaidPaymentStatus(props) {
                       variant="outline-danger"
                       onClick={(e) => {
                         e.preventDefault()
-                        props.handleDelete(o.id)
+                        props.handleCancelOrder(o.id)
                       }}
                     >
                       Batalkan Pesanan

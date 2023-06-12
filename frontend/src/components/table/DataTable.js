@@ -4,11 +4,15 @@ import axios from 'axios'
 import BasicTable from './BasicTable'
 import { format } from 'date-fns/esm'
 import { Button } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux';
+import { adminGetAllOrder } from '../../features/orderSlice'
 
 const DataTable = forwardRef((props, ref) => {
-    const apiUrl = config.apiBaseUrl + "/order"
+    const apiUrl = config.apiBaseUrl + "/order/admin"
+    // const apiUrl = "https://fullstack-rent-car-production.up.railway.app/order/admin"
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(false)
+    const dispatch = useDispatch();
 
     const columns = useMemo(
         () => [
@@ -146,13 +150,26 @@ const DataTable = forwardRef((props, ref) => {
                   }
 
                 if (pageSize) params.record = pageSize
+                const token= document.cookie
+                .split('; ')
+                .find((row) => row.startsWith('token='))
+                ?.split('=')[1];
 
-                const { data } = await axios.get(apiUrl, { params })
-                const list = data.orders
+                const response = await axios.get( apiUrl, {
+                    params,
+                    headers : {
+                        'Authorization': `Bearer ${token}`
+                    }
+                } );
+
+                const {data} = response
+
+                const list = data?.orders
+             
 
                 setData(list)
-                setTotalPage(data.pageCount)
-                setTotalData(data.Count)
+                setTotalPage(data?.pageCount)
+                setTotalData(data?.Count)
 
 
 

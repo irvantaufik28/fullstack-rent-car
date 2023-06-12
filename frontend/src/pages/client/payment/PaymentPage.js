@@ -49,7 +49,7 @@ export default function PaymentPage() {
           "Content-Type": "application/json"
         }
       });
-      navigate(`/payment/validation/order/${response.data?.id}`)
+      navigate(`/payment/confirm/order/${response.data?.id}`)
       return response;
     } catch (error) {
       console.log(error);

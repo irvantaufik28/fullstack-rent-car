@@ -20,6 +20,7 @@ import { PaymentValidationPage } from "../pages/client/payment/PaymentValidation
 import OrderStatusPage from "../pages/client/order-status/OrderStatusPage";
 import PaymentReceiptPage from "../pages/client/payment/PaymentReceiptPage";
 import AdminOrderPage from "../pages/admin/order/AdminOrderPage";
+import ProcessOrderPage from "../pages/admin/order/ProcessOrderPage";
 
 function IndexRoutes() {
   return (
@@ -32,21 +33,21 @@ function IndexRoutes() {
         <Route path="/car/:id" element={<CarDetailPage />} />
         <Route path="/user/profile" element={<UserProfilePage />} />
         <Route path="/user/profile/setting" element={<UserSettingPage />} />
-\
         <Route element={<PrivateRoutesCustomer />}>
 
           <Route path="/payment" element={<PaymentPage />} />
-          <Route path="/payment/validation/order/:id" element={<PaymentValidationPage />} />
+          <Route path="/payment/confirm/order/:id" element={<PaymentValidationPage />} />
           <Route path="/order/status" element={<OrderStatusPage />} />
           <Route path="/payment/ticket/:id" element={<PaymentReceiptPage />} />
 
         </Route>
         <Route element={<PrivateRoutes />}>
-          <Route path="/admin/carlist" element={<AdminCarListPage />} />
-          <Route path="/admin/addcar" element={<AdminAddCarPage />} />
+          <Route path="/admin/car/list" element={<AdminCarListPage />} />
+          <Route path="/admin/add/car" element={<AdminAddCarPage />} />
           <Route path="/admin/update/car/:id" element={<AdminUpdateCarPage />} />
           <Route path="/dashboard" element={<DashboardAdmin />} />
           <Route path="/admin/order" element={<AdminOrderPage />} />
+          <Route path="/admin/order/process/:id" element={<ProcessOrderPage />} />
         </Route>
 
 

@@ -15,6 +15,7 @@ export default function IndexPayment(props) {
   const paginate = useSelector((state) => state.order.paginate);
   const [selectedStatus, setSelectedStatus] = useState("")
 
+
   const [filterPage, setFilterPage] = useState({
     status: '',
     page: 1,
@@ -58,6 +59,8 @@ export default function IndexPayment(props) {
     dispatch(setPaginate(updatedFilterPage));
   };
 
+
+  
   return (
     <>
       <div className="container">
@@ -76,7 +79,7 @@ export default function IndexPayment(props) {
               <PaymentStatus data={data?.orders} paginate={data} />
             </Tab>
             <Tab eventKey="payment-onproccess" title="Perlu Diproses">
-              <PaymentStatus data={data?.orders} paginate={data} />
+              <PaymentStatus data={data?.orders} paginate={data}/>
             </Tab>
             <Tab eventKey="payment-confirmation" title="Sudah DiKonfirmasi">
               <PaymentStatus data={data?.orders} paginate={data} />
@@ -114,8 +117,9 @@ export default function IndexPayment(props) {
             activeClassName={"active"}
           />
         </div>
+        
       </div>
-
+     
     </>
   );
 }

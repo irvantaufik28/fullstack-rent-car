@@ -12,8 +12,8 @@ import Cookies from 'js-cookie';
 export default function NavbarLayout({ linkWhyUs, linkTestimonial, linkOurService, linkFaq }) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const [cookies ] = useCookies(['token', 'refresh_token']);
-  
+  const [cookies] = useCookies(['token', 'refresh_token']);
+
   const auth = TokenValidation()
   const tokenUser = cookies.token
   const user = useSelector(userSelector.selectUser)
@@ -23,14 +23,14 @@ export default function NavbarLayout({ linkWhyUs, linkTestimonial, linkOurServic
       dispatch(getUser(tokenUser))
     }
   }, [dispatch]);
-  
+
 
   const handdleLogout = () => {
-    Cookies.remove('token', { path: '/' }) 
-    Cookies.remove('refresh_token', { path: '/' }) 
+    Cookies.remove('token', { path: '/' })
+    Cookies.remove('refresh_token', { path: '/' })
     navigate('/login')
   }
-  
+
   const handleClick = (link) => {
     if (link.current) {
       link.current.scrollIntoView({
@@ -39,7 +39,7 @@ export default function NavbarLayout({ linkWhyUs, linkTestimonial, linkOurServic
       });
     }
   }
-  
+
 
 
 
@@ -97,12 +97,17 @@ export default function NavbarLayout({ linkWhyUs, linkTestimonial, linkOurServic
                   {auth.token ?
 
 
-                    <NavDropdown 
-                    title={user.email} 
-                    id="collasible-nav-dropdown">
-                      <NavDropdown.Item href="/user/profile">Profile</NavDropdown.Item>
+                    <NavDropdown
+                      title={user?.user_detail?.first_name}
+                      id="collasible-nav-dropdown">
+                      <NavDropdown.Item href="/user/profile">
+                        Profile</NavDropdown.Item>
                       <NavDropdown.Item href="/user/profile/setting">
                         setting
+                      </NavDropdown.Item>
+
+                      <NavDropdown.Item href="/order/status">
+                        pesanan Saya
                       </NavDropdown.Item>
 
                       <NavDropdown.Divider />

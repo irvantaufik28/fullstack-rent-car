@@ -12,24 +12,14 @@ export default function SideBarCustomer({ children }) {
 
     const menuItem = [
       {
-        path: "/dashboard",
-        name: "Dashboard",
+        path: "/",
+        name: "home",
         icon: <FaTh />,
-      },
-      {
-        path: "/admin/carlist",
-        name: "car",
-        icon: <FaUserAlt />,
       },
       {
         path: "/order",
         name: "order",
         icon: <FaRegChartBar />,
-      },
-      {
-        path: "/customer",
-        name: "customer",
-        icon: <FaCommentAlt />,
       },
     ];
   return (
@@ -43,7 +33,7 @@ export default function SideBarCustomer({ children }) {
     return (
       <li key={index}>
         <NavLink to={item.path}>
-          <span className="icon">{item.icon}</span>
+          <span className="icon-customer-sidebar">{item.icon}</span>
           {item.name}
         </NavLink>
       </li>

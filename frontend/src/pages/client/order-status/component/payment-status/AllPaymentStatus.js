@@ -15,7 +15,7 @@ export default function AllPaymentStatus(props) {
     currency: 'IDR',
     minimumFractionDigits: 0
   });
-
+console.log(props?.data?.orders)
   return (
     <>
       {props.data?.orders?.map(o => (
@@ -31,7 +31,7 @@ export default function AllPaymentStatus(props) {
           </Card.Header><Card.Body>
             <div className='row'>
               <div className='col-md-9 card-content-payment'>
-                {o?.car?.car_media?.length <= 0 ?
+                {o?.car?.car_media?.length <= 0 || o?.car?.car_media === null || o?.car?.car_media === undefined ?
                 (
                   <div>
                     <ImageWithLoading
@@ -71,7 +71,7 @@ export default function AllPaymentStatus(props) {
                       variant="outline-danger"
                       onClick={(e) => {
                         e.preventDefault()
-                        props.handleDelete(o.id)
+                        props.handleCancelOrder(o.id)
                       }}
                     >
                       Batalkan Pesanan
