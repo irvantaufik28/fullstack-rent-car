@@ -24,6 +24,7 @@ export default function AdminUpdateCarPage() {
                 }
             }
         }
+        console.log(updateData)
         updateCar(updateData)
     };
 
